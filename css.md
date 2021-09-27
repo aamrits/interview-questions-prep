@@ -1,3 +1,41 @@
+🔸Explain CSS pseudo-selectors and pseudo-elements.
+
+🔸What are media queries and explain them in detail?
+
+🔸Explain box-model
+
+🔸What is flexbox and explain their properties?
+
+🔸Difference between transition and transform property in CSS.
+
+🔸What is Mobile-First Approach and Desktop First approach and which one you follow and why?
+
+🔸Units in CSS.Difference between absolute, relative, and fixed?
+
+🔸Write a piece of code to center div.
+
+🔸How we can achieve smooth scrolling
+
+🔸What is specificity in CSS? Explain in detail
+
+🔸What is a responsive web design and how we can achieve that
+
+🔸What do you mean by metatag? And why initial value =1.0 written?
+
+🔸Difference between justify-content vs align-items.
+
+🔸Difference between id and class selectors
+
+🔸How will you decide when to use a button or tag?
+
+🔸Why CSS is important?
+
+🔸What are some of the things you would test while doing accessibility testing?
+
+🔸Make a bouncing ball entirely with help of CSS.
+
+🔸In how many ways can CSS be integrated?
+
 ## How many css layouts are there?
 
 There are 4 types of layouts.

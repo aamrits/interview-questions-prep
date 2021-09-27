@@ -1,66 +1,17 @@
-What are semantic elements and explain a few of them? What are their advantages?
+# Questions
 
-🔸What is doctype used for?
-
-🔸What is DOM?
-
-🔸What are media queries and explain them in detail?
-
-🔸Different types of storage (local storage, session storage, cookies)and which one is the best way to store data?
-
-🔸Create a simple login form and add validations on the password?
-
-🔸What are the different types of script tags? (async,defer)
-
-🔸What is SEO? Explain steps
-
-🔸Explain CSS pseudo-selectors and pseudo-elements.
-
-🔸Explain box-model
-
-🔸What is flexbox and explain their properties?
-
-🔸Difference between transition and transform property in CSS.
-
-🔸What is Mobile-First Approach and Desktop First approach and which one you follow and why?
-
-🔸Units in CSS.Difference between absolute, relative, and fixed?
-
-🔸Write a piece of code to center div.
-
-🔸How we can achieve smooth scrolling
-
-🔸What is specificity in CSS? Explain in detail
-
-🔸What is a responsive web design and how we can achieve that
-
-🔸What do you mean by metatag? And why initial value =1.0 written?
-
-🔸Difference between justify-content vs align-items.
-
-🔸Difference between id and class selectors
-
-🔸DOM manipulation.
-
-🔸How will you decide when to use a button or tag?
-
-🔸Why CSS is important?
-
-🔸What are some of the things you would test while doing accessibility testing?
-
-🔸Make a bouncing ball entirely with help of CSS.
-
-🔸In how many ways can CSS be integrated?
-
-🔸How the browser renders HTML and CSS? Explain in detail.
-
-## Major goals of HTML5
-
+#### Major goals of HTML5
+<details><summary><b>Answer</b></summary>
+<p>
 1. Deliver rich content(movies, graphics, etc) without additional plugins.
 2. Provides better semantic support for web page structure.
 3. Provides better cross-browser platform support.
+</p>
+</details>
 
-## New features of HTML5
+---
+
+#### New features of HTML5
 
 * Improved support for embedding graphics, audio, and video content via the new <code>canvas</code>, <code>audio</code>, and <code>video</code> tags.
 * Extensions to the JavaScript API such as geolocation and drag-and-drop as well for storage and caching.
@@ -68,7 +19,9 @@ What are semantic elements and explain a few of them? What are their advantages?
 * Several new semantic tags (element clearly describes its meaning to both the browser and the developer) were also added to complement the structural logic of modern web applications. These include the <code>main</code>, <code>nav</code>, <code>article</code>, <code>section</code>, <code>header</code>, <code>footer</code>,  <code>form</code>,  <code>table</code> and <code>aside</code> tags.
 * New form controls, such as <code>calendar</code>, <code>date</code>, <code>time</code>, <code>email</code>, <code>url</code> and <code>search</code>.
 
-## What are web workers?
+---
+
+#### What are web workers?
 
 A web worker is a script that runs in the background (i.e., in another thread) without the page needing to wait for it to complete. The user can continue to interact with the page while the web worker runs in the background. Workers utilize thread-like message passing to achieve parallelism.
 
@@ -239,3 +192,21 @@ In HTML5 you can use many APIs. Some of them are:
   </body>
 </html>
 ```
+
+🔸What are semantic elements and explain a few of them? What are their advantages?
+
+🔸What is doctype used for?
+
+🔸What is DOM?
+
+🔸Different types of storage (local storage, session storage, cookies)and which one is the best way to store data?
+
+🔸Create a simple login form and add validations on the password?
+
+🔸What are the different types of script tags? (async,defer)
+
+🔸What is SEO? Explain steps
+
+🔸DOM manipulation.
+
+🔸How the browser renders HTML and CSS? Explain in detail.

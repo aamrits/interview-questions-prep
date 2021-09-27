@@ -3,9 +3,9 @@
 #### Major goals of HTML5
 <details><summary><b>Answer</b></summary>
 <p>
-1. Deliver rich content(movies, graphics, etc) without additional plugins.
-2. Provides better semantic support for web page structure.
-3. Provides better cross-browser platform support.
+- 1. Deliver rich content(movies, graphics, etc) without additional plugins.
+- 2. Provides better semantic support for web page structure.
+- 3. Provides better cross-browser platform support.
 </p>
 </details>
 

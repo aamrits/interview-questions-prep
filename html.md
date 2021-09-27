@@ -8,7 +8,6 @@
 ---
 
 #### New features of HTML5
-
 * Improved support for embedding graphics, audio, and video content via the new <code>canvas</code>, <code>audio</code>, and <code>video</code> tags.
 * Extensions to the JavaScript API such as geolocation and drag-and-drop as well for storage and caching.
 * Introduction of “web workers”.
@@ -21,13 +20,15 @@
 
 A web worker is a script that runs in the background (i.e., in another thread) without the page needing to wait for it to complete. The user can continue to interact with the page while the web worker runs in the background. Workers utilize thread-like message passing to achieve parallelism.
 
-## Can a <section> contains <article> element? Can a <article> contain a <section> element? 
+---
 
+#### Can a <section> contains <article> element? Can a <article> contain a <section> element? 
 YES.
 
-## Write the code necessary to create a 300 pixel by 300 pixel <canvas>. Within it, paint a blue 100 pixel by 100 pixel square with the top-left corner of the square located 50 pixels from both the top and left edges of the canvas.
-  
-```javascript
+---
+
+#### Write the code necessary to create a 300 pixel by 300 pixel <canvas>. Within it, paint a blue 100 pixel by 100 pixel square with the top-left corner of the square located 50 pixels from both the top and left edges of the canvas.
+  ```javascript
 <canvas id="c" width="300" height="300"></canvas>
 
 <script>
@@ -37,8 +38,10 @@ YES.
   drawing_context.fillRect( 50, 50, 100, 100 );
 </script>
 ```
-## HTML5 local storage and session storage
 
+---
+
+#### HTML5 local storage and session storage
 With HTML5, web pages can store data locally within the user’s browser.
 Earlier, this was done with cookies. However, Web Storage is more secure and faster. The data is stored in name/value pairs, and a web page can only access data stored by itself. Unlike cookies, the storage limit is far larger (at least 5MB) and information is never transferred to the server.
 
@@ -57,26 +60,32 @@ if (typeof(Storage) !== "undefined") {
 ```
 The difference between localStorage and sessionStorage involves the lifetime and scope of the storage.
 Data stored through localStorage is permanent: it does not expire and remains stored on the user’s computer until a web app deletes it or the user asks the browser to delete it. SessionStorage has the same lifetime as the top-level window or browser tab in which the script that stored it is running. When the window or tab is permanently closed, any data stored through sessionStorage is deleted.
+
+---
  
-## Geolocation API
+#### Geolocation API
 HTML5’s Geolocation API lets users share their physical location with chosen web sites. JavaScript can capture a user’s latitude and longitude and can send it to the back-end web server to enable location-aware features like finding local businesses or showing their location on a map.
 
 ```javascript
 var geolocation = navigator.geolocation;
 ```
 
-## If you don’t specify Doctype, what will happen?
+---
 
+#### If you don’t specify Doctype, what will happen?
 New HTML5 tags will not be interpreted by browsers.
 
-## SVG and canvas
+---
 
+#### SVG and canvas
 The <svg> element is a container for SVG graphics. SVG has several methods for drawing paths, boxes, circles, text, and even bitmap images.
 SVG is a language for describing 2D graphics, but <canvas> allows you to draw 2D graphics on the fly using JavaScript.
 n SVG, each drawn shape is remembered as an object. If attributes of an SVG object are changed, the browser can automatically re-render the shape.
 Canvas is rendered pixel by pixel. In canvas, once the graphic is drawn, it is forgotten by the browser. If its position should be changed, the entire scene needs to be redrawn, including any objects that might have been covered by the graphic.
 
-## Datalist tag
+---
+
+#### Datalist tag
 A <datalist> tag can be used to create a simple auto-complete feature for a web page.
   
 ```javascript
@@ -98,7 +107,9 @@ Please Select Country: <input type="text" list="countries" name="country" />
 </datalist>
 ```
 
-## Form input types in HTML5
+---
+
+#### Form input types in HTML5
 The new input types are:
 * Time
 * Date
@@ -114,7 +125,9 @@ The new input types are:
 * Telephone
 * URL
 
-## Deprecated HTML tags in HTML5
+---
+
+#### Deprecated HTML tags in HTML5
 The tags that are deprecated are the following:
 * <code>basefont</code>
 * <code>big</code>
@@ -132,8 +145,9 @@ The tags that are deprecated are the following:
 * <code>isindex</code>
 * <code>dir</code>
 
-## New APIs used in HTML5
+---
 
+#### New APIs used in HTML5
 In HTML5 you can use many APIs. Some of them are: 
 * Web Workers API
 * Server-sent Events API
@@ -147,8 +161,11 @@ In HTML5 you can use many APIs. Some of them are:
 * Client-side storage
 * Geolocation
 
-## Drag and drop used in HTML5
+---
 
+#### Drag and drop used in HTML5
+<details><summary><b>Answer</b></summary>
+<p>
 ```javascript
 <!DOCTYPE HTML>
 <html>
@@ -188,6 +205,10 @@ In HTML5 you can use many APIs. Some of them are:
   </body>
 </html>
 ```
+</p>
+</details>
+
+---
 
 🔸What are semantic elements and explain a few of them? What are their advantages?
 

@@ -17,12 +17,11 @@
 ---
 
 #### What are web workers?
-
 A web worker is a script that runs in the background (i.e., in another thread) without the page needing to wait for it to complete. The user can continue to interact with the page while the web worker runs in the background. Workers utilize thread-like message passing to achieve parallelism.
 
 ---
 
-#### Can a <section> contains <article> element? Can a <article> contain a <section> element? 
+#### Can a ```<section>``` contains ```<article>``` element? Can a ```<article>``` contain a ```<section>``` element? 
 YES.
 
 ---
@@ -164,8 +163,6 @@ In HTML5 you can use many APIs. Some of them are:
 ---
 
 #### Drag and drop used in HTML5
-<details><summary><b>Answer</b></summary>
-<p>
 ```javascript
 <!DOCTYPE HTML>
 <html>
@@ -205,8 +202,6 @@ In HTML5 you can use many APIs. Some of them are:
   </body>
 </html>
 ```
-</p>
-</details>
 
 ---
 

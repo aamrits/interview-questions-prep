@@ -1,1 +1,85 @@
-# interview-questions-prep
+## JavaScript
+
+- Variables
+- Data Types
+  - Strings
+  - Numbers
+  - Booleans
+  - Null & undefined
+- Operators
+  - Arithmetic
+  - Equality
+  - Comparison
+  - Logical
+- DOM Events
+  - Function Declarations & Expressions, 
+  - Parameters & arguments
+  - Arrow Function
+- Logic & COntrol Flow 
+  - if statement 
+  - switch statement
+  - while and for loop 
+  - Tternary operator
+- Scope, Hoisting, CLosures
+- String Methods
+- Array Methods
+- Objects
+  - Accessing and adding properties
+  - Built-in methods
+- Value vs Reference
+- Asynchrous JS
+  - Event loop
+  - Intervals and timers
+  - Callbacks
+  - Promises
+  - Async/await
+- Modern JS
+  - Module Imports and Exports
+  - Rest and Spread Operators
+  - Object & Array Destructing
+- API Data Fetching 
+  - GET
+  - POST
+  - UPDATE
+  - DELETE
+- Other Topics
+  - Flexbox and Grid
+  - Deployment
+
+## Projects Planned
+- HTML & CSS
+  - Make div shapes with CSS 
+  - Input custom toggle 
+  - Input custom checkbox 
+  - Input custom radio 
+  - Custom select box 
+  - Make a simple sidebar layout in HTML  
+  - Design a sign up page https://dribbble.com/shots/2878911-To-Do-App-Concept-Sign-Up
+- Vanilla JavaScript
+  - Tabs
+  - Modals
+  - Accordion
+  - Calendar
+  - Calculator
+  - Digital Clock
+  - Image SLider
+  - Music Player App
+  - Salary Calculator
+- React
+  - Single select and multi-select 
+  - Filters - with checkbox for a table 
+  - Web API calls using Http 
+  - CRUD operations 
+  - Form Validation 
+  - Google Maps Integration 
+  - Login using Auth0 
+  - Currency converter (convertor in general) 
+  - Stopwatch 
+  - Routing with parameters 
+  - Upload pictures in a form 
+  - Import a form as CSV or excel sheet 
+  - Generic select dropdown 
+  - Can create a project with Node or Webpack from scratch 
+  - Resume Builder
+- Full-stack
+  - Create a JWT login system (Create a node app, Create a mongoDB database, Use bcrypt, Built APIs for sign in and sign up, Check in Postman if its working).

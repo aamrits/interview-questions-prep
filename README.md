@@ -47,15 +47,14 @@
   - Deployment
 
 ## Projects Planned
-- HTML & CSS
+- HTML/CSS/JS
   - Make div shapes with CSS 
   - Input custom toggle 
-  - Input custom checkbox 
-  - Input custom radio 
-  - Custom select box 
-  - Make a simple sidebar layout in HTML  
-  - Design a sign up page https://dribbble.com/shots/2878911-To-Do-App-Concept-Sign-Up
-- Vanilla JavaScript
+  - Input custom checkbox
+  - Input custom radio
+  - Custom select box
+  - Make a simple sidebar layout in HTML
+  - Design a sign up page (https://dribbble.com/shots/2878911-To-Do-App-Concept-Sign-Up)
   - Tabs
   - Modals
   - Accordion
@@ -65,21 +64,32 @@
   - Image SLider
   - Music Player App
   - Salary Calculator
+  - Web API calls using Http (Using Ajax)
+  
 - React
-  - Single select and multi-select 
-  - Filters - with checkbox for a table 
-  - Web API calls using Http 
-  - CRUD operations 
-  - Form Validation 
-  - Google Maps Integration 
-  - Login using Auth0 
-  - Currency converter (convertor in general) 
-  - Stopwatch 
-  - Routing with parameters 
-  - Upload pictures in a form 
-  - Import a form as CSV or excel sheet 
-  - Generic select dropdown 
-  - Can create a project with Node or Webpack from scratch 
+  - Single select and multi-select
+  - Filters - with checkbox for a table
+  - CRUD operations (Todo app)
+  - Form Validation, Upload pictures and files in a form
+  - Google Maps Integration
+  - Login using Auth0
+  - Currency converter (convertor in general)
+  - Stopwatch
+  - Import a form as CSV or excel sheet
+  - Generic select dropdown
+  - Create a project with Node or Webpack from scratch
   - Resume Builder
+  - Harry Potter Website
+    - Chronological Order of Events
+    - Characters with their patronous, images, house
+  - Avengers Website
+  - Lotr/hobbit Website
+  - Cosmo website
+    - Asteroids hitting Earth everyday
+    - Mars images 
+    - Mars temperature every day
+    - Search Images - Description and download
+    - Solar corona ejection forecast
+    - Picture of the day 
 - Full-stack
   - Create a JWT login system (Create a node app, Create a mongoDB database, Use bcrypt, Built APIs for sign in and sign up, Check in Postman if its working).

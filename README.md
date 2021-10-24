@@ -91,7 +91,7 @@
   - Drawing app
   - Password generator
   - Weather app
-  Sources:
+  ## Sources
   - Calculator, Music app (https://blog.nerdjfpb.com/project-ideas-for-vanilla-javascript-beginners-to-expert/)
   - Nav Tabs, Modals, Accordion (https://www.vanillajavascriptprojects.com/)
   - 50 projects 50 days (https://github.com/bradtraversy/50projects50days)
@@ -99,6 +99,7 @@
   - JavaScript Theory (devkode.io)
   - JavaScript for beginners (https://exploringjs.com/impatient-js/toc.html)
   - Deep JavaScript (https://exploringjs.com/deep-js/toc.html)
+  - Design Patterns (https://github.com/kamranahmedse/design-patterns-for-humans)
   
 - React
   - Single select and multi-select

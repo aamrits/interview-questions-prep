@@ -20,13 +20,22 @@
   - switch statement
   - while and for loop 
   - Tternary operator
-- Scope, Hoisting, CLosures
+- Scope and Hoisting
+- IIFE
+- Closures
+- Currying
+- Constructor Function
+- Prototypal Inheritance
 - String Methods
 - Array Methods
 - Objects
   - Accessing and adding properties
   - Built-in methods
 - Value vs Reference
+- call, bind and apply
+- Debounce
+- Throttling
+- Event propagation (bubbling)
 - Asynchrous JS
   - Event loop
   - Intervals and timers
@@ -34,9 +43,16 @@
   - Promises
   - Async/await
 - Modern JS
+  - let/const
+  - Template literals
   - Module Imports and Exports
-  - Rest and Spread Operators
   - Object & Array Destructing
+  - Rest parameter and Spread Operators
+  - Map, forEach, filter, reduce
+  - for-in and for...of loop
+  - set
+  - classes
+  - super and extends
 - API Data Fetching 
   - GET
   - POST
@@ -54,17 +70,35 @@
   - Input custom radio
   - Custom select box
   - Make a simple sidebar layout in HTML
-  - Design a sign up page (https://dribbble.com/shots/2878911-To-Do-App-Concept-Sign-Up)
-  - Tabs
+  - Nav Tabs (https://www.vanillajavascriptprojects.com/)
   - Modals
-  - Accordion
+  - Questions Accordion
+  - Color Flipper
+  - Counter
+  - Video Player
+  - Countdown Timer
+  - Design a sign up page (https://dribbble.com/shots/2878911-To-Do-App-Concept-Sign-Up)
   - Calendar
   - Calculator
   - Digital Clock
-  - Image SLider
+  - Image Slider
   - Music Player App
   - Salary Calculator
   - Web API calls using Http (Using Ajax)
+  - Grocery app (same like todo app)
+  - Memory Game
+  - Notes app
+  - Drawing app
+  - Password generator
+  - Weather app
+  Sources:
+  - Calculator, Music app (https://blog.nerdjfpb.com/project-ideas-for-vanilla-javascript-beginners-to-expert/)
+  - Nav Tabs, Modals, Accordion (https://www.vanillajavascriptprojects.com/)
+  - 50 projects 50 days (https://github.com/bradtraversy/50projects50days)
+  - Notes app (https://www.youtube.com/watch?v=dtKciwk_si4&t=32814s)
+  - JavaScript Theory (devkode.io)
+  - JavaScript for beginners (https://exploringjs.com/impatient-js/toc.html)
+  - Deep JavaScript (https://exploringjs.com/deep-js/toc.html)
   
 - React
   - Single select and multi-select

@@ -91,7 +91,7 @@
   - Drawing app
   - Password generator
   - Weather app
-  ## Sources
+- Sources:
   - Calculator, Music app (https://blog.nerdjfpb.com/project-ideas-for-vanilla-javascript-beginners-to-expert/)
   - Nav Tabs, Modals, Accordion (https://www.vanillajavascriptprojects.com/)
   - 50 projects 50 days (https://github.com/bradtraversy/50projects50days)

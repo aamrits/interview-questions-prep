@@ -100,6 +100,12 @@
   - JavaScript for beginners (https://exploringjs.com/impatient-js/toc.html)
   - Deep JavaScript (https://exploringjs.com/deep-js/toc.html)
   - Design Patterns (https://github.com/kamranahmedse/design-patterns-for-humans)
+  - Akshay Saini YouTube video and linked problems (https://www.youtube.com/playlist?list=PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP)
+  - Time and Space complexity in codewithsimran (https://www.youtube.com/watch?v=xCwxYqc_5YI)
+  - Finish 75 Leetcode problems (https://www.teamblind.com/post/New-Year-Gift---Curated-List-of-Top-100-LeetCode-Questions-to-Save-Your-Time-OaM1orEU)
+  - System Design (Netflix, WhatsApp, etc)
+  - React Clones - LinkedIn (Social), Amazon (e-commerce), YouTube (video)
+  - Learn NestJS
   
 - React
   - Single select and multi-select

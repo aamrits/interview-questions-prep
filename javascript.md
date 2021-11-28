@@ -16,10 +16,10 @@
 - Higher Order Functions.
 - Function overiding and overloading.
 - OOPs concept in JS
-   -Objects
-   -classes
-   -Encapsulation (constructor functions)
-   -Inheritance (prototypal inheritance) with example
+   - Objects
+   - classes
+   - Encapsulation (constructor functions)
+   - Inheritance (prototypal inheritance) with example
 - Implement debouncing.
 - Implement throttling.
 - IIFE (Immediately Invoked Function Expression)
@@ -53,8 +53,8 @@
 - Pollyfill for map, reduce, filter and forEach. 
 - Pollyfill for call, apply,bind.
 - Polyfill for flat method
-   -Infinite depth flatten and flatten by a certain number
-   -Implement both recursive and iterative approaches
+   - Infinite depth flatten and flatten by a certain number
+   - Implement both recursive and iterative approaches
 - Polyfill for promises and Promise.all
 - Event bubbling, event capturing/trickling, and event delegation.
 - Difference between stop propagation and prevent default method.
@@ -83,10 +83,10 @@
 ## Web Performance
 - Critical rendering path (must watch)
 - Caching
-   -HTTP requests: Headers like Cache-Control, ETag, and Transfer-Encoding
+   - HTTP requests: Headers like Cache-Control, ETag, and Transfer-Encoding
 - Network waterfall
 - Bundle size optimisation ( good to have webpack basics)
-- Async , defer script attributes
+- Async, defer script attributes
 - preconnect, preload, prefetch
 - Image optimization (jpeg v/s png v/s svg)
 

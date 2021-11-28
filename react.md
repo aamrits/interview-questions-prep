@@ -1,3 +1,31 @@
+## Questions
+🔹How Virtual DOM works. Explain in detail.
+🔹Principles why React is so popular?
+🔹What is React reconciliation? How does it work?
+🔹What makes DOM manipulation slow.
+🔹What is JSX?
+🔹Difference between class components and functional components.
+🔹What is the difference between state and props.
+🔹What is render prop pattern? Explain.
+🔹Lifecycle methods
+🔹Differences between controlled and uncontrolled components. Give example.
+🔹What is a higher-order component? Give example.
+🔹What are service workers.
+🔹What is context API? or How can we avoid prop drilling?
+🔹react-redux vs context API vs passing props
+🔹How to prevent re-renders on React functional components?
+🔹What is React router?
+🔹Difference between state and ref.
+🔹What are error boundaries in ReactJs?
+
+🔹How does React state (usestate) work internally
+🔹How does useEffect work internally
+🔹Optimization hooks
+🔹useMemo
+🔹useCallback
+🔹How is React.memo different from useMemo ( two very different things )
+🔹useReducer, useContext hook
+
 ✍How Virtual DOM works.Explain in detail
 Virtual DOM is an in-memory representation of real DOM. It is a lightweight JavaScript object which is a copy of Real DOM.
 
@@ -54,7 +82,6 @@ const extraProps = { color: 'red' }
   <Page {...props} data={extraProps}/>
 )}/>
 ```
-
 ✍Explain Atomic Design Pattern.
 Atomic design, developed by Brad Frost and Dave Olsen, is a methodology for crafting design systems with five fundamental building blocks, which, when combined, promote consistency, modularity, and scalability.
 

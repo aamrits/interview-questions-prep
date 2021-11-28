@@ -1,112 +1,101 @@
-🔹What is hoisting? Explain with example? Temporal Dead Zone?
-
-🔹Difference between call, apply and bind. Give example.
-
-🔹What is closure and what are the advantages of using closure?
-
-🔹Event bubbling, event capturing/trickling, and event delegation
-
-🔹Explain with examples of a deep and shallow copy.
-
-🔹How Javascript code is executed?
+## Questions
+🔹How does JavaScript works. Explain event loop.
+🔹JS engine archietecture.
+🔹Explain execution context.
+🔹What is hoisting? Explain with example.
+🔹Scope chain.
+🔹var, let, const, Temporal Dead Zone.
+🔹What is type of null, undefined, function, NaN.
+🔹null and undefined.
+🔹typeOf().
+🔹Difference between == and ===.
+🔹How does this keyword work? Provide some examples.
+🔹Difference between call, apply and bind. Give example.fcons
+🔹What is closure and what are the advantages of using closure.
+🔹Function declaration and Function Expression.
+🔹Higher Order Functions.
+🔹Function overiding and overloading.
+🔹OOPs concept in JS
+   - Objects
+   - classes
+   - Encapsulation (constructor functions)
+   - Inheritance (prototypal inheritance) with example
+🔹Implement debouncing.
+🔹Implement throttling.
+🔹IIFE (Immediately Invoked Function Expression)
+🔹Function currying with example.
+🔹Difference between setTimeout vs setInterval.
+🔹Implement setInterval using setTimeout
+🔹What is type coercion?
+🔹Falsy values in js.
+🔹What is a strict mode in js?
+🔹What is eval()?
+🔹What are reference error and syntax error?
+🔹JavaScript data types.
+🔹Insert content in HTML using JavaScript. 
+🔹HTML DOM (Document Object Model)
+🔹BOM (Browser Object Model)
+🔹window, screen, and document in Javascript
+🔹alert, confirm and popup
+🔹cookies, sessions and localstorage
+🔹Array methods
+🔹String methods
+🔹Different errors in JS.
 
 🔹Explain features of ES6.
-
-🔹JS engine archietecture.
-
-🔹What is prototypal inheritance? Give example.
-
-🔹Write Polyfill for my bind method.
-
-🔹What is an event loop?
-
-🔹splice vs slice method.
-
-🔹What is type of null,undefined,function ,NaN.
-
-🔹Difference between == and ===.
-
-🔹Implement a product method that will return the product of two numbers.
-
-🔹What is function currying? Give example
-
-🔹What are promises in js? Difference between async-await vs promises.
-
-🔹What are the advantages of using Axios over Fetch API?
-
-🔹What is debouncing and create your own debouncing?
-
-🔹Difference between debouncing and throttling with examples.
-
-🔹Scope chain.
-
-🔹Explain the CORS mechanism.
-
-🔹Difference between setTimeout vs setInterval.
-
-🔹What is optical chaining?
-
-🔹Map vs filter vs forEach
-
-🔹What is type coercion?
-
-🔹How async/await works?
-
-🔹Remove falsy values from Array.
-
-🔹Shuffle elements in an array.
-
-🔹How to empty an array?
-
-🔹Falsy values in js.
-
-🔹Different ways of creating an object.
-
-🔹Deep copy of an object.
-
-🔹Spread operator vs rest operator.
-
-🔹What is a strict mode in js?
-
-🔹What is eval()?
-
-🔹Remove duplicate values from an array.
-
-🔹Difference between null and undefined.
-
-🔹Check if a given object is empty or not.
-
-🔹Explain JWT in detail.
-
+🔹Difference between the arrow and normal function.
+🔹Explain what the callback function is and provide a simple example.
+🔹Promises
+🔹Async-await
+🔹Spread operator, rest and destructing.
+🔹Iterators.
+🔹Import and export.
+🔹Pollyfill for map, reduce, filter and forEach. 
+🔹Pollyfill for call, apply,bind.
+🔹Polyfill for flat method
+   - Infinite depth flatten and flatten by a certain number
+   - Implement both recursive and iterative approaches
+🔹Polyfill for promises and Promise.all
+🔹Event bubbling, event capturing/trickling, and event delegation.
 🔹Difference between stop propagation and prevent default method.
 
-🔹What is array destructuring?
-
-🔹Difference between the arrow and normal function.
-
-🔹Practice more output questions in JS (related with this, closure, error). Attached link for output questions of javascript. https://github.com/lydiahallie/javascript-questions
-
-🔹Increment and decrement operator.
-
-🔹What are reference error and syntax error?
-
-🔹Explain what the callback function is and provide a simple example.
-
+🔹How to empty an array.
+🔹Remove duplicate values from an array.
+🔹Explain with examples of a deep and shallow copy.
+🔹Remove falsy values from Array.
+🔹Shuffle elements in an array.
+🔹splice vs slice method.
+🔹What is array destructuring.
+🔹Different ways of creating an object.
+🔹Object creation patterns.
+🔹Deep copy of an object.
+🔹Check if a given object is empty or not.
+🔹Add/remove properties from Objects.
 🔹Given a string, reverse each word in the sentence.
-
 🔹Given two strings, return true if they are anagrams of one another.
-
-🔹How does this keyword work? Provide some examples.
-
-🔹What is the difference between var, let, and const.
-
-🔹Calculate the sum of all elements in a multidimensional array of infinite depth.
-
 🔹Find a maximum consecutive repeating char in a given string.
 
-🔹Filter movie list by average rating, name.Sort filtered list by any field inside movie object.
+🔹What are the advantages of using Axios over Fetch API.
+🔹Explain the CORS mechanism.
+🔹Explain JWT in detail.
+🔹Use AJAX and XMLHttpRequest to get reponse from an URL. 
 
-## Questions
+## Web Performance
+🔹Critical rendering path (must watch)
+🔹Caching
+   - HTTP requests: Headers like Cache-Control, ETag, and Transfer-Encoding
+🔹Network waterfall
+🔹Bundle size optimisation ( good to have webpack basics)
+🔹Async , defer script attributes
+🔹preconnect, preload, prefetch
+🔹Image optimization (jpeg v/s png v/s svg)
+
+## Web security
+🔹XSS ( understand why we need cookies )
+🔹CSRF
+🔹Content security policy
+
+## Old Questions
 * [JavaScript can display data in following ways](#javascript-can-display-data-in-following-ways)
 * [JavaScript Data Types](#javascript-data-types)
 * [JavaScript Objects](#some-of-the-javascript-objects-are)
@@ -126,7 +115,8 @@
 * [Cookies and sessions](#what-is-difference-between-cookies-and-sessions)
 * [JavaScript Methods](#javascript-methods)
 
-## JavaScript can display data in following ways.
+## Q1
+### JavaScript can display data in following ways.
 
 1. Writing into a HTML element, using <code>innerHTML</code>.
 2. Writing into the HTML output, using <code>document.write()</code>. (NOTE: It deletes all the existing HTML)

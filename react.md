@@ -26,6 +26,7 @@
 - How is React.memo different from useMemo ( two very different things )
 - useReducer, useContext hook
 
+## Answers
 ✍How Virtual DOM works.Explain in detail
 Virtual DOM is an in-memory representation of real DOM. It is a lightweight JavaScript object which is a copy of Real DOM.
 

@@ -1,5 +1,5 @@
-## Questions
-- How does JavaScript works. Explain event loop.
+# Questions
+- [How does JavaScript works. Explain event loop.] (#Q1)
 - JS engine archietecture.
 - Explain execution context.
 - What is hoisting? Explain with example.
@@ -115,6 +115,7 @@
 * [Cookies and sessions](#what-is-difference-between-cookies-and-sessions)
 * [JavaScript Methods](#javascript-methods)
 
+# Answers
 ## Q1
 ### JavaScript can display data in following ways.
 
@@ -123,6 +124,8 @@
 3. Writing into an alert box, using <code>window.alert()</code>.
 4. Writing into browser console, using <code>console.log()</code>.
 
+**[⬆ Back to Top](#Questions)**
+---
 ## JavaScript ignores multiple spaces.
 
 JavaScript uses the Unicode character set. Unicode covers (almost) all the characters, punctuations, and symbols in the world.

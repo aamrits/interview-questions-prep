@@ -1,4 +1,5 @@
 # Questions
+## JavaScript
 - [How does JavaScript works. Explain event loop.](#Q1)
 - [JS engine archietecture.](#Q2)
 - [Explain execution context.](#Q3)
@@ -42,58 +43,61 @@
 - [String methods](#Q37)
 - [Different errors in JS.](#Q38)
 
-- Explain features of ES6.
-- Difference between the arrow and normal function.
-- Explain what the callback function is and provide a simple example.
-- Promises
-- Async-await
-- Spread operator, rest and destructing.
-- Iterators.
-- Import and export.
-- Pollyfill for map, reduce, filter and forEach. 
-- Pollyfill for call, apply,bind.
-- Polyfill for flat method
+## JavaScript ES6
+- [Explain features of ES6.](#QA1)
+- [Difference between the arrow and normal function.](#QA2)
+- [Explain what the callback function is and provide a simple example.](#QA3)
+- [Promises](#QA4)
+- [Async-await](#QA5)
+- [Spread operator, rest and destructing.](#QA6)
+- [Iterators.](#QA7)
+- [Import and export.](#QA8)
+- [Pollyfill for map, reduce, filter and forEach.](#QA9) 
+- [Pollyfill for call, apply,bind.](#QA10)
+- [Polyfill for flat method](#QA11)
    - Infinite depth flatten and flatten by a certain number
    - Implement both recursive and iterative approaches
-- Polyfill for promises and Promise.all
-- Event bubbling, event capturing/trickling, and event delegation.
-- Difference between stop propagation and prevent default method.
+- [Polyfill for promises and Promise.all](#QA12)
+- [Event bubbling, event capturing/trickling, and event delegation.](#QA13)
+- [Difference between stop propagation and prevent default method.](#QA14)
 
-- How to empty an array.
-- Remove duplicate values from an array.
-- Explain with examples of a deep and shallow copy.
-- Remove falsy values from Array.
-- Shuffle elements in an array.
-- splice vs slice method.
-- What is array destructuring.
-- Different ways of creating an object.
-- Object creation patterns.
-- Deep copy of an object.
-- Check if a given object is empty or not.
-- Add/remove properties from Objects.
-- Given a string, reverse each word in the sentence.
-- Given two strings, return true if they are anagrams of one another.
-- Find a maximum consecutive repeating char in a given string.
+## JavaScript Array, Objects, etc.
+- [How to empty an array.](#QB1)
+- [Remove duplicate values from an array.](#QB2)
+- [Explain with examples of a deep and shallow copy.](#QB3)
+- [Remove falsy values from Array.](#QB4)
+- [Shuffle elements in an array.](#QB5)
+- [splice vs slice method.](#QB6)
+- [What is array destructuring.](#QB7)
+- [Different ways of creating an object.](#QB8)
+- [Object creation patterns.](#QB9)
+- [Deep copy of an object.](#QB10)
+- [Check if a given object is empty or not.](#QB11)
+- [Add/remove properties from Objects.](#QB12)
+- [Given a string, reverse each word in the sentence.](#QB13)
+- [Given two strings, return true if they are anagrams of one another.](#QB14)
+- [Find a maximum consecutive repeating char in a given string.](#QB15)
 
-- What are the advantages of using Axios over Fetch API.
-- Explain the CORS mechanism.
-- Explain JWT in detail.
-- Use AJAX and XMLHttpRequest to get reponse from an URL. 
+## JavaScript Misc
+- [What are the advantages of using Axios over Fetch API.](#QC1)
+- [Explain the CORS mechanism.](#QC2)
+- [Explain JWT in detail.](#QC3)
+- [Use AJAX and XMLHttpRequest to get reponse from an URL. ](#QC4)
 
 ## Web Performance
-- Critical rendering path (must watch)
-- Caching
+- [Critical rendering path (must watch)](#QD1)
+- [Caching](#QD2)
    - HTTP requests: Headers like Cache-Control, ETag, and Transfer-Encoding
-- Network waterfall
-- Bundle size optimisation ( good to have webpack basics)
-- Async, defer script attributes
-- preconnect, preload, prefetch
-- Image optimization (jpeg v/s png v/s svg)
+- [Network waterfall](#QD3)
+- [Bundle size optimisation ( good to have webpack basics)
+- [Async, defer script attributes](#QD4)
+- [preconnect, preload, prefetch](#QD5)
+- [Image optimization (jpeg v/s png v/s svg)](#QD6)
 
 ## Web security
-- XSS ( understand why we need cookies )
-- CSRF
-- Content security policy
+- [XSS ( understand why we need cookies )](#QE1)
+- [CSRF](#QE2)
+- [Content security policy](#QE3)
 
 ## Old Questions
 * [JavaScript can display data in following ways](#javascript-can-display-data-in-following-ways)
@@ -316,6 +320,216 @@
 **[⬆](#Questions)**
 ---
 ### Q38
+####
+
+**[⬆](#Questions)**
+---
+### QA1
+####
+
+**[⬆](#Questions)**
+---
+### QA2
+####
+
+**[⬆](#Questions)**
+---
+### QA3
+####
+
+**[⬆](#Questions)**
+---
+### QA4
+####
+
+**[⬆](#Questions)**
+---
+### QA5
+####
+
+**[⬆](#Questions)**
+---
+### QA6
+####
+
+**[⬆](#Questions)**
+---
+### QA7
+####
+
+**[⬆](#Questions)**
+---
+### QA8
+####
+
+**[⬆](#Questions)**
+---
+### QA9
+####
+
+**[⬆](#Questions)**
+---
+### QA10
+####
+
+**[⬆](#Questions)**
+---
+### QA11
+####
+
+**[⬆](#Questions)**
+---
+### QA12
+####
+
+**[⬆](#Questions)**
+---
+### QA13
+####
+
+**[⬆](#Questions)**
+---
+### QA14
+####
+
+**[⬆](#Questions)**
+---
+### QB1
+####
+
+**[⬆](#Questions)**
+---
+### QB2
+####
+
+**[⬆](#Questions)**
+---
+### QB3
+####
+
+**[⬆](#Questions)**
+---
+### QB4
+####
+
+**[⬆](#Questions)**
+---
+### QB5
+####
+
+**[⬆](#Questions)**
+---
+### QB6
+####
+
+**[⬆](#Questions)**
+---
+### QB7
+####
+
+**[⬆](#Questions)**
+---
+### QB8
+####
+
+**[⬆](#Questions)**
+---
+### QB9
+####
+
+**[⬆](#Questions)**
+---
+### QB10
+####
+
+**[⬆](#Questions)**
+---
+### QB11
+####
+
+**[⬆](#Questions)**
+---
+### QB12
+####
+
+**[⬆](#Questions)**
+---
+### QB13
+####
+
+**[⬆](#Questions)**
+---
+### QB14
+####
+
+**[⬆](#Questions)**
+---
+### QB15
+####
+
+**[⬆](#Questions)**
+---
+### QC1
+####
+
+**[⬆](#Questions)**
+---
+### QC2
+####
+
+**[⬆](#Questions)**
+---
+### QC3
+####
+
+**[⬆](#Questions)**
+---
+### QC4
+####
+
+**[⬆](#Questions)**
+---
+### QD1
+####
+
+**[⬆](#Questions)**
+---
+### QD2
+####
+
+**[⬆](#Questions)**
+---
+### QD3
+####
+
+**[⬆](#Questions)**
+---
+### QD4
+####
+
+**[⬆](#Questions)**
+---
+### QD5
+####
+
+**[⬆](#Questions)**
+---
+### QD6
+####
+
+**[⬆](#Questions)**
+---
+### QE1
+####
+
+**[⬆](#Questions)**
+---
+### QE2
+####
+
+**[⬆](#Questions)**
+---
+### QE3
 ####
 
 **[⬆](#Questions)**

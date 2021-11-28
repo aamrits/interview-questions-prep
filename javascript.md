@@ -1,5 +1,5 @@
 # Questions
-- [How does JavaScript works. Explain event loop.] (#Q1)
+- [How does JavaScript works. Explain event loop.](#Q1)
 - JS engine archietecture.
 - Explain execution context.
 - What is hoisting? Explain with example.
@@ -124,7 +124,7 @@
 3. Writing into an alert box, using <code>window.alert()</code>.
 4. Writing into browser console, using <code>console.log()</code>.
 
-**[⬆ Back to Top](#Questions)**
+**[⬆](####Questions)**
 ---
 ## JavaScript ignores multiple spaces.
 

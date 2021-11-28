@@ -1,30 +1,30 @@
 ## Questions
-🔹How Virtual DOM works. Explain in detail.
-🔹Principles why React is so popular?
-🔹What is React reconciliation? How does it work?
-🔹What makes DOM manipulation slow.
-🔹What is JSX?
-🔹Difference between class components and functional components.
-🔹What is the difference between state and props.
-🔹What is render prop pattern? Explain.
-🔹Lifecycle methods
-🔹Differences between controlled and uncontrolled components. Give example.
-🔹What is a higher-order component? Give example.
-🔹What are service workers.
-🔹What is context API? or How can we avoid prop drilling?
-🔹react-redux vs context API vs passing props
-🔹How to prevent re-renders on React functional components?
-🔹What is React router?
-🔹Difference between state and ref.
-🔹What are error boundaries in ReactJs?
+- How Virtual DOM works. Explain in detail.
+- Principles why React is so popular?
+- What is React reconciliation? How does it work?
+- What makes DOM manipulation slow.
+- What is JSX?
+- Difference between class components and functional components.
+- What is the difference between state and props.
+- What is render prop pattern? Explain.
+- Lifecycle methods
+- Differences between controlled and uncontrolled components. Give example.
+- What is a higher- order component? Give example.
+- What are service workers.
+- What is context API? or How can we avoid prop drilling?
+- react- redux vs context API vs passing props
+- How to prevent re- renders on React functional components?
+- What is React router?
+- Difference between state and ref.
+- What are error boundaries in ReactJs?
 
-🔹How does React state (usestate) work internally
-🔹How does useEffect work internally
-🔹Optimization hooks
-🔹useMemo
-🔹useCallback
-🔹How is React.memo different from useMemo ( two very different things )
-🔹useReducer, useContext hook
+- How does React state (usestate) work internally
+- How does useEffect work internally
+- Optimization hooks
+- useMemo
+- useCallback
+- How is React.memo different from useMemo ( two very different things )
+- useReducer, useContext hook
 
 ✍How Virtual DOM works.Explain in detail
 Virtual DOM is an in-memory representation of real DOM. It is a lightweight JavaScript object which is a copy of Real DOM.
@@ -231,7 +231,7 @@ React.memo() is similar to PureComponent in that it will help us control when ou
 useState would be used in the cases when we want to maintain and update the properties during the re-rendering of view.useRef we will use if we want to persist the values throughout the lifetime of the component.
 
 ✍What is a reducer?
-A reducer is a function which takes two arguments -- the current state and an action -- and returns based on both arguments a new state. 
+A reducer is a function which takes two arguments, i.e., the current state and an action and returns based on both arguments a new state. 
 
 ✍Explain Lifecycle methods.
 

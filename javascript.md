@@ -124,7 +124,7 @@
 3. Writing into an alert box, using <code>window.alert()</code>.
 4. Writing into browser console, using <code>console.log()</code>.
 
-**[⬆](####Questions)**
+**[⬆](#Questions)**
 ---
 ## JavaScript ignores multiple spaces.
 

@@ -1,46 +1,46 @@
 # Questions
 - [How does JavaScript works. Explain event loop.](#Q1)
-- JS engine archietecture.
-- Explain execution context.
-- What is hoisting? Explain with example.
-- Scope chain.
-- var, let, const, Temporal Dead Zone.
-- What is type of null, undefined, function, NaN.
-- null and undefined.
-- typeOf().
-- Difference between == and ===.
-- How does this keyword work? Provide some examples.
-- Difference between call, apply and bind. Give example.fcons
-- What is closure and what are the advantages of using closure.
-- Function declaration and Function Expression.
-- Higher Order Functions.
-- Function overiding and overloading.
-- OOPs concept in JS
+- [JS engine archietecture.](#Q2)
+- [Explain execution context.](#Q3)
+- [What is hoisting? Explain with example.](#Q4)
+- [Scope chain.](#Q5)
+- [var, let, const,Temporal Dead Zone.](#Q6)
+- [What is type of null, undefined, function, NaN.](#Q7)
+- [null and undefined.](#Q8)
+- [typeOf() ](#Q9)
+- [Difference between == and === ](#Q10)
+- [How does this keyword work? Provide some examples.](#Q11)
+- [Difference between call, apply and bind. Give example. ](#Q12)
+- [What is closure and what are the advantages of using closure. ](#Q13)
+- [Function declaration and Function Expression.](#Q14)
+- [Higher Order Functions.](#Q15)
+- [Function overiding and overloading.](#Q16)
+- [OOPs concept in JS](#Q17)
    - Objects
    - classes
    - Encapsulation (constructor functions)
    - Inheritance (prototypal inheritance) with example
-- Implement debouncing.
-- Implement throttling.
-- IIFE (Immediately Invoked Function Expression)
-- Function currying with example.
-- Difference between setTimeout vs setInterval.
-- Implement setInterval using setTimeout
-- What is type coercion?
-- Falsy values in js.
-- What is a strict mode in js?
-- What is eval()?
-- What are reference error and syntax error?
-- JavaScript data types.
-- Insert content in HTML using JavaScript. 
-- HTML DOM (Document Object Model)
-- BOM (Browser Object Model)
-- window, screen, and document in Javascript
-- alert, confirm and popup
-- cookies, sessions and localstorage
-- Array methods
-- String methods
-- Different errors in JS.
+- [Implement debouncing.](#Q18)
+- [Implement throttling.](#Q19)
+- [IIFE (Immediately Invoked Function Expression)](#Q20)
+- [Function currying with example.](#Q21)
+- [Difference between setTimeout vs setInterval.](#Q22)
+- [Implement setInterval using setTimeout](#Q23)
+- [What is type coercion?](#Q24)
+- [Falsy values in js.](#Q25)
+- [What is a strict mode in js?](#Q26)
+- [What is eval()?](#Q27)
+- [What are reference error and syntax error?](#Q28)
+- [JavaScript data types.](#Q29)
+- [Insert content in HTML using JavaScript. ](#Q30)
+- [HTML DOM (Document Object Model)](#Q31)
+- [BOM (Browser Object Model)](#Q32)
+- [window, screen, and document in Javascript](#Q33)
+- [alert, confirm and popup](#Q34)
+- [cookies, sessions and localstorage](#Q35)
+- [Array methods](#Q36)
+- [String methods](#Q37)
+- [Different errors in JS.](#Q38)
 
 - Explain features of ES6.
 - Difference between the arrow and normal function.
@@ -116,13 +116,207 @@
 * [JavaScript Methods](#javascript-methods)
 
 # Answers
-## Q1
-### JavaScript can display data in following ways.
+### Q1
+#### JavaScript can display data in following ways.
 
 1. Writing into a HTML element, using <code>innerHTML</code>.
 2. Writing into the HTML output, using <code>document.write()</code>. (NOTE: It deletes all the existing HTML)
 3. Writing into an alert box, using <code>window.alert()</code>.
 4. Writing into browser console, using <code>console.log()</code>.
+
+**[⬆](#Questions)**
+---
+### Q2
+####
+
+**[⬆](#Questions)**
+---
+### Q3
+####
+
+**[⬆](#Questions)**
+---
+### Q4
+####
+
+**[⬆](#Questions)**
+---
+
+### Q5
+####
+
+**[⬆](#Questions)**
+---
+### Q6
+####
+
+**[⬆](#Questions)**
+---
+### Q7
+####
+
+**[⬆](#Questions)**
+---
+### Q8
+####
+
+**[⬆](#Questions)**
+---
+
+### Q9
+####
+
+**[⬆](#Questions)**
+---
+### Q10
+####
+
+**[⬆](#Questions)**
+---
+### Q11
+####
+
+**[⬆](#Questions)**
+---
+### Q12
+####
+
+**[⬆](#Questions)**
+---
+
+### Q13
+####
+
+**[⬆](#Questions)**
+---
+### Q14
+####
+
+**[⬆](#Questions)**
+---
+### Q15
+####
+
+**[⬆](#Questions)**
+---
+### Q16
+####
+
+**[⬆](#Questions)**
+---
+
+### Q17
+####
+
+**[⬆](#Questions)**
+---
+### Q18
+####
+
+**[⬆](#Questions)**
+---
+### Q19
+####
+
+**[⬆](#Questions)**
+---
+### Q20
+####
+
+**[⬆](#Questions)**
+---
+
+### Q21
+####
+
+**[⬆](#Questions)**
+---
+### Q22
+####
+
+**[⬆](#Questions)**
+---
+### Q23
+####
+
+**[⬆](#Questions)**
+---
+### Q24
+####
+
+**[⬆](#Questions)**
+---
+
+### Q25
+####
+
+**[⬆](#Questions)**
+---
+### Q26
+####
+
+**[⬆](#Questions)**
+---
+### Q27
+####
+
+**[⬆](#Questions)**
+---
+### Q28
+####
+
+**[⬆](#Questions)**
+---
+
+### Q29
+####
+
+**[⬆](#Questions)**
+---
+### Q30
+####
+
+**[⬆](#Questions)**
+---
+### Q31
+####
+
+**[⬆](#Questions)**
+---
+### Q32
+####
+
+**[⬆](#Questions)**
+---
+
+### Q33
+####
+
+**[⬆](#Questions)**
+---
+### Q34
+####
+
+**[⬆](#Questions)**
+---
+### Q35
+####
+
+**[⬆](#Questions)**
+---
+### Q36
+####
+
+**[⬆](#Questions)**
+---
+
+### Q37
+####
+
+**[⬆](#Questions)**
+---
+### Q38
+####
 
 **[⬆](#Questions)**
 ---

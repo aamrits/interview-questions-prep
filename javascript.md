@@ -1,99 +1,99 @@
 ## Questions
-🔹How does JavaScript works. Explain event loop.
-🔹JS engine archietecture.
-🔹Explain execution context.
-🔹What is hoisting? Explain with example.
-🔹Scope chain.
-🔹var, let, const, Temporal Dead Zone.
-🔹What is type of null, undefined, function, NaN.
-🔹null and undefined.
-🔹typeOf().
-🔹Difference between == and ===.
-🔹How does this keyword work? Provide some examples.
-🔹Difference between call, apply and bind. Give example.fcons
-🔹What is closure and what are the advantages of using closure.
-🔹Function declaration and Function Expression.
-🔹Higher Order Functions.
-🔹Function overiding and overloading.
-🔹OOPs concept in JS
-   - Objects
-   - classes
-   - Encapsulation (constructor functions)
-   - Inheritance (prototypal inheritance) with example
-🔹Implement debouncing.
-🔹Implement throttling.
-🔹IIFE (Immediately Invoked Function Expression)
-🔹Function currying with example.
-🔹Difference between setTimeout vs setInterval.
-🔹Implement setInterval using setTimeout
-🔹What is type coercion?
-🔹Falsy values in js.
-🔹What is a strict mode in js?
-🔹What is eval()?
-🔹What are reference error and syntax error?
-🔹JavaScript data types.
-🔹Insert content in HTML using JavaScript. 
-🔹HTML DOM (Document Object Model)
-🔹BOM (Browser Object Model)
-🔹window, screen, and document in Javascript
-🔹alert, confirm and popup
-🔹cookies, sessions and localstorage
-🔹Array methods
-🔹String methods
-🔹Different errors in JS.
+- How does JavaScript works. Explain event loop.
+- JS engine archietecture.
+- Explain execution context.
+- What is hoisting? Explain with example.
+- Scope chain.
+- var, let, const, Temporal Dead Zone.
+- What is type of null, undefined, function, NaN.
+- null and undefined.
+- typeOf().
+- Difference between == and ===.
+- How does this keyword work? Provide some examples.
+- Difference between call, apply and bind. Give example.fcons
+- What is closure and what are the advantages of using closure.
+- Function declaration and Function Expression.
+- Higher Order Functions.
+- Function overiding and overloading.
+- OOPs concept in JS
+   -Objects
+   -classes
+   -Encapsulation (constructor functions)
+   -Inheritance (prototypal inheritance) with example
+- Implement debouncing.
+- Implement throttling.
+- IIFE (Immediately Invoked Function Expression)
+- Function currying with example.
+- Difference between setTimeout vs setInterval.
+- Implement setInterval using setTimeout
+- What is type coercion?
+- Falsy values in js.
+- What is a strict mode in js?
+- What is eval()?
+- What are reference error and syntax error?
+- JavaScript data types.
+- Insert content in HTML using JavaScript. 
+- HTML DOM (Document Object Model)
+- BOM (Browser Object Model)
+- window, screen, and document in Javascript
+- alert, confirm and popup
+- cookies, sessions and localstorage
+- Array methods
+- String methods
+- Different errors in JS.
 
-🔹Explain features of ES6.
-🔹Difference between the arrow and normal function.
-🔹Explain what the callback function is and provide a simple example.
-🔹Promises
-🔹Async-await
-🔹Spread operator, rest and destructing.
-🔹Iterators.
-🔹Import and export.
-🔹Pollyfill for map, reduce, filter and forEach. 
-🔹Pollyfill for call, apply,bind.
-🔹Polyfill for flat method
-   - Infinite depth flatten and flatten by a certain number
-   - Implement both recursive and iterative approaches
-🔹Polyfill for promises and Promise.all
-🔹Event bubbling, event capturing/trickling, and event delegation.
-🔹Difference between stop propagation and prevent default method.
+- Explain features of ES6.
+- Difference between the arrow and normal function.
+- Explain what the callback function is and provide a simple example.
+- Promises
+- Async-await
+- Spread operator, rest and destructing.
+- Iterators.
+- Import and export.
+- Pollyfill for map, reduce, filter and forEach. 
+- Pollyfill for call, apply,bind.
+- Polyfill for flat method
+   -Infinite depth flatten and flatten by a certain number
+   -Implement both recursive and iterative approaches
+- Polyfill for promises and Promise.all
+- Event bubbling, event capturing/trickling, and event delegation.
+- Difference between stop propagation and prevent default method.
 
-🔹How to empty an array.
-🔹Remove duplicate values from an array.
-🔹Explain with examples of a deep and shallow copy.
-🔹Remove falsy values from Array.
-🔹Shuffle elements in an array.
-🔹splice vs slice method.
-🔹What is array destructuring.
-🔹Different ways of creating an object.
-🔹Object creation patterns.
-🔹Deep copy of an object.
-🔹Check if a given object is empty or not.
-🔹Add/remove properties from Objects.
-🔹Given a string, reverse each word in the sentence.
-🔹Given two strings, return true if they are anagrams of one another.
-🔹Find a maximum consecutive repeating char in a given string.
+- How to empty an array.
+- Remove duplicate values from an array.
+- Explain with examples of a deep and shallow copy.
+- Remove falsy values from Array.
+- Shuffle elements in an array.
+- splice vs slice method.
+- What is array destructuring.
+- Different ways of creating an object.
+- Object creation patterns.
+- Deep copy of an object.
+- Check if a given object is empty or not.
+- Add/remove properties from Objects.
+- Given a string, reverse each word in the sentence.
+- Given two strings, return true if they are anagrams of one another.
+- Find a maximum consecutive repeating char in a given string.
 
-🔹What are the advantages of using Axios over Fetch API.
-🔹Explain the CORS mechanism.
-🔹Explain JWT in detail.
-🔹Use AJAX and XMLHttpRequest to get reponse from an URL. 
+- What are the advantages of using Axios over Fetch API.
+- Explain the CORS mechanism.
+- Explain JWT in detail.
+- Use AJAX and XMLHttpRequest to get reponse from an URL. 
 
 ## Web Performance
-🔹Critical rendering path (must watch)
-🔹Caching
-   - HTTP requests: Headers like Cache-Control, ETag, and Transfer-Encoding
-🔹Network waterfall
-🔹Bundle size optimisation ( good to have webpack basics)
-🔹Async , defer script attributes
-🔹preconnect, preload, prefetch
-🔹Image optimization (jpeg v/s png v/s svg)
+- Critical rendering path (must watch)
+- Caching
+   -HTTP requests: Headers like Cache-Control, ETag, and Transfer-Encoding
+- Network waterfall
+- Bundle size optimisation ( good to have webpack basics)
+- Async , defer script attributes
+- preconnect, preload, prefetch
+- Image optimization (jpeg v/s png v/s svg)
 
 ## Web security
-🔹XSS ( understand why we need cookies )
-🔹CSRF
-🔹Content security policy
+- XSS ( understand why we need cookies )
+- CSRF
+- Content security policy
 
 ## Old Questions
 * [JavaScript can display data in following ways](#javascript-can-display-data-in-following-ways)
@@ -312,13 +312,13 @@ The Browser Object Model (BOM) allows JavaScript to "talk to" the browser.
 
 ### The Window Object
 
-1. window.innerHeight - the inner height of the browser window (in pixels)
-2. window.innerWidth - the inner width of the browser window (in pixels)
+1. window.innerHeight -the inner height of the browser window (in pixels)
+2. window.innerWidth -the inner width of the browser window (in pixels)
 ```javascript
 console.log("Window innerWidth: " + innerWidth);
 console.log("Window innerHeight: " + innerHeight);
 ```
-3. window.open() - open a new window
+3. window.open() -open a new window
 ```javascript
 <button type="button" id="btn" onclick="a()">Click me</button>
 
@@ -327,7 +327,7 @@ function a() {
    x.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>")
 }
 ```
-4. window.close() - closes the current window
+4. window.close() -closes the current window
 5. window.moveTo() -move the current window
 6. window.resizeTo() -resize the current window
 
@@ -379,8 +379,8 @@ __proto__:Location
 
 ### The Window History
 
-* history.back() - same as clicking back in the browser
-* history.forward() - same as clicking forward in the browser
+* history.back() -same as clicking back in the browser
+* history.forward() -same as clicking forward in the browser
 
 ### The Window Navigator
 

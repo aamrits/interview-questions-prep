@@ -89,10 +89,10 @@
 - [Caching](#QD2)
    - HTTP requests: Headers like Cache-Control, ETag, and Transfer-Encoding
 - [Network waterfall](#QD3)
-- [Bundle size optimisation ( good to have webpack basics)
 - [Async, defer script attributes](#QD4)
 - [preconnect, preload, prefetch](#QD5)
 - [Image optimization (jpeg v/s png v/s svg)](#QD6)
+- [Bundle size optimisation ( good to have webpack basics)](#QD7)
 
 ## Web security
 - [XSS ( understand why we need cookies )](#QE1)
@@ -121,416 +121,420 @@
 
 # Answers
 ### Q1
-#### JavaScript can display data in following ways.
+✍How does JavaScript works. Explain event loop.
 
-1. Writing into a HTML element, using <code>innerHTML</code>.
-2. Writing into the HTML output, using <code>document.write()</code>. (NOTE: It deletes all the existing HTML)
-3. Writing into an alert box, using <code>window.alert()</code>.
-4. Writing into browser console, using <code>console.log()</code>.
 
 **[⬆](#Questions)**
 ---
 ### Q2
-####
+✍JS engine archietecture.
 
 **[⬆](#Questions)**
 ---
 ### Q3
-####
+✍Explain execution context.
 
 **[⬆](#Questions)**
 ---
 ### Q4
-####
+✍What is hoisting? Explain with example.
 
 **[⬆](#Questions)**
 ---
 
 ### Q5
-####
+✍Scope chain.
 
 **[⬆](#Questions)**
 ---
 ### Q6
-####
+✍var, let, const,Temporal Dead Zone.
 
 **[⬆](#Questions)**
 ---
 ### Q7
-####
+✍What is type of null, undefined, function, NaN.
 
 **[⬆](#Questions)**
 ---
 ### Q8
-####
+✍null and undefined.
 
 **[⬆](#Questions)**
 ---
 
 ### Q9
-####
+✍typeOf() 
 
 **[⬆](#Questions)**
 ---
 ### Q10
-####
+✍Difference between == and === 
 
 **[⬆](#Questions)**
 ---
 ### Q11
-####
+✍How does this keyword work? Provide some examples.
 
 **[⬆](#Questions)**
 ---
 ### Q12
-####
+✍Difference between call, apply and bind. Give example.
 
 **[⬆](#Questions)**
 ---
 
 ### Q13
-####
+✍What is closure and what are the advantages of using closure.
 
 **[⬆](#Questions)**
 ---
 ### Q14
-####
+✍Function declaration and Function Expression.
 
 **[⬆](#Questions)**
 ---
 ### Q15
-####
+✍Higher Order Functions.
 
 **[⬆](#Questions)**
 ---
 ### Q16
-####
+✍Function overiding and overloading.
 
 **[⬆](#Questions)**
 ---
 
 ### Q17
-####
+✍OOPs concept in JS (Objects, Classes, Encapsulation(constructor), Inheritance(prototypal with example))
 
 **[⬆](#Questions)**
 ---
 ### Q18
-####
+✍Implement debouncing.
 
 **[⬆](#Questions)**
 ---
 ### Q19
-####
+✍Implement throttling.
 
 **[⬆](#Questions)**
 ---
 ### Q20
-####
+✍IIFE (Immediately Invoked Function Expression)
 
 **[⬆](#Questions)**
 ---
 
 ### Q21
-####
+✍Function currying with example.
 
 **[⬆](#Questions)**
 ---
 ### Q22
-####
+✍Difference between setTimeout vs setInterval.
 
 **[⬆](#Questions)**
 ---
 ### Q23
-####
+✍Implement setInterval using setTimeout
 
 **[⬆](#Questions)**
 ---
 ### Q24
-####
+✍What is type coercion?
 
 **[⬆](#Questions)**
 ---
 
 ### Q25
-####
+✍Falsy values in js.
 
 **[⬆](#Questions)**
 ---
 ### Q26
-####
+✍What is a strict mode in js
 
 **[⬆](#Questions)**
 ---
 ### Q27
-####
+✍What is eval()
 
 **[⬆](#Questions)**
 ---
 ### Q28
-####
+✍What are reference error and syntax error?
 
-**[⬆](#Questions)**
+**[⬆](#Questions)**✍
 ---
 
 ### Q29
-####
+✍JavaScript data types.
 
 **[⬆](#Questions)**
 ---
 ### Q30
-####
+✍Insert content in HTML using JavaScript.
 
 **[⬆](#Questions)**
 ---
 ### Q31
-####
+✍HTML DOM (Document Object Model)
 
 **[⬆](#Questions)**
 ---
 ### Q32
-####
+✍BOM (Browser Object Model)
 
 **[⬆](#Questions)**
 ---
 
 ### Q33
-####
+✍window, screen, and document in Javascript
 
 **[⬆](#Questions)**
 ---
 ### Q34
-####
+✍alert, confirm and popup
 
 **[⬆](#Questions)**
 ---
 ### Q35
-####
+✍cookies, sessions and localstorage
 
 **[⬆](#Questions)**
 ---
 ### Q36
-####
+✍Array methods
 
 **[⬆](#Questions)**
 ---
 
 ### Q37
-####
+✍String methods
 
 **[⬆](#Questions)**
 ---
 ### Q38
-####
+✍Different errors in JS.
 
 **[⬆](#Questions)**
 ---
 ### QA1
-####
+✍Explain features of ES6.
 
 **[⬆](#Questions)**
 ---
 ### QA2
-####
+✍Difference between the arrow and normal function.
 
 **[⬆](#Questions)**
 ---
 ### QA3
-####
+✍Explain what the callback function is and provide a simple example.
 
 **[⬆](#Questions)**
 ---
 ### QA4
-####
+✍Promises
 
 **[⬆](#Questions)**
 ---
 ### QA5
-####
+✍Async-await
 
 **[⬆](#Questions)**
 ---
 ### QA6
-####
+✍Spread operator, rest and destructing.
 
 **[⬆](#Questions)**
 ---
 ### QA7
-####
+✍Iterators
 
 **[⬆](#Questions)**
 ---
 ### QA8
-####
+✍Import and Export
 
 **[⬆](#Questions)**
 ---
 ### QA9
-####
+✍Pollyfill for map, reduce, filter and forEach.
 
 **[⬆](#Questions)**
 ---
 ### QA10
-####
+✍Pollyfill for call, apply,bind.
 
 **[⬆](#Questions)**
 ---
 ### QA11
-####
+✍Polyfill for flat method
+   - Infinite depth flatten and flatten by a certain number
+   - Implement both recursive and iterative approaches
 
 **[⬆](#Questions)**
 ---
 ### QA12
-####
+✍Polyfill for promises and Promise.all
 
 **[⬆](#Questions)**
 ---
 ### QA13
-####
+✍Event bubbling, event capturing/trickling, and event delegation.
 
 **[⬆](#Questions)**
 ---
 ### QA14
-####
+✍Difference between stop propagation and prevent default method.
 
 **[⬆](#Questions)**
 ---
 ### QB1
-####
+✍How to empty an array.
 
 **[⬆](#Questions)**
 ---
 ### QB2
-####
+✍Remove duplicate values from an array.
 
 **[⬆](#Questions)**
 ---
 ### QB3
-####
+✍Explain with examples of a deep and shallow copy.
 
 **[⬆](#Questions)**
 ---
 ### QB4
-####
+✍Remove falsy values from Array.
 
 **[⬆](#Questions)**
 ---
-### QB5
-####
+### QB5✍
+✍Shuffle elements in an array.
 
 **[⬆](#Questions)**
 ---
 ### QB6
-####
+✍splice vs slice method.
 
 **[⬆](#Questions)**
 ---
 ### QB7
-####
+✍What is array destructuring.
 
 **[⬆](#Questions)**
 ---
 ### QB8
-####
+✍Different ways of creating an object.
 
 **[⬆](#Questions)**
 ---
 ### QB9
-####
+✍Object creation patterns.
 
 **[⬆](#Questions)**
 ---
 ### QB10
-####
+✍Deep copy of an object.
 
 **[⬆](#Questions)**
 ---
 ### QB11
-####
+✍Check if a given object is empty or not.
 
 **[⬆](#Questions)**
 ---
 ### QB12
-####
+✍Add/remove properties from Objects.
 
 **[⬆](#Questions)**
 ---
 ### QB13
-####
+✍Given a string, reverse each word in the sentence.
 
 **[⬆](#Questions)**
 ---
 ### QB14
-####
+✍Given two strings, return true if they are anagrams of one another.
 
 **[⬆](#Questions)**
 ---
 ### QB15
-####
+✍Find a maximum consecutive repeating char in a given string.
 
 **[⬆](#Questions)**
 ---
 ### QC1
-####
+✍What are the advantages of using Axios over Fetch API.
 
 **[⬆](#Questions)**
 ---
 ### QC2
-####
+✍Explain the CORS mechanism.
 
 **[⬆](#Questions)**
 ---
 ### QC3
-####
+✍Explain JWT in detail.
 
 **[⬆](#Questions)**
 ---
 ### QC4
-####
+✍Use AJAX and XMLHttpRequest to get reponse from an URL.
 
 **[⬆](#Questions)**
 ---
 ### QD1
-####
+✍Critical rendering path (must watch)
 
 **[⬆](#Questions)**
 ---
 ### QD2
-####
+✍Caching
+   - HTTP requests: Headers like Cache-Control, ETag, and Transfer-Encoding
 
 **[⬆](#Questions)**
 ---
 ### QD3
-####
+✍Network waterfall
 
 **[⬆](#Questions)**
 ---
 ### QD4
-####
+✍Async, defer script attributes
 
 **[⬆](#Questions)**
 ---
 ### QD5
-####
+✍preconnect, preload, prefetch
 
 **[⬆](#Questions)**
 ---
 ### QD6
-####
+✍Image optimization (jpeg v/s png v/s svg)
+
+**[⬆](#Questions)**
+---
+### QD7
+✍Bundle size optimisation ( good to have webpack basics)
 
 **[⬆](#Questions)**
 ---
 ### QE1
-####
+✍XSS ( understand why we need cookies )
 
 **[⬆](#Questions)**
 ---
 ### QE2
-####
+✍CSRF
 
 **[⬆](#Questions)**
 ---
 ### QE3
-####
+✍Content security policy
 
 **[⬆](#Questions)**
 ---

@@ -1,4 +1,27 @@
 # Questions
+Major goals of HTML5
+New features of HTML5
+What are web workers?
+Can a ```<section>``` contains ```<article>``` element? Can a ```<article>``` contain a ```<section>``` element? 
+Write the ```<canvas>```
+HTML5 local storage and session storage
+Geolocation API
+If you don’t specify Doctype, what will happen?
+SVG and canvas
+Datalist tag
+Form input types in HTML5
+Deprecated HTML tags in HTML5
+New APIs used in HTML5
+Drag and drop used in HTML5
+What are semantic elements and explain a few of them? What are their advantages?
+What is doctype used for?
+What is DOM?
+Different types of storage (local storage, session storage, cookies)and which one is the best way to store data?
+Create a simple login form and add validations on the password?
+What are the different types of script tags? (async,defer)
+What is SEO? Explain steps
+DOM manipulation.
+How the browser renders HTML and CSS? Explain in detail.
 
 ##### Major goals of HTML5
 - Deliver rich content(movies, graphics, etc) without additional plugins.
@@ -205,20 +228,20 @@ In HTML5 you can use many APIs. Some of them are:
 
 ---
 
-🔸What are semantic elements and explain a few of them? What are their advantages?
+##### What are semantic elements and explain a few of them? What are their advantages?
 
-🔸What is doctype used for?
+##### What is doctype used for?
 
-🔸What is DOM?
+##### What is DOM?
 
-🔸Different types of storage (local storage, session storage, cookies)and which one is the best way to store data?
+##### Different types of storage (local storage, session storage, cookies)and which one is the best way to store data?
 
-🔸Create a simple login form and add validations on the password?
+##### Create a simple login form and add validations on the password?
 
-🔸What are the different types of script tags? (async,defer)
+##### What are the different types of script tags? (async,defer)
 
-🔸What is SEO? Explain steps
+##### What is SEO? Explain steps
 
-🔸DOM manipulation.
+##### DOM manipulation.
 
-🔸How the browser renders HTML and CSS? Explain in detail.
+##### How the browser renders HTML and CSS? Explain in detail.

@@ -103,7 +103,6 @@
 * [JavaScript can display data in following ways](#javascript-can-display-data-in-following-ways)
 * [JavaScript Data Types](#javascript-data-types)
 * [JavaScript Objects](#some-of-the-javascript-objects-are)
-* [null and undefined](#null-and-undefined)
 * [Creating an object](#creating-an-object)
 * [isNAN()](#isnan)
 * [void(0)](#void0)
@@ -141,6 +140,10 @@ JavaScript is a single threaded language, i.e., it can execute one line at a tim
 ---
 ### Q3
 ✍Explain execution context.
+1. Before even code is executed, there is Global Execution Context. In GEC, 'window' and 'this' is available to us. Here, 'this' refers to 'window' Object.
+2. Once code is executed, variable names are assigned value. For a function, a separate Execution Context is created. Here, 'arguments' and 'this' is available to us. For each function call, seperation Execution Contexts are created.
+3. Execution Context has 2 phases: Creation and Execution.
+![Execution Context](assets/execution-context.png)
 
 **[⬆](#Questions)**
 ---
@@ -154,6 +157,17 @@ JavaScript is a single threaded language, i.e., it can execute one line at a tim
 ---
 ### Q5
 ✍Scope chain.
+It refers to the lexical environment. If a variable or a function is not declared in its scope, but it is declared in its lexical parent, then that variable can be accessed in the function also.
+```javascript
+function name() {
+   var name = "Amrit";
+   function displayName() {
+      console.log(name);
+   }
+   displayName();
+}
+name();
+```
 
 **[⬆](#Questions)**
 ---
@@ -179,6 +193,8 @@ console.log(typeof NaN); // "number"
 ---
 ### Q8
 ✍null and undefined.
+- the type of undefined is "undefined", whereas null is "object".
+- When a variable is declared but no value is assigned, then it shows undefined. But we can assign to a variable. So "null" is an assignment value.
 
 **[⬆](#Questions)**
 ---
@@ -199,8 +215,9 @@ console.log(typeof function demo() {}); // "function"
 **[⬆](#Questions)**
 ---
 ### Q10
-✍Difference between == and === 
-"==" converts the variable values to the same type before performing comparison. This is called "type coercion". "===" does not do any type conversion (coercion) and returns true only if both values and types are identical.
+✍Difference between == and === . 
+- "==" converts the variable values to the same type before performing comparison. This is called "type coercion". 
+- "===" does not do any type conversion (coercion) and returns true only if both values and types are identical.
 
 **[⬆](#Questions)**
 ---
@@ -229,7 +246,6 @@ function a() {
 }
 a(); // a is called
 ```
-
 - Function Expression. Here, it is treated as a variable, so it is not hoisted. On the other hand, Function Statement is hoisted.
 ```javascript
 let b = function () {
@@ -237,7 +253,6 @@ let b = function () {
 }
 b();  // b is called
 ```
-
 - Anonymous Functions are used when functions are used as values, just like Function Expression as an example.
 
 - Named Function Expression
@@ -251,10 +266,8 @@ c();
 }
 ```
 We can't call this function like abc() as it is defined as a value .
-
 - First Class Function (or First Class Citizens)
 The ability to pass functions as values or pass functions inside a function as arguments is known as First Class Function. We can also return a function from function. 
-
 - Higher-order Function
 A “higher-order function” is a function that accepts functions as parameters and/or returns a function.
 
@@ -820,6 +833,100 @@ console.log(isNaN(37));        // false
 ---
 ### QA9
 ✍Pollyfill for map, reduce, filter and forEach.
+- Pollyfill for forEach
+```javascript
+let albums = ["Bobby Tarantino", "The Incredible True Story", "Supermarket", "Under Pressure"];
+
+// .forEach()
+Array.prototype.polyfillForEach = function (callback) {
+   for (var i = 0; i < this.length; i++) {
+         callback(this[i], i); // currentValue, index
+   }
+};
+
+albums.polyfillForEach((item, index) => {
+   console.log(item, index);
+   // Bobby Tarantino,
+   // The Incredible True Story,
+   // Supermarket,
+   // Under Pressure;
+});
+```
+
+- Pollyfill for map
+```javascript
+Array.prototype.polyfillForMap = function (callback) {
+   let arr = [];
+   for (let i = 0; i < this.length; i++) {
+         arr.push(callback(this[i], i));
+   }
+   return arr;
+}
+
+const resultAlbums = albums.polyfillForMap((item, i) => {
+   return `${i} is ${item}`;
+});
+
+console.log(resultAlbums);
+// ['0 is Bobby Tarantino', '1 is The Incredible True Story', '2 is Supermarket', '3 is Under Pressure']
+```
+
+- Pollyfill for filter
+```javascript
+const names = [
+   {name: 'Sachin', age: 40},
+   {name: 'Rahul', age: 20},
+   {name: 'Rohit', age: 30},
+   {name: 'Mohan', age: 35},
+   {name: 'Shakti', age: 18}
+];
+
+Array.prototype.polyfillForFilter = function(callback) {
+   let arr = [];
+   for (let i = 0; i < this.length; i++) {
+      if (callback(this[i], i)) {
+         arr.push(this[i]);
+      }
+   }
+   return arr;
+}
+
+let filteredNames = names.polyfillForFilter(item => {
+   return item.age > 30
+});
+
+console.log(filteredNames);
+// [{"name": "Sachin", "age": 40}, {"name": "Mohan", "age": 35}]
+```
+
+- Pollyfill for reduce
+```javascript
+let logicAlbums = [
+   "Bobby Tarantino",
+   "The Incredible True Story",
+   "Supermarket",
+   "Under Pressure",
+];
+
+Array.prototype.pollyfillForReduce = function (callback, initialValue) {
+   let accumulator = initialValue === undefined ? undefined : initialValue;
+
+   for (let i = 0; i < this.length; i++) {
+      if (accumulator !== undefined) {
+         accumulator = callback.call(undefined, accumulator, this[i], i);
+      } else {
+         accumulator = this[i];
+      }
+   }
+   return accumulator;
+};
+
+let combineAlbums = logicAlbums.pollyfillForReduce(function (a, b) {
+   return a + " , " + b;
+}, "Young Sinatra"); 
+
+console.log(combineAlbums);
+```
 
 **[⬆](#Questions)**
 ---

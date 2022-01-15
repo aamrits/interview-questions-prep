@@ -112,13 +112,13 @@
 # Answers
 #### Q1 
 ### ✍How does JavaScript works. JS engine archietecture. How JavaScript is so fast.
-JavaScript is a dynamically typed language unlike C++.
+JavaScript is a **dynamically** typed language unlike C++.
 ```js
 var x = 17;
 ```
-- when we define "x", we don't worry about the type of the variable or the memory it will take. This makes prototyping fast.
+- when we define `x`, we don't worry about the type of the variable or the memory it will take. This makes prototyping fast.
 - JS Engine use JIT (Just In Time) Compilation. It interpretes and compiles at the same time.
-- Modern JS engines are 2 compilers, one is optimizing compiler. Its job is to re-compile "hot functions" with type information and optimize it in the process.
+- Modern JS engines are 2 compilers, one is optimizing compiler. Its job is to re-compile `hot functions` with type information and optimize it in the process.
 - If the type is changed, then it has to de-optimize (small performance hit).
 - Google Chrome browser's V8 engine is the fastest. Here, the baseline compiler is Ignition. The optimising compiler is Turbofan. The machine code is called Bytecode.
 ![JS Engine 1](assets/js-engine1.png)
@@ -129,20 +129,20 @@ var x = 17;
 #### Q2
 ### ✍Explain event loop.
 ![Event Loop](assets/event-loop1.png)
-JavaScript is a single threaded language, i.e., it can execute one line at a time.
-1. The JavaScript Engine has a memory heap and call stack. Even before executing a single line of code, JS stores variables and functions in the heap. Variables are assigned "undefined" and functions are stored as it.
-2. After that Global Execution Context is created in the call stack. Each line is executed synchronously and after execution, gets popped out of the call stack.
-3. All the asynchronous events like setTimeout or DOM APIs or XMLHttpRequest are part of the WebAPI. When the timer expires or the reponse is fetched, it goes to the callback queue, where it waits for the call stack to be clear. Event loop checks this functionality.
+JavaScript is a **single threaded language**, i.e., it can execute one line at a time.
+1. The JavaScript Engine has a `memory heap` and `call stack`. Even before executing a single line of code, JS stores variables and functions in the heap. Variables are assigned "undefined" and functions are stored as it.
+2. After that `Global Execution Context` is created in the call stack. Each line is executed synchronously and after execution, gets popped out of the call stack.
+3. All the asynchronous events like `setTimeout` or **DOM APIs** or `XMLHttpRequest` are part of the **WebAPI**. When the timer expires or the reponse is fetched, it goes to the **callback queue**, where it waits for the call stack to be clear. Event loop checks this functionality.
 5. Once the call stack is empty, event loop pushes the callback functions, which are waiting in the callback queue, to the call stack, to be executed. 
-6. Suppose, there is a fetch request (Promise) and also a setTimeout. In this case, Promises gets pushed to the microtask queue, after getting response. Microtask queue has more priority than callback queue (or task queue). So once the call stack is cleared, functions in the microtask queue gets pushed. After that callback functions in callback queue gets executed.
+6. Suppose, there is a fetch request (Promise) and also a setTimeout. In this case, Promises gets pushed to the **microtask queue**, after getting response. Microtask queue has more priority than callback queue (or task queue). So once the call stack is cleared, functions in the microtask queue gets pushed. After that callback functions in callback queue gets executed.
 ![Event Loop 2](assets/event-loop2.png)
 
 **[⬆](#Questions)**
 ---
 #### Q3
 ### ✍Explain execution context.
-1. Before even code is executed, there is Global Execution Context. In GEC, 'window' and 'this' is available to us. Here, 'this' refers to 'window' Object.
-2. Once code is executed, variable names are assigned value. For a function, a separate Execution Context is created. Here, 'arguments' and 'this' is available to us. For each function call, seperation Execution Contexts are created.
+1. Before even code is executed, there is Global Execution Context. In GEC, `window` and `this` is available to us. Here, `this` refers to `window` Object.
+2. Once code is executed, variable names are assigned value. For a function, a separate Execution Context is created. Here, `arguments` and `this` is available to us. For each function call, seperation Execution Contexts are created.
 3. Execution Context has 2 phases: Creation and Execution.
 ![Execution Context](assets/execution-context.png)
 
@@ -151,14 +151,14 @@ JavaScript is a single threaded language, i.e., it can execute one line at a tim
 #### Q4
 ### ✍What is hoisting? Explain with example.
 - JavaScript Hoisting refers to the process whereby the interpreter appears to move the declaration of functions, variables or classes to the top of their scope, prior to execution of the code.
-- "var" variables are initialized with undefined, "let" and "const" variables are not initialized.
+- `var` variables are initialized with undefined, `let` and `const` variables are not initialized.
 - Functions are hoisted as it is. Hence, we can run a function before we declare.
 
 **[⬆](#Questions)**
 ---
 #### Q5
 ### ✍Scope chain.
-It refers to the lexical environment. If a variable or a function is not declared in its scope, but it is declared in its lexical parent, then that variable can be accessed in the function also.
+It refers to the **lexical environment**. If a variable or a function is not declared in its scope, but it is declared in its lexical parent, then that variable can be accessed in the function also.
 ```js
 function name() {
    var name = "Amrit";
@@ -174,10 +174,10 @@ name();
 ---
 #### Q6
 ### ✍var, let, const,Temporal Dead Zone.
-- "var" declarations are globally scoped or function scoped while "let" and "const" are block scoped.
-- "var" variables can be updated and re-declared within its scope; "let" variables can be updated but not re-declared; "const" variables can neither be updated nor re-declared.
-- They are all hoisted to the top of their scope. But while var variables are initialized with undefined, "let" and "const" variables are not initialized.
-- While "var" and "let" can be declared without being initialized, "const" must be initialized during declaration.
+- `var` declarations are globally scoped or function scoped while `let` and `const` are block scoped.
+- `var` variables can be updated and re-declared within its scope; `let` variables can be updated but not re-declared; `const` variables can neither be updated nor re-declared.
+- They are all hoisted to the top of their scope. But while var variables are initialized with undefined, `let` and `const` variables are not initialized.
+- While `var` and `let` can be declared without being initialized, `const` must be initialized during declaration.
 
 **[⬆](#Questions)**
 ---
@@ -194,8 +194,8 @@ console.log(typeof NaN); // "number"
 ---
 #### Q8
 ### ✍null and undefined.
-- the type of undefined is "undefined", whereas null is "object".
-- When a variable is declared but no value is assigned, then it shows undefined. But we can assign to a variable. So "null" is an assignment value.
+- the type of undefined is `undefined`, whereas null is `object`.
+- When a variable is declared but no value is assigned, then it shows undefined. But we can assign to a variable. So `null` is an assignment value.
 
 **[⬆](#Questions)**
 ---
@@ -217,8 +217,8 @@ console.log(typeof function demo() {}); // "function"
 ---
 #### Q10
 ### ✍Difference between == and === . 
-- "==" converts the variable values to the same type before performing comparison. This is called "type coercion". 
-- "===" does not do any type conversion (coercion) and returns true only if both values and types are identical.
+- `==` converts the variable values to the same type before performing comparison. This is called **type coercion**. 
+- ===` does not do any type conversion (coercion) and returns true only if both values and types are identical.
 
 **[⬆](#Questions)**
 ---
@@ -231,7 +231,7 @@ function displayName() {
 }
 displayName();
 ```
-In case 'this' is the window object as internally window.displayName() is getting called.
+In case `this` is the window object as internally `window.displayName()` is getting called.
 - Case 2
 ```js
 let obj1 = {
@@ -241,8 +241,8 @@ let obj1 = {
 }
 obj1.displayName();
 ```
-In case 2, this will refer to obj1.
-- 'this' keyword works dynamically. Let's take another example.
+In case 2, this will refer to `obj1`.
+- `this` keyword works dynamically. Let's take another example.
 - Case 3
 ```js
 const obj = {
@@ -259,8 +259,8 @@ obj.sayHello();
 // Hello {name: 'Amrit', sayHello: ƒ}
 // Bye Window {window: Window, self: Window, document: document, name: '', location: Location, …}
 ```
-In case 3, sayHello() will refer to obj as we're calling as obj.sayHello(). But sayBye() will refer to window object as we're simply calling the function sayBye().\
-But if we will use arrow function in sayBye(), arrow function will check where the function is defined and log 'this'. 
+- In case 3, `sayHello()` will refer to obj as we're calling as `obj.sayHello()`. But `sayBye()` will refer to `window` object as we're simply calling the function `sayBye()`.
+- But if we will use arrow function in `sayBye()`, arrow function will check where the function is defined and log `this`. 
 ```js
 const obj = {
    name: 'Amrit',
@@ -276,13 +276,13 @@ obj.sayHello();
 // Hello {name: 'Amrit', sayHello: ƒ}
 // Bye {name: 'Amrit', sayHello: ƒ}
 ```
-In this case, arrow function is defined within 'obj'. So this will log 'obj' object.
+In this case, arrow function is defined within `obj`. So this will log `obj` object.
 
 **[⬆](#Questions)**
 ---
 ### Q12
-✍Difference between call, apply and bind. Give example.
-When we call this below function, internally displayName() is called as displayName.call(). Also we can call this function with apply() like this also, displayName.apply() 
+✍Difference between `call`, `apply` and `bind`. Give example.
+When we call this below function, internally `displayName()` is called as `displayName.call()`. Also we can call this function with `apply()` like this also, `displayName.apply()` 
 ```js
 function displayName() {
    console.log('John Doe');
@@ -308,7 +308,7 @@ user1.chargeBattery.call(user2, true, true); /
 console.log(user1); // {name: 'John', battery: 30, chargeBattery: ƒ}
 console.log(user2); //{name: 'Ron', battery: 100}
 ```
-- apply(): for apply(), all the arguments should be in array
+- apply(): for `apply()`, all the arguments should be in array
 ```js
 let user1 = {
    name: 'John',
@@ -326,7 +326,7 @@ user1.chargeBattery.bind(user2, [true, true]); // for apply(), all the arguments
 console.log(user1); // {name: 'John', battery: 30, chargeBattery: ƒ}
 console.log(user2); // {name: 'Ron', battery: 100}
 ```
-- bind(): bind() return a function so that later we can call that function.
+- bind(): `bind()` return a function so that later we can call that function.
 ```js
 let user1 = {
    name: 'John',
@@ -348,7 +348,7 @@ console.log(user2); //{name: 'Ron', battery: 100}
 ---
 #### Q13
 ### ✍What is closure and what are the advantages of using closure.
-Functions bundled with its lexical scope is called closure.
+**Functions bundled with its lexical scope is called closure.**
 - Example
 ```js
 function x() {
@@ -361,9 +361,9 @@ function x() {
 let z = x(); // returns the function y
 console.log(z); // 8
 ```
-- Here, we have to understand when we call x(), the function y will be returned along with its lexical scope. So even if function x() is no longer executed and it doesn't exist anymore, in the variable z, the function y is present along with its lexical scope. So the reference of a is present.
-- So when we call z(), 8 gets printed. In other words, it remembers its lexical scope. The reference to a is also stored in variable z. Hence 8 gets printed as a = 8. 
-- The reference of a is stored. Hence, if we change a = 12 after function y(), the value will change to 12 and it will console log 12.
+- Here, we have to understand when we call `x()`, the `function y` will be returned along with its lexical scope. So even if `function x()` is no longer executed and it doesn't exist anymore, in the variable z, the `function y()` is present along with its lexical scope. So the reference of `a` is present.
+- So when we call `z()`, 8 gets printed. In other words, it remembers its lexical scope. The reference to `a` is also stored in variable `z`. Hence 8 gets printed as `a = 8`. 
+- The reference of `a` is stored. Hence, if we change `a = 12` after `function y()`, the value will change to 12 and it will console log 12.
 
 - Uses of Closure
    - Module Design Pattern
@@ -373,6 +373,8 @@ console.log(z); // 8
    - Maintaining state in async world
    - setTimeouts
    - Iterators
+- Limitations
+   - The variables and functions are not garbage collected as its there in scope. So leads to memory leaks and memory waste.
 
 **[⬆](#Questions)**
 ---
@@ -404,11 +406,11 @@ c();
 //    console.log("c is called", abc);
 // }
 ```
-We can't call this function like abc() as it is defined as a value .
+We can't call this function like `abc()` as it is defined as a value .
 - First Class Function (or First Class Citizens)
 The ability to pass functions as values or pass functions inside a function as arguments is known as First Class Function. We can also return a function from function. 
 - Higher-order Function
-A “higher-order function” is a function that accepts functions as parameters and/or returns a function.
+A **higher-order function** is a function that accepts functions as parameters and/or returns a function.
 
 **[⬆](#Questions)**
 ---
@@ -420,14 +422,14 @@ function sum(a,b) {
 }
 console.log(sum(2, 3));
 ```
-a, b are the parameters. 2, 3 are arguments.
-The values which we pass insde a function are called as arguments and the labels or identiers which gets those values are known as parameters.
+a, b are the parameters. 2, 3 are `arguments`.
+The values which we pass insde a function are called as `arguments` and the labels or identiers which gets those values are known as `parameters`.
 
 **[⬆](#Questions)**
 ---
 #### Q16
 ### ✍Function overiding and overloading.
-- Function overloading is a feature of object oriented programming where two or more functions can have the same name but different parameters. When a function name is overloaded with different jobs it is called Function Overloading. But this is present C++. in JavaScript, there is no Function Overloading.
+- Function overloading is a feature of object oriented programming where two or more functions can have the same name but different parameters. When a function name is overloaded with different jobs it is called Function Overloading. But this is present C++. **In JavaScript, there is no Function Overloading**.
 - JavaScript supports overriding, so if you define two functions with the same name, the last one defined will override the previously defined version and every time a call will be made to the function, the last defined one will get executed.
 
 **[⬆](#Questions)**
@@ -451,7 +453,6 @@ The values which we pass insde a function are called as arguments and the labels
 #### Q20
 ### ✍IIFE (Immediately Invoked Function Expression)
 An Immediately-Invoked Function Expression, or IIFE for short executes immediately after it’s created. The primary reason to use an IIFE is to obtain data privacy. Because JavaScript's var scopes variables to their containing function, any variables declared within the IIFE cannot be accessed by the outside world.
-
 ```js
 var budgetController = (function() {
     var x = 23;
@@ -481,10 +482,9 @@ budgetController.publicTest(5)
 
 **[⬆](#Questions)**
 ---
-
 #### Q21
 ### ✍Function currying with example.
-Currying is a transformation of functions that translates a function from callable as f(a, b, c) into callable as f(a)(b)(c).
+Currying is a transformation of functions that translates a function from callable as `f(a, b, c)` into callable as `f(a)(b)(c)`.
 
 Currying doesn’t call a function. It just transforms it.
 ```js
@@ -512,7 +512,7 @@ function showTime() {
 }
 ```
 - setInterval(function, milliseconds)
-Same as setTimeout(), but repeats the execution of the function continuously.
+Same as `setTimeout()`, but repeats the execution of the function continuously.
 ```js
 <button onclick="showTime()">Show Time</button>
 <p id="time"></p>
@@ -526,7 +526,7 @@ function showTime() {
 }
 ```
 - clearInterval()
-The clearInterval() method stops the execution of the function specified in setInterval().
+The `clearInterval()` method stops the execution of the function specified in `setInterval()`.
 ```js
 <button onclick="startTime()">Start</button>
 <button onclick="stopTime()">Stop</button>
@@ -555,9 +555,9 @@ function stopTime() {
 ---
 #### Q24
 ### ✍What is the difference between window, screen, and document in Javascript?
-The <code>window</code> is the actual global object.
-The <code>screen</code> is the screen, it contains properties about the user's display.
-The <code>document</code> is where the DOM is.
+The`window` is the actual global object.
+The`screen` is the screen, it contains properties about the user's display.
+The`document` is where the DOM is.
 
 ![My image](https://i.stack.imgur.com/BkAjU.jpg)
 
@@ -570,11 +570,10 @@ The <code>document</code> is where the DOM is.
 ---
 #### Q26
 ### ✍What is a strict mode in js
-- Strict mode makes it easier to write "secure" JavaScript.
-- Strict mode changes previously accepted "bad syntax" into real errors.
-- As an example, in normal JavaScript, mistyping a variable name creates a new global variable. In "strict" mode, this will throw an error, making it impossible to accidentally create a global variable.
- 
-Using a variable, without declaring it, is not allowed.
+- Strict mode makes it easier to write **secure** JavaScript.
+- Strict mode changes previously accepted **bad syntax** into real errors.
+- As an example, in normal JavaScript, mistyping a variable name creates a new global variable. In **strict** mode, this will throw an error, making it impossible to accidentally create a global variable.
+- Using a variable, without declaring it, is not allowed.
 
 **[⬆](#Questions)**
 ---
@@ -717,7 +716,6 @@ The window.screen object contains information about the user's screen.
    - screen.availHeight
    - screen.colorDepth
    - screen.pixelDepth
-
 - The Window Location
 The window.location object can be used to get the current page address (URL) and to redirect the browser to a new page.
    - window.location.href returns the href (URL) of the current page
@@ -730,7 +728,6 @@ The window.location object can be used to get the current page address (URL) and
 console.log(location); or
 window.location
 ```
-
 - The Window History
    - history.back() -same as clicking back in the browser
    - history.forward() -same as clicking forward in the browser
@@ -747,11 +744,11 @@ window.navigator
 ---
 #### Q33
 ### ✍alert, confirm and popup
-- Alert box: "window.alert()" instructs the browser to display a dialog with an optional message, and to wait until the user dismisses the dialog.
+- Alert box: `window.alert()` instructs the browser to display a dialog with an optional message, and to wait until the user dismisses the dialog.
 ```js
 alert('Hi There!');
 ```
-- Confirm box: "window.confirm()" instructs the browser to display a dialog with an optional message, and to wait until the user either confirms or cancels the dialog.
+- Confirm box: `window.confirm()` instructs the browser to display a dialog with an optional message, and to wait until the user either confirms or cancels the dialog.
 ```js
 if (confirm("Press a button!")) {
    console.log('You pressed OK');
@@ -759,7 +756,7 @@ if (confirm("Press a button!")) {
    console.log('You pressed cancelled.');
 }
 ```
-- Prompt box: "window.prompt()" instructs the browser to display a dialog with an optional message prompting the user to input some text, and to wait until the user either submits the text or cancels the dialog
+- Prompt box: `window.prompt()` instructs the browser to display a dialog with an optional message prompting the user to input some text, and to wait until the user either submits the text or cancels the dialog
 ```js
 var person = prompt("Please enter your name", "");
 
@@ -814,7 +811,6 @@ console.log(indexOf);
 RESULT:
 2
 ```
-
 - join()
 ```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
@@ -824,8 +820,7 @@ console.log(join);
 RESULT:
 cricket,football,hockey,baseball,kabaddi
 ```
-
-* map()
+- map()
 ```js
 var arr1 = [4, 9, 16, 25, 36];
 var map = arr1.map(Math.sqrt);
@@ -834,8 +829,7 @@ console.log(map);
 RESULT:
 [2, 3, 4, 5, 6]
 ```
-
-* shift()
+- shift()
 ```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var shift = arr1.shift();
@@ -845,8 +839,7 @@ RESULT:
 Cricket
 ["football", "hockey", "baseball", "kabaddi"]
 ```
-
-* unshift()
+- unshift()
 ```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var unshift = arr1.unshift("golf");
@@ -857,7 +850,6 @@ RESULT:
 6
 ["golf", "cricket", "football", "hockey", "baseball", "kabaddi"]
 ```
-
 - pop()
 ```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
@@ -869,7 +861,6 @@ RESULT:
 Kabaddi
 ["cricket", "football", "hockey", "baseball"]
 ```
-
 - push()
 ```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
@@ -880,7 +871,6 @@ RESULT:
 6
 ["cricket", "football", "hockey", "baseball", "kabaddi", "golf"]
 ```
-
 - reverse()
 ```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
@@ -890,7 +880,6 @@ console.log(reverse);
 RESULT:
 ["kabaddi", "baseball", "hockey", "football", "cricket"]
 ```
-
 - slice()
 ```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
@@ -900,7 +889,6 @@ console.log(slice);
 RESULT:
 ["football", "hockey"]
 ```
-
 - sort()
 ```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
@@ -910,7 +898,6 @@ console.log(sort);
 RESULT:
 ["baseball", "cricket", "football", "hockey", "kabaddi"]
 ```
-
 - splice()
 ```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
@@ -922,7 +909,6 @@ RESULT:
 ["football", "hockey"]
 ["cricket", "golf", "baseball", "kabaddi"]
 ```
-
 - toString()
 ```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
@@ -932,7 +918,6 @@ console.log(toString);
 RESULT:
 cricket,football,hockey,baseball,kabaddi
 ```
-
 - split()
 ```js
 var arr1 = "How are doing today?";
@@ -1277,8 +1262,8 @@ console.log(combineAlbums);
 #### QA13
 ### ✍Event bubbling, event capturing/trickling, and event delegation.
 - A bubbling event goes from the target element straight up. 
-- In other words, <code>event.stopPropagation()</code> stops the move upwards, but on the current element all other handlers will run.
-- To stop the bubbling and prevent handlers on the current element from running, there’s a method <code>event.stopImmediatePropagation()</code>. After it no other handlers execute.
+- In other words,`event.stopPropagation()` stops the move upwards, but on the current element all other handlers will run.
+- To stop the bubbling and prevent handlers on the current element from running, there’s a method`event.stopImmediatePropagation()`. After it no other handlers execute.
 
 **[⬆](#Questions)**
 ---

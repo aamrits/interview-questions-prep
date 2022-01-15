@@ -223,17 +223,155 @@ console.log(typeof function demo() {}); // "function"
 ---
 ### Q11
 ✍How does this keyword work? Provide some examples.
+- Case 1
+```javascript
+function displayName() {
+   console.log('John Doe', this);
+}
+displayName();
+```
+In case 'this' is the window object as internally window.displayName() is getting called.
+- Case 2
+```javascript
+let obj1 = {
+   displayName: function() {
+      console.log('John Doe', this);
+   }
+}
+obj1.displayName();
+```
+In case 2, this will refer to obj1.
+- 'this' keyword works dynamically. Let's take another example.
+- Case 3
+```javascript
+const obj = {
+   name: 'Amrit',
+   sayHello: function() {
+      console.log('Hello', this);
+      var sayBye = function() {
+         console.log('Bye', this);
+      }
+      sayBye();
+   }
+}
+obj.sayHello();
+// Hello {name: 'Amrit', sayHello: ƒ}
+// Bye Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+```
+In case 3, sayHello() will refer to obj as we're calling as obj.sayHello(). But sayBye() will refer to window object as we're simply calling the function sayBye().\
+But if we will use arrow function in sayBye(), arrow function will check where the function is defined and log 'this'. 
+```javascript
+const obj = {
+   name: 'Amrit',
+   sayHello: function() {
+      console.log('Hello', this);
+      var sayBye = () => {
+         console.log('Bye', this);
+      }
+      sayBye();
+   }
+}
+obj.sayHello();
+// Hello {name: 'Amrit', sayHello: ƒ}
+// Bye {name: 'Amrit', sayHello: ƒ}
+```
+In this case, arrow function is defined within 'obj'. So this will log 'obj' object.
 
 **[⬆](#Questions)**
 ---
 ### Q12
 ✍Difference between call, apply and bind. Give example.
+When we call this below function, internally displayName() is called as displayName.call(). Also we can call this function with apply() like this also, displayName.apply() 
+```javascript
+function displayName() {
+   console.log('John Doe');
+}
+displayName(); // John Doe
+displayName.call(); // John Doe
+```
+- call()
+```javascript
+let user1 = {
+   name: 'John',
+   battery: 30,
+   chargeBattery: function(isCharging, isNotSwitchedOff) {
+      this.battery = (isCharging && isNotSwitchedOff) ? 100 : '';
+   }
+}
+let user2 = {
+   name: 'Ron',
+   battery: 70
+}
+// call the chargeBattery() present in user1 and use it in user2 
+user1.chargeBattery.call(user2, true, true); /
+console.log(user1); // {name: 'John', battery: 30, chargeBattery: ƒ}
+console.log(user2); //{name: 'Ron', battery: 100}
+```
+- apply(): for apply(), all the arguments should be in array
+```javascript
+let user1 = {
+   name: 'John',
+   battery: 30,
+   chargeBattery: function(isCharging, isNotSwitchedOff) {
+      this.battery = (isCharging && isNotSwitchedOff) ? 100 : '';
+   }
+}
+let user2 = {
+   name: 'Ron',
+   battery: 70
+}
+// call the chargeBattery() present in user1 and use it in user2 
+user1.chargeBattery.bind(user2, [true, true]); // for apply(), all the arguments should be in array
+console.log(user1); // {name: 'John', battery: 30, chargeBattery: ƒ}
+console.log(user2); // {name: 'Ron', battery: 100}
+```
+- bind(): bind() return a function so that later we can call that function.
+```javascript
+let user1 = {
+   name: 'John',
+   battery: 30,
+   chargeBattery: function(isCharging, isNotSwitchedOff) {
+      this.battery = (isCharging && isNotSwitchedOff) ? 100 : '';
+   }
+}
+let user2 = {
+   name: 'Ron',
+   battery: 70
+}
+let output = user1.chargeBattery.bind(user2, true, true);
+output();
+console.log(user2); //{name: 'Ron', battery: 100}
+```
 
 **[⬆](#Questions)**
 ---
-
 ### Q13
 ✍What is closure and what are the advantages of using closure.
+Functions bundled with its lexical scope is called closure.
+- Example
+```javascript
+function x() {
+   let a = 8;
+   function y() {
+      console.log(a);
+   }
+   return y;
+}
+let z = x(); // returns the function y
+console.log(z); // 8
+```
+- Here, we have to understand when we call x(), the function y will be returned along with its lexical scope. So even if function x() is no longer executed and it doesn't exist anymore, in the variable z, the function y is present along with its lexical scope. So the reference of a is present.
+- So when we call z(), 8 gets printed. In other words, it remembers its lexical scope. The reference to a is also stored in variable z. Hence 8 gets printed as a = 8. 
+- The reference of a is stored. Hence, if we change a = 12 after function y(), the value will change to 12 and it will console log 12.
+
+- Uses of Closure
+   - Module Design Pattern
+   - Currying
+   - Functions like once()
+   - Memoize
+   - Maintaining state in async world
+   - setTimeouts
+   - Iterators
 
 **[⬆](#Questions)**
 ---
@@ -261,9 +399,9 @@ let c = function abc() {
    console.log('c is called', abc);
 }
 c(); 
-// c is called, function abc() {
- console.log('c is called', abc);
-}
+// c is called ƒ abc() {
+//    console.log("c is called", abc);
+// }
 ```
 We can't call this function like abc() as it is defined as a value .
 - First Class Function (or First Class Citizens)
@@ -288,6 +426,8 @@ The values which we pass insde a function are called as arguments and the labels
 ---
 ### Q16
 ✍Function overiding and overloading.
+- Function overloading is a feature of object oriented programming where two or more functions can have the same name but different parameters. When a function name is overloaded with different jobs it is called Function Overloading. But this is present C++. in JavaScript, there is no Function Overloading.
+- JavaScript supports overriding, so if you define two functions with the same name, the last one defined will override the previously defined version and every time a call will be made to the function, the last defined one will get executed.
 
 **[⬆](#Questions)**
 ---
@@ -315,6 +455,19 @@ The values which we pass insde a function are called as arguments and the labels
 
 ### Q21
 ✍Function currying with example.
+Currying is a transformation of functions that translates a function from callable as f(a, b, c) into callable as f(a)(b)(c).
+
+Currying doesn’t call a function. It just transforms it.
+```javascript
+function curry(a) {
+   return function (b) {
+      return function (c) {
+         return a * b * c;
+      };
+   };
+}
+console.log(curry(11)(2)(3));
+```
 
 **[⬆](#Questions)**
 ---
@@ -419,7 +572,7 @@ Using a variable, without declaring it, is not allowed.
 ---
 ### Q30
 ✍Insert content in HTML using JavaScript.
-There 
+- document.getElementById('id').innerHTML
 
 **[⬆](#Questions)**
 ---
@@ -427,7 +580,7 @@ There
 ✍HTML DOM (Document Object Model)\
 HTML Document Object Model (DOM)is a standard Object model and programming interface for HTML. It defines all HTML elements as objects, the properties of HTML elements, the methods to access all HTML elements and the events for all HTML objects.\
 In general, the HTML DOM is a standard for how to get, change, add, or delete HTML elements.\
-Some examples of DOM\
+Some examples of DOM
 
 - document.getElementById()
 ```javascript

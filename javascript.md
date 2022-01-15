@@ -60,6 +60,7 @@
 - [Polyfill for promises and Promise.all](#QA12)
 - [Event bubbling, event capturing/trickling, and event delegation.](#QA13)
 - [Difference between stop propagation and prevent default method.](#QA14)
+- [Explain map, forEach, filter and reduce higher order functions](#QA15) 
 
 ## JavaScript Array, Objects, etc.
 - [How to empty an array.](#QB1)
@@ -109,10 +110,10 @@
 * [Tainted property in javascript](#tainted-property-in-javascript)
 
 # Answers
-### Q1 
-### ✍ How does JavaScript works. JS engine archietecture. How JavaScript is so fast.
+#### Q1 
+### ✍How does JavaScript works. JS engine archietecture. How JavaScript is so fast.
 JavaScript is a dynamically typed language unlike C++.
-```javascript
+```js
 var x = 17;
 ```
 - when we define "x", we don't worry about the type of the variable or the memory it will take. This makes prototyping fast.
@@ -125,8 +126,8 @@ var x = 17;
 
 **[⬆](#Questions)**
 ---
-### Q2
-✍Explain event loop.
+#### Q2
+### ✍Explain event loop.
 ![Event Loop](assets/event-loop1.png)
 JavaScript is a single threaded language, i.e., it can execute one line at a time.
 1. The JavaScript Engine has a memory heap and call stack. Even before executing a single line of code, JS stores variables and functions in the heap. Variables are assigned "undefined" and functions are stored as it.
@@ -138,8 +139,8 @@ JavaScript is a single threaded language, i.e., it can execute one line at a tim
 
 **[⬆](#Questions)**
 ---
-### Q3
-✍Explain execution context.
+#### Q3
+### ✍Explain execution context.
 1. Before even code is executed, there is Global Execution Context. In GEC, 'window' and 'this' is available to us. Here, 'this' refers to 'window' Object.
 2. Once code is executed, variable names are assigned value. For a function, a separate Execution Context is created. Here, 'arguments' and 'this' is available to us. For each function call, seperation Execution Contexts are created.
 3. Execution Context has 2 phases: Creation and Execution.
@@ -147,18 +148,18 @@ JavaScript is a single threaded language, i.e., it can execute one line at a tim
 
 **[⬆](#Questions)**
 ---
-### Q4
-✍What is hoisting? Explain with example.
+#### Q4
+### ✍What is hoisting? Explain with example.
 - JavaScript Hoisting refers to the process whereby the interpreter appears to move the declaration of functions, variables or classes to the top of their scope, prior to execution of the code.
 - "var" variables are initialized with undefined, "let" and "const" variables are not initialized.
 - Functions are hoisted as it is. Hence, we can run a function before we declare.
 
 **[⬆](#Questions)**
 ---
-### Q5
-✍Scope chain.
+#### Q5
+### ✍Scope chain.
 It refers to the lexical environment. If a variable or a function is not declared in its scope, but it is declared in its lexical parent, then that variable can be accessed in the function also.
-```javascript
+```js
 function name() {
    var name = "Amrit";
    function displayName() {
@@ -171,8 +172,8 @@ name();
 
 **[⬆](#Questions)**
 ---
-### Q6
-✍var, let, const,Temporal Dead Zone.
+#### Q6
+### ✍var, let, const,Temporal Dead Zone.
 - "var" declarations are globally scoped or function scoped while "let" and "const" are block scoped.
 - "var" variables can be updated and re-declared within its scope; "let" variables can be updated but not re-declared; "const" variables can neither be updated nor re-declared.
 - They are all hoisted to the top of their scope. But while var variables are initialized with undefined, "let" and "const" variables are not initialized.
@@ -180,9 +181,9 @@ name();
 
 **[⬆](#Questions)**
 ---
-### Q7
-✍What is type of null, undefined, function, NaN.
-```javascript
+#### Q7
+### ✍What is type of null, undefined, function, NaN.
+```js
 console.log(typeof null);  // "object"
 console.log(typeof undefined); // "undefined"
 console.log(typeof function demo() {}); // "function"
@@ -191,16 +192,16 @@ console.log(typeof NaN); // "number"
 
 **[⬆](#Questions)**
 ---
-### Q8
-✍null and undefined.
+#### Q8
+### ✍null and undefined.
 - the type of undefined is "undefined", whereas null is "object".
 - When a variable is declared but no value is assigned, then it shows undefined. But we can assign to a variable. So "null" is an assignment value.
 
 **[⬆](#Questions)**
 ---
-### Q9
-✍typeOf() 
-```javascript
+#### Q9
+### ✍typeOf() 
+```js
 console.log(typeof undefined); // "undefined"
 console.log(typeof null);  // "object"
 console.log(typeof "John"); // "string"
@@ -214,17 +215,17 @@ console.log(typeof function demo() {}); // "function"
 
 **[⬆](#Questions)**
 ---
-### Q10
-✍Difference between == and === . 
+#### Q10
+### ✍Difference between == and === . 
 - "==" converts the variable values to the same type before performing comparison. This is called "type coercion". 
 - "===" does not do any type conversion (coercion) and returns true only if both values and types are identical.
 
 **[⬆](#Questions)**
 ---
-### Q11
-✍How does this keyword work? Provide some examples.
+#### Q11
+### ✍How does this keyword work? Provide some examples.
 - Case 1
-```javascript
+```js
 function displayName() {
    console.log('John Doe', this);
 }
@@ -232,7 +233,7 @@ displayName();
 ```
 In case 'this' is the window object as internally window.displayName() is getting called.
 - Case 2
-```javascript
+```js
 let obj1 = {
    displayName: function() {
       console.log('John Doe', this);
@@ -243,7 +244,7 @@ obj1.displayName();
 In case 2, this will refer to obj1.
 - 'this' keyword works dynamically. Let's take another example.
 - Case 3
-```javascript
+```js
 const obj = {
    name: 'Amrit',
    sayHello: function() {
@@ -260,7 +261,7 @@ obj.sayHello();
 ```
 In case 3, sayHello() will refer to obj as we're calling as obj.sayHello(). But sayBye() will refer to window object as we're simply calling the function sayBye().\
 But if we will use arrow function in sayBye(), arrow function will check where the function is defined and log 'this'. 
-```javascript
+```js
 const obj = {
    name: 'Amrit',
    sayHello: function() {
@@ -282,7 +283,7 @@ In this case, arrow function is defined within 'obj'. So this will log 'obj' obj
 ### Q12
 ✍Difference between call, apply and bind. Give example.
 When we call this below function, internally displayName() is called as displayName.call(). Also we can call this function with apply() like this also, displayName.apply() 
-```javascript
+```js
 function displayName() {
    console.log('John Doe');
 }
@@ -290,7 +291,7 @@ displayName(); // John Doe
 displayName.call(); // John Doe
 ```
 - call()
-```javascript
+```js
 let user1 = {
    name: 'John',
    battery: 30,
@@ -308,7 +309,7 @@ console.log(user1); // {name: 'John', battery: 30, chargeBattery: ƒ}
 console.log(user2); //{name: 'Ron', battery: 100}
 ```
 - apply(): for apply(), all the arguments should be in array
-```javascript
+```js
 let user1 = {
    name: 'John',
    battery: 30,
@@ -326,7 +327,7 @@ console.log(user1); // {name: 'John', battery: 30, chargeBattery: ƒ}
 console.log(user2); // {name: 'Ron', battery: 100}
 ```
 - bind(): bind() return a function so that later we can call that function.
-```javascript
+```js
 let user1 = {
    name: 'John',
    battery: 30,
@@ -345,11 +346,11 @@ console.log(user2); //{name: 'Ron', battery: 100}
 
 **[⬆](#Questions)**
 ---
-### Q13
-✍What is closure and what are the advantages of using closure.
+#### Q13
+### ✍What is closure and what are the advantages of using closure.
 Functions bundled with its lexical scope is called closure.
 - Example
-```javascript
+```js
 function x() {
    let a = 8;
    function y() {
@@ -375,17 +376,17 @@ console.log(z); // 8
 
 **[⬆](#Questions)**
 ---
-### Q14
-✍Function statement, Function Expression, Anonymous Function, Named Function Expression, First Class Function, Higher-order Function.
+#### Q14
+### ✍Function statement, Function Expression, Anonymous Function, Named Function Expression, First Class Function, Higher-order Function.
 - Function Statement or Function Declaration
-```javascript
+```js
 function a() {
    console.log('a is called');
 }
 a(); // a is called
 ```
 - Function Expression. Here, it is treated as a variable, so it is not hoisted. On the other hand, Function Statement is hoisted.
-```javascript
+```js
 let b = function () {
    console.log('b is called');
 }
@@ -394,7 +395,7 @@ b();  // b is called
 - Anonymous Functions are used when functions are used as values, just like Function Expression as an example.
 
 - Named Function Expression
-```javascript
+```js
 let c = function abc() {
    console.log('c is called', abc);
 }
@@ -411,9 +412,9 @@ A “higher-order function” is a function that accepts functions as parameters
 
 **[⬆](#Questions)**
 ---
-### Q15
-✍Difference between arguments and parameters.
-```javascript
+#### Q15
+### ✍Difference between arguments and parameters.
+```js
 function sum(a,b) {
    return a+b;
 }
@@ -424,41 +425,69 @@ The values which we pass insde a function are called as arguments and the labels
 
 **[⬆](#Questions)**
 ---
-### Q16
-✍Function overiding and overloading.
+#### Q16
+### ✍Function overiding and overloading.
 - Function overloading is a feature of object oriented programming where two or more functions can have the same name but different parameters. When a function name is overloaded with different jobs it is called Function Overloading. But this is present C++. in JavaScript, there is no Function Overloading.
 - JavaScript supports overriding, so if you define two functions with the same name, the last one defined will override the previously defined version and every time a call will be made to the function, the last defined one will get executed.
 
 **[⬆](#Questions)**
 ---
 
-### Q17
-✍OOPs concept in JS (Objects, Classes, Encapsulation(constructor), Inheritance(prototypal with example))
+#### Q17
+### ✍OOPs concept in JS (Objects, Classes, Encapsulation(constructor), Inheritance(prototypal with example))
 
 **[⬆](#Questions)**
 ---
-### Q18
-✍Implement debouncing.
+#### Q18
+### ✍Implement debouncing.
 
 **[⬆](#Questions)**
 ---
-### Q19
-✍Implement throttling.
+#### Q19
+### ✍Implement throttling.
 
 **[⬆](#Questions)**
 ---
-### Q20
-✍IIFE (Immediately Invoked Function Expression)
+#### Q20
+### ✍IIFE (Immediately Invoked Function Expression)
+An Immediately-Invoked Function Expression, or IIFE for short executes immediately after it’s created. The primary reason to use an IIFE is to obtain data privacy. Because JavaScript's var scopes variables to their containing function, any variables declared within the IIFE cannot be accessed by the outside world.
+
+```js
+var budgetController = (function() {
+    var x = 23;
+
+    function add(a) {
+        return x + a;
+    }
+
+    return {
+        publicTest: function (b) {
+            console.log(add(b)); 
+        } // has access to x and add() as its a closure. even if IIFE is returned immediately, closure still has access to x and add().
+    }
+})();
+
+// this is a IIFE which helps in data privacy. x and add() are private and so can't be accessed from outside. We use return object in order to get the value when we access from outside.
+
+budgetController.x
+// undefined
+
+budgetController.add(5)
+// Uncaught TypeError: budgetController.add is not a function\
+
+budgetController.publicTest(5)
+// 28
+```
 
 **[⬆](#Questions)**
 ---
 
-### Q21
-✍Function currying with example.
+#### Q21
+### ✍Function currying with example.
 Currying is a transformation of functions that translates a function from callable as f(a, b, c) into callable as f(a)(b)(c).
 
 Currying doesn’t call a function. It just transforms it.
-```javascript
+```js
 function curry(a) {
    return function (b) {
       return function (c) {
@@ -471,11 +500,11 @@ console.log(curry(11)(2)(3));
 
 **[⬆](#Questions)**
 ---
-### Q22
-✍Difference between setTimeout vs setInterval.
+#### Q22
+### ✍Difference between setTimeout vs setInterval.
 - setTimeout(function, milliseconds)
 Executes a function, after waiting a specified number of milliseconds.
-```javascript
+```js
 function showTime() {
    setTimeout(function() {
        alert('Hello');
@@ -484,7 +513,7 @@ function showTime() {
 ```
 - setInterval(function, milliseconds)
 Same as setTimeout(), but repeats the execution of the function continuously.
-```javascript
+```js
 <button onclick="showTime()">Show Time</button>
 <p id="time"></p>
 
@@ -498,7 +527,7 @@ function showTime() {
 ```
 - clearInterval()
 The clearInterval() method stops the execution of the function specified in setInterval().
-```javascript
+```js
 <button onclick="startTime()">Start</button>
 <button onclick="stopTime()">Stop</button>
 
@@ -519,13 +548,13 @@ function stopTime() {
 
 **[⬆](#Questions)**
 ---
-### Q23
-✍Implement setInterval using setTimeout
+#### Q23
+### ✍Implement setInterval using setTimeout
 
 **[⬆](#Questions)**
 ---
-### Q24
-✍What is the difference between window, screen, and document in Javascript?
+#### Q24
+### ✍What is the difference between window, screen, and document in Javascript?
 The <code>window</code> is the actual global object.
 The <code>screen</code> is the screen, it contains properties about the user's display.
 The <code>document</code> is where the DOM is.
@@ -534,13 +563,13 @@ The <code>document</code> is where the DOM is.
 
 **[⬆](#Questions)**
 ---
-### Q25
-✍Falsy values in js.
+#### Q25
+### ✍Falsy values in js.
 
 **[⬆](#Questions)**
 ---
-### Q26
-✍What is a strict mode in js
+#### Q26
+### ✍What is a strict mode in js
 - Strict mode makes it easier to write "secure" JavaScript.
 - Strict mode changes previously accepted "bad syntax" into real errors.
 - As an example, in normal JavaScript, mistyping a variable name creates a new global variable. In "strict" mode, this will throw an error, making it impossible to accidentally create a global variable.
@@ -549,19 +578,19 @@ Using a variable, without declaring it, is not allowed.
 
 **[⬆](#Questions)**
 ---
-### Q27
-✍What is eval()
+#### Q27
+### ✍What is eval()
 
 **[⬆](#Questions)**
 ---
-### Q28
-✍What are reference error and syntax error?
+#### Q28
+### ✍What are reference error and syntax error?
 
 **[⬆](#Questions)**✍
 ---
 
-### Q29
-✍JavaScript data types.
+#### Q29
+### ✍JavaScript data types.
 - Number
 - String
 - Boolean
@@ -570,20 +599,20 @@ Using a variable, without declaring it, is not allowed.
 
 **[⬆](#Questions)**
 ---
-### Q30
-✍Insert content in HTML using JavaScript.
+#### Q30
+### ✍Insert content in HTML using JavaScript.
 - document.getElementById('id').innerHTML
 
 **[⬆](#Questions)**
 ---
-### Q31
-✍HTML DOM (Document Object Model)\
+#### Q31
+### ✍HTML DOM (Document Object Model)\
 HTML Document Object Model (DOM)is a standard Object model and programming interface for HTML. It defines all HTML elements as objects, the properties of HTML elements, the methods to access all HTML elements and the events for all HTML objects.\
 In general, the HTML DOM is a standard for how to get, change, add, or delete HTML elements.\
 Some examples of DOM
 
 - document.getElementById()
-```javascript
+```js
 <input type="text" name="fname" value="1" id="text1"><br>
 <input type="text" name="fname" value="2" id="text2">
 
@@ -592,14 +621,14 @@ document.getElementById('text2').value = 1111;
 ```
 
 - document.querySelector()
-```javascript
+```js
 document.querySelector('.demo').innerHTML = "Hello";
 // you can use id also.
 ```
 
 - document.getElementsByTagName()
 The getElementsByTagName() method returns a collection of all elements in the document with the specified tag name.
-```javascript
+```js
 <h4 id="demo">Check the console for details.</h4>
 <ul>
        <li>Ice cream</li>
@@ -611,7 +640,7 @@ document.getElementById("demo").innerHTML = x[1].innerHTML;
 ```
 
 - document.getElementsByClassName()
-```javascript
+```js
 <h4 id="demo" class="demo">Check the console for details.</h4>
 
 var x = document.getElementsByClassName('demo');
@@ -619,13 +648,13 @@ x[0].innerHTML = 'hello';
 ```
 
 - element.innerHTML =  new html content
-```javascript
+```js
 <h4 id="demo" class="demo">Check the console for details.</h4>
 document.getElementById('demo').innerHTML = "inner html changed";
 ```
 
 - element.attribute =  new value
-```javascript
+```js
 <a href="#" id="link">Link</a>
 
 var a = document.getElementById('link').attributes.length;
@@ -633,19 +662,19 @@ console.log(a); //2
 ```
 
 - element.setAttribute(attribute, value)
-```javascript
+```js
 document.getElementById('link').setAttribute('href', 'https://www.google.co.in/');
 document.getElementById('text1').setAttribute('type', 'button');
 ```
 
 - element.style.property = new style
-```javascript
+```js
 document.getElementById('link').style.color = "red";
 document.getElementById('link').style.textTransform = "uppercase";
 ```
 
 - document.createElement(element), document.removeChild(element),  document.appendChild(element),  document.replaceChild(element),  document.removeChild(element)
-```javascript
+```js
 var btn = document.createElement("button");
 var t = document.createTextNode("Click Me");
 var nw = document.createTextNode("New");
@@ -657,18 +686,18 @@ document.getElementById('link').removeChild(btn);
 
 **[⬆](#Questions)**
 ---
-### Q32
-✍BOM (Browser Object Model)
+#### Q32
+### ✍BOM (Browser Object Model)
 The Browser Object Model (BOM) allows JavaScript to "talk to" the browser.
 - The Window Object
 1. window.innerHeight -the inner height of the browser window (in pixels)
 2. window.innerWidth -the inner width of the browser window (in pixels)
-```javascript
+```js
 console.log("Window innerWidth: " + innerWidth);
 console.log("Window innerHeight: " + innerHeight);
 ```
 3. window.open() -open a new window
-```javascript
+```js
 <button type="button" id="btn" onclick="a()">Click me</button>
 
 function a() {
@@ -697,7 +726,7 @@ The window.location object can be used to get the current page address (URL) and
    - window.location.protocol returns the web protocol used (http: or https:)
    - window.location.assign loads a new document
 
-```javascript
+```js
 console.log(location); or
 window.location
 ```
@@ -709,21 +738,21 @@ window.location
 - The Window Navigator
 The window.navigator object contains information about the visitor's browser. The window.navigator object can be written without the window prefix.
 
-```javascript
+```js
 console.log(navigator); or
 window.navigator
 ```
 
 **[⬆](#Questions)**
 ---
-### Q33
-✍alert, confirm and popup
+#### Q33
+### ✍alert, confirm and popup
 - Alert box: "window.alert()" instructs the browser to display a dialog with an optional message, and to wait until the user dismisses the dialog.
-```javascript
+```js
 alert('Hi There!');
 ```
 - Confirm box: "window.confirm()" instructs the browser to display a dialog with an optional message, and to wait until the user either confirms or cancels the dialog.
-```javascript
+```js
 if (confirm("Press a button!")) {
    console.log('You pressed OK');
 } else {
@@ -731,7 +760,7 @@ if (confirm("Press a button!")) {
 }
 ```
 - Prompt box: "window.prompt()" instructs the browser to display a dialog with an optional message prompting the user to input some text, and to wait until the user either submits the text or cancels the dialog
-```javascript
+```js
 var person = prompt("Please enter your name", "");
 
 if (person == null || person == "") {
@@ -743,8 +772,8 @@ if (person == null || person == "") {
 
 **[⬆](#Questions)**
 ---
-### Q34
-✍cookies, sessions and localstorage
+#### Q34
+### ✍cookies, sessions and localstorage
 | Cookies                   | Sessions           | Localstorage  |
 | ------------------------  |:------------------------:| ------------------------:|
 | The storage capacity of local storage is 5MB/10MB      | The storage capacity of session storage is 5MB | The storage capacity of Cookies is 4KB |
@@ -755,10 +784,10 @@ if (person == null || person == "") {
 
 **[⬆](#Questions)**
 ---
-### Q35
-✍Array methods
+#### Q35
+### ✍Array methods
 - concat()
-```javascript
+```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var arr2 = ["india", "usa", "uk","china", "russia", "germany"];
 var concat = arr1.concat(arr2);
@@ -768,7 +797,7 @@ RESULT:
 ["cricket", "football", "hockey", "baseball", "kabaddi", "india", "usa", "uk", "china", "russia", "germany"]
 ```
 - fill()
-```javascript
+```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var fill = arr1.fill("soccer");
 console.log(fill);
@@ -777,7 +806,7 @@ RESULT:
 ["soccer", "soccer", "soccer", "soccer", "soccer"]
 ```
 - indexOf()
-```javascript
+```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var indexOf = arr1.indexOf("hockey");
 console.log(indexOf);
@@ -787,7 +816,7 @@ RESULT:
 ```
 
 - join()
-```javascript
+```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var join = arr1.join();
 console.log(join);
@@ -797,7 +826,7 @@ cricket,football,hockey,baseball,kabaddi
 ```
 
 * map()
-```javascript
+```js
 var arr1 = [4, 9, 16, 25, 36];
 var map = arr1.map(Math.sqrt);
 console.log(map);
@@ -807,7 +836,7 @@ RESULT:
 ```
 
 * shift()
-```javascript
+```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var shift = arr1.shift();
 console.log(shift);
@@ -818,7 +847,7 @@ Cricket
 ```
 
 * unshift()
-```javascript
+```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var unshift = arr1.unshift("golf");
 console.log(unshift);
@@ -830,7 +859,7 @@ RESULT:
 ```
 
 - pop()
-```javascript
+```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var pop = arr1.pop();
 console.log(pop);
@@ -842,7 +871,7 @@ Kabaddi
 ```
 
 - push()
-```javascript
+```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var push = arr1.push("golf");
 console.log(push);
@@ -853,7 +882,7 @@ RESULT:
 ```
 
 - reverse()
-```javascript
+```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var reverse = arr1.reverse();
 console.log(reverse);
@@ -863,7 +892,7 @@ RESULT:
 ```
 
 - slice()
-```javascript
+```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var slice = arr1.slice(1, 3);
 console.log(slice);
@@ -873,7 +902,7 @@ RESULT:
 ```
 
 - sort()
-```javascript
+```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var sort = arr1.sort();
 console.log(sort);
@@ -883,7 +912,7 @@ RESULT:
 ```
 
 - splice()
-```javascript
+```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var splice = arr1.splice(1, 2, "golf"); //splice(position, howmany, items,...)
 console.log(splice);
@@ -895,7 +924,7 @@ RESULT:
 ```
 
 - toString()
-```javascript
+```js
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var toString = arr1.toString();
 console.log(toString);
@@ -905,7 +934,7 @@ cricket,football,hockey,baseball,kabaddi
 ```
 
 - split()
-```javascript
+```js
 var arr1 = "How are doing today?";
 var split = arr1.split(" ");
 console.log(split);
@@ -919,19 +948,19 @@ today?,doing,are,How
 **[⬆](#Questions)**
 ---
 
-### Q36
-✍String methods
+#### Q36
+### ✍String methods
 
 **[⬆](#Questions)**
 ---
-### Q37
-✍Different errors in JS.
+#### Q37
+### ✍Different errors in JS.
 
 **[⬆](#Questions)**
 ---
-### Q38
-✍isNaN()
-```javascript
+#### Q38
+### ✍isNaN()
+```js
 console.log(isNaN('the'));      //true
 console.log(isNaN(25));         //false
 console.log(isNaN('23'));       //false
@@ -945,50 +974,194 @@ console.log(isNaN(37));        // false
 
 **[⬆](#Questions)**
 ---
-### QA1
-✍Explain features of ES6.
+#### QA1
+### ✍Explain features of ES6.
+- `const` is more powerful than `var`. Once used, the variable can’t be reassigned. In other words, it’s an immutable variable except when it used with objects.
+```js
+const a = 6;
+a = 7;
+console.log(a); //Uncaught TypeError: Assignment to constant variable.
+```
+But if we use an array or an object, we can modify it.
+```js
+const arr = [1, 2, 3];
+arr.push(8);
+console.log(arr); //[1, 2, 3, 8]
+
+const arr1 = {
+   name: 'amrit',
+   age: 30
+};
+arr1.job = 'developer';
+console.log(arr1); //{name: "amrit", age: 30, job: "developer"}
+```
+- var and let: `let` is block scoped. `var` is function scoped.
+- Default parameters in ES6: In ES6, if we use the default parameter, it won’t return `undefined`, and it will use its value when we forget to assign a parameter!
+```js
+const person = function (name, age = 22) {
+   return `Name is ${name} and age is ${age}`
+} 
+console.log(person('amrit')); //Name is amrit and age is 22
+```
+- Import and export: `export` allows you to export a module to be used in another JavaScript component. We use `import` to import that module to use it in our component.
 
 **[⬆](#Questions)**
 ---
-### QA2
-✍Difference between the arrow and normal function.
+#### QA2
+### ✍Difference between the arrow and normal function.
+The arrow function will check where the function is defined and not how the function is called. Please check Q11 about [`this` keyword](#Q11) for more example.
+```js
+// Example
+var x = function() {
+   this.val = 1;
+   setTimeout(function() {
+      this.val++;
+      console.log(this.val);
+   }, 1);
+}
+var xx = new x(); //returns NAN as inside setTimeout there is no "this". It doesn't recognize parent "this".
+
+// solution 1
+var x1 = function() {
+   var that = this; // declare a varibale "that" and assign it "this". (clumpsy)
+   this.val = 1;
+   setTimeout(function() {
+      that.val++;
+      console.log(that.val);
+   }, 1);
+}
+var xx1 = new x1(); // 2
+
+//solution 2: using fat arrow as it checks where it is defined. As it is defined within x2, the variable `val` will get updated.
+var x2 = function() {          
+   this.val = 1;
+   setTimeout(() => {
+      this.val++;
+      console.log(this.val);
+   }, 1);
+}
+var xx2 = new x2(); // 2
+```
 
 **[⬆](#Questions)**
 ---
-### QA3
-✍Explain what the callback function is and provide a simple example.
+#### QA3
+### ✍Explain what the callback function is and provide a simple example.
+- A higher order function is a function that may receive a function as parameter or even return a function. 
+- A callback function is a function passed into another function as an argument, which is then invoked inside the outer function to complete some kind of routine or action.
+
+```js
+let add = function(num1, num2) {
+  return num1 + num2;
+}
+
+let multiply = function(num1, num2) {
+  return num1 * num2;
+}
+
+let divide = function(dividend, divisor) {
+  return dividend / divisor;
+}
+
+// higher order function
+let operation = function(num1, num2, callback) {
+  return callback(num1, num2);
+}
+
+let sum = operation(3, 5, add);
+let multiplyNumber = operation(5, 11, multiply);    
+let divideNumber = operation(10, 5, divide);
+
+console.log('The sum is ' + sum); // The sum is 8
+console.log('The result of multiplication is ' + multiplyNumber); // The result of multiplication is 55
+console.log('The result of division is ' + divideNumber); // The result of division is 2
+```
 
 **[⬆](#Questions)**
 ---
-### QA4
-✍Promises
-
-**[⬆](#Questions)**
----
-### QA5
-✍Async-await
-
-**[⬆](#Questions)**
----
-### QA6
-✍Spread operator, rest and destructing.
-
-**[⬆](#Questions)**
----
-### QA7
-✍Iterators
-
-**[⬆](#Questions)**
----
-### QA8
-✍Import and Export
-
-**[⬆](#Questions)**
----
-### QA9
-✍Pollyfill for map, reduce, filter and forEach.
-- Pollyfill for forEach
+#### QA4
+### ✍Promises
+- Promises are a new feature of ES6. It’s a method to write asynchronous code. It can be used when, for example, we want to fetch data from an API, or when we have a function that takes time to be executed.
+- The Promise object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value.
 ```javascript
+let cleanRoom = function() {
+    return new Promise(function(resolve, reject) {
+        resolve("Room is cleaned.");
+    });
+};
+
+let garbage = function(message) {
+    return new Promise(function(resolve, reject) {
+        resolve(message + "Garbage is taken.");
+    });
+};
+
+let iceCream = function(message) {
+    return new Promise(function(resolve, reject) {
+        resolve(message + "Give Icecream.");
+    });
+};
+
+cleanRoom().then(function(result) {
+    return garbage(result);
+}).then(function(result) {
+    return iceCream(result);
+}).then(function(result) {
+    console.log("All tasks finished." + result)
+})
+```
+
+**[⬆](#Questions)**
+---
+#### QA5
+### ✍Async-await
+
+**[⬆](#Questions)**
+---
+#### QA6
+### ✍Spread operator, rest and destructing.
+```javascript
+//example 1
+var a = [1, 2, 3];
+var b = [4, 5, 6];
+
+a.push(...b); //using spread operator
+// Array.prototype.push.apply(a, b);
+console.log(a);
+
+//example 2
+var dowhatever = ['talk', 'run', 'watch tv'];
+var life = ['born', 'walk', 'eat', ...dowhatever, 'die'];
+console.log(life);
+```
+
+**[⬆](#Questions)**
+---
+#### QA7
+### ✍Iterators
+```javascript
+var i = [1, 3, 5];
+
+var iterator = i[Symbol.iterator]();
+
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+```
+
+**[⬆](#Questions)**
+---
+#### QA8
+### ✍Import and Export
+Refer the question about [Features of ES6](#QA1)
+
+**[⬆](#Questions)**
+---
+#### QA9
+### ✍Pollyfill for map, reduce, filter and forEach.
+- Pollyfill for forEach
+```js
 let albums = ["Bobby Tarantino", "The Incredible True Story", "Supermarket", "Under Pressure"];
 
 // .forEach()
@@ -1008,7 +1181,7 @@ albums.polyfillForEach((item, index) => {
 ```
 
 - Pollyfill for map
-```javascript
+```js
 Array.prototype.polyfillForMap = function (callback) {
    let arr = [];
    for (let i = 0; i < this.length; i++) {
@@ -1026,7 +1199,7 @@ console.log(resultAlbums);
 ```
 
 - Pollyfill for filter
-```javascript
+```js
 const names = [
    {name: 'Sachin', age: 40},
    {name: 'Rahul', age: 20},
@@ -1054,7 +1227,7 @@ console.log(filteredNames);
 ```
 
 - Pollyfill for reduce
-```javascript
+```js
 let logicAlbums = [
    "Bobby Tarantino",
    "The Incredible True Story",
@@ -1084,176 +1257,184 @@ console.log(combineAlbums);
 
 **[⬆](#Questions)**
 ---
-### QA10
-✍Pollyfill for call, apply,bind.
+#### QA10
+### ✍Pollyfill for call, apply,bind.
 
 **[⬆](#Questions)**
 ---
-### QA11
-✍Polyfill for flat method
+#### QA11
+### ✍Polyfill for flat method
    - Infinite depth flatten and flatten by a certain number
    - Implement both recursive and iterative approaches
 
 **[⬆](#Questions)**
 ---
-### QA12
-✍Polyfill for promises and Promise.all
+#### QA12
+### ✍Polyfill for promises and Promise.all
 
 **[⬆](#Questions)**
 ---
-### QA13
-✍Event bubbling, event capturing/trickling, and event delegation.
+#### QA13
+### ✍Event bubbling, event capturing/trickling, and event delegation.
+- A bubbling event goes from the target element straight up. 
+- In other words, <code>event.stopPropagation()</code> stops the move upwards, but on the current element all other handlers will run.
+- To stop the bubbling and prevent handlers on the current element from running, there’s a method <code>event.stopImmediatePropagation()</code>. After it no other handlers execute.
 
 **[⬆](#Questions)**
 ---
-### QA14
-✍Difference between stop propagation and prevent default method.
+#### QA14
+### ✍Explain map, forEach, filter and reduce higher order functions.
 
 **[⬆](#Questions)**
 ---
-### QB1
-✍How to empty an array.
+#### QA15
+### ✍Difference between stop propagation and prevent default method.
 
 **[⬆](#Questions)**
 ---
-### QB2
-✍Remove duplicate values from an array.
+#### QB1
+### ✍How to empty an array.
 
 **[⬆](#Questions)**
 ---
-### QB3
-✍Explain with examples of a deep and shallow copy.
+#### QB2
+### ✍Remove duplicate values from an array.
 
 **[⬆](#Questions)**
 ---
-### QB4
-✍Remove falsy values from Array.
+#### QB3
+### ✍Explain with examples of a deep and shallow copy.
 
 **[⬆](#Questions)**
 ---
-### QB5✍
-✍Shuffle elements in an array.
+#### QB4
+### ✍Remove falsy values from Array.
 
 **[⬆](#Questions)**
 ---
-### QB6
-✍splice vs slice method.
+#### QB5✍
+### ✍Shuffle elements in an array.
 
 **[⬆](#Questions)**
 ---
-### QB7
-✍What is array destructuring.
+#### QB6
+### ✍splice vs slice method.
 
 **[⬆](#Questions)**
 ---
-### QB8
-✍Different ways of creating an object.
+#### QB7
+### ✍What is array destructuring.
 
 **[⬆](#Questions)**
 ---
-### QB9
-✍Object creation patterns.
+#### QB8
+### ✍Different ways of creating an object.
 
 **[⬆](#Questions)**
 ---
-### QB10
-✍Deep copy of an object.
+#### QB9
+### ✍Object creation patterns.
 
 **[⬆](#Questions)**
 ---
-### QB11
-✍Check if a given object is empty or not.
+#### QB10
+### ✍Deep copy of an object.
 
 **[⬆](#Questions)**
 ---
-### QB12
-✍Add/remove properties from Objects.
+#### QB11
+### ✍Check if a given object is empty or not.
 
 **[⬆](#Questions)**
 ---
-### QB13
-✍Given a string, reverse each word in the sentence.
+#### QB12
+### ✍Add/remove properties from Objects.
 
 **[⬆](#Questions)**
 ---
-### QB14
-✍Given two strings, return true if they are anagrams of one another.
+#### QB13
+### ✍Given a string, reverse each word in the sentence.
 
 **[⬆](#Questions)**
 ---
-### QB15
-✍Find a maximum consecutive repeating char in a given string.
+#### QB14
+### ✍Given two strings, return true if they are anagrams of one another.
 
 **[⬆](#Questions)**
 ---
-### QC1
-✍What are the advantages of using Axios over Fetch API.
+#### QB15
+### ✍Find a maximum consecutive repeating char in a given string.
 
 **[⬆](#Questions)**
 ---
-### QC2
-✍Explain the CORS mechanism.
+#### QC1
+### ✍What are the advantages of using Axios over Fetch API.
 
 **[⬆](#Questions)**
 ---
-### QC3
-✍Explain JWT in detail.
+#### QC2
+### ✍Explain the CORS mechanism.
 
 **[⬆](#Questions)**
 ---
-### QC4
-✍Use AJAX and XMLHttpRequest to get reponse from an URL.
+#### QC3
+### ✍Explain JWT in detail.
 
 **[⬆](#Questions)**
 ---
-### QD1
-✍Critical rendering path (must watch)
+#### QC4
+### ✍Use AJAX and XMLHttpRequest to get reponse from an URL.
 
 **[⬆](#Questions)**
 ---
-### QD2
-✍Caching
+#### QD1
+### ✍Critical rendering path (must watch)
+
+**[⬆](#Questions)**
+---
+#### QD2
+### ✍Caching
    - HTTP requests: Headers like Cache-Control, ETag, and Transfer-Encoding
 
 **[⬆](#Questions)**
 ---
-### QD3
-✍Network waterfall
+#### QD3
+### ✍Network waterfall
 
 **[⬆](#Questions)**
 ---
-### QD4
-✍Async, defer script attributes
+#### QD4
+### ✍Async, defer script attributes
 
 **[⬆](#Questions)**
 ---
-### QD5
-✍preconnect, preload, prefetch
+#### QD5
+### ✍preconnect, preload, prefetch
 
 **[⬆](#Questions)**
 ---
-### QD6
-✍Image optimization (jpeg v/s png v/s svg)
+#### QD6
+### ✍Image optimization (jpeg v/s png v/s svg)
 
 **[⬆](#Questions)**
 ---
-### QD7
-✍Bundle size optimisation ( good to have webpack basics)
+#### QD7
+### ✍Bundle size optimisation ( good to have webpack basics)
 
 **[⬆](#Questions)**
 ---
-### QE1
-✍XSS ( understand why we need cookies )
+#### QE1
+### ✍XSS ( understand why we need cookies )
 
 **[⬆](#Questions)**
 ---
-### QE2
-✍CSRF
+#### QE2
+### ✍CSRF
 
 **[⬆](#Questions)**
 ---
-### QE3
-✍Content security policy
+#### QE3
+### ✍Content security policy
 
 **[⬆](#Questions)**
 ---

@@ -424,10 +424,10 @@ There
 **[⬆](#Questions)**
 ---
 ### Q31
-✍HTML DOM (Document Object Model) _
-HTML Document Object Model (DOM)is a standard Object model and programming interface for HTML. It defines all HTML elements as objects, the properties of HTML elements, the methods to access all HTML elements and the events for all HTML objects. _
-In general, the HTML DOM is a standard for how to get, change, add, or delete HTML elements.
-Some examples of DOM
+✍HTML DOM (Document Object Model)\
+HTML Document Object Model (DOM)is a standard Object model and programming interface for HTML. It defines all HTML elements as objects, the properties of HTML elements, the methods to access all HTML elements and the events for all HTML objects.\
+In general, the HTML DOM is a standard for how to get, change, add, or delete HTML elements.\
+Some examples of DOM\
 
 - document.getElementById()
 ```javascript

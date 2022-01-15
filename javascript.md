@@ -109,7 +109,7 @@
 * [Tainted property in javascript](#tainted-property-in-javascript)
 
 # Answers
-### ✍ Q1 How does JavaScript works. JS engine archietecture. How JavaScript is so fast.
+### Q1 How does JavaScript works. JS engine archietecture. How JavaScript is so fast.
 JavaScript is a dynamically typed language unlike C++.
 ```javascript
 var x = 17;

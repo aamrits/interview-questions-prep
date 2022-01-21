@@ -611,23 +611,24 @@ In general, the HTML DOM is a standard for how to get, change, add, or delete HT
 Some examples of DOM
 
 - document.getElementById()
-```js
-<input type="text" name="fname" value="1" id="text1"><br>
-<input type="text" name="fname" value="2" id="text2">
-
-document.getElementById('text1').value = 9999;
-document.getElementById('text2').value = 1111;
-```
-
 - document.querySelector()
-```js
-document.querySelector('.demo').innerHTML = "Hello";
-// you can use id also.
-```
-
 - document.getElementsByTagName()
-The getElementsByTagName() method returns a collection of all elements in the document with the specified tag name.
+- document.getElementsByClassName()
+- element.innerHTML (new html content)
+- element.attribute (new value)
+- element.style.property (new style)
+- document.createElement(element), document.removeChild(element),  document.appendChild(element),  document.replaceChild(element),  document.removeChild(element)
+
 ```js
+// document.getElementById()
+<input type="text" id="text1" />
+document.getElementById('text1').value = 9999;
+
+// document.querySelector()
+document.querySelector('.demo').innerHTML = "Hello";
+
+// document.getElementsByTagName()
+// The getElementsByTagName() method returns a collection of all elements in the document with the specified tag name.
 <h4 id="demo">Check the console for details.</h4>
 <ul>
        <li>Ice cream</li>
@@ -636,44 +637,30 @@ The getElementsByTagName() method returns a collection of all elements in the do
 </ul>
 var x = document.getElementsByTagName("li");
 document.getElementById("demo").innerHTML = x[1].innerHTML;
-```
 
-- document.getElementsByClassName()
-```js
+// document.getElementsByClassName
 <h4 id="demo" class="demo">Check the console for details.</h4>
-
 var x = document.getElementsByClassName('demo');
 x[0].innerHTML = 'hello';
-```
 
-- element.innerHTML =  new html content
-```js
+// element.innerHTML
 <h4 id="demo" class="demo">Check the console for details.</h4>
 document.getElementById('demo').innerHTML = "inner html changed";
-```
 
-- element.attribute =  new value
-```js
+// element.attribute
 <a href="#" id="link">Link</a>
-
 var a = document.getElementById('link').attributes.length;
 console.log(a); //2
-```
 
-- element.setAttribute(attribute, value)
-```js
+// element.setAttribute(attribute, value)
 document.getElementById('link').setAttribute('href', 'https://www.google.co.in/');
 document.getElementById('text1').setAttribute('type', 'button');
-```
 
-- element.style.property = new style
-```js
+// element.style.property = new style
 document.getElementById('link').style.color = "red";
 document.getElementById('link').style.textTransform = "uppercase";
-```
 
-- document.createElement(element), document.removeChild(element),  document.appendChild(element),  document.replaceChild(element),  document.removeChild(element)
-```js
+// document.createElement(element), document.removeChild(element),  document.appendChild(element),  document.replaceChild(element),  document.removeChild(element)
 var btn = document.createElement("button");
 var t = document.createTextNode("Click Me");
 var nw = document.createTextNode("New");
@@ -689,14 +676,18 @@ document.getElementById('link').removeChild(btn);
 ### ✍BOM (Browser Object Model)
 The Browser Object Model (BOM) allows JavaScript to "talk to" the browser.
 - The Window Object
-1. window.innerHeight -the inner height of the browser window (in pixels)
-2. window.innerWidth -the inner width of the browser window (in pixels)
+   - `window.innerHeight`: the inner height of the browser window (in pixels)
+   - `window.innerWidth`: the inner width of the browser window (in pixels)
+   - `window.open()`: open a new window
+   - `window.close`: closes the current window
+   - `window.moveTo`: moves the current window
+   - `window.resizeTo`: resize the current window
 ```js
+// window.innerHeight()
 console.log("Window innerWidth: " + innerWidth);
 console.log("Window innerHeight: " + innerHeight);
-```
-3. window.open() -open a new window
-```js
+
+// window.open()
 <button type="button" id="btn" onclick="a()">Click me</button>
 
 function a() {
@@ -704,41 +695,30 @@ function a() {
    x.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>")
 }
 ```
-4. window.close() -closes the current window
-5. window.moveTo() -move the current window
-6. window.resizeTo() -resize the current window
 
 - The Window Screen
 The window.screen object contains information about the user's screen.
-   - screen.width
-   - screen.height
-   - screen.availWidth
-   - screen.availHeight
-   - screen.colorDepth
-   - screen.pixelDepth
-- The Window Location
-The window.location object can be used to get the current page address (URL) and to redirect the browser to a new page.
-   - window.location.href returns the href (URL) of the current page
-   - window.location.hostname returns the domain name of the web host
-   - window.location.pathname returns the path and filename of the current page
-   - window.location.protocol returns the web protocol used (http: or https:)
-   - window.location.assign loads a new document
+   - `screen.width`
+   - `screen.height`
+   - `screen.availWidth`
+   - `screen.availHeight`
+   - `screen.colorDepth`
+   - `screen.pixelDepth`
 
-```js
-console.log(location); or
-window.location
-```
+- The Window Location
+The `window.location` object can be used to get the current page address (URL) and to redirect the browser to a new page.
+   - `window.location.href` returns the href (URL) of the current page
+   - `window.location.hostname` returns the domain name of the web host
+   - `window.location.pathname` returns the path and filename of the current page
+   - `window.location.protocol` returns the web protocol used (http: or https:)
+   - `window.location.assign` loads a new document
+
 - The Window History
-   - history.back() -same as clicking back in the browser
-   - history.forward() -same as clicking forward in the browser
+   - `history.back()` -same as clicking back in the browser
+   - `history.forward()` -same as clicking forward in the browser
 
 - The Window Navigator
-The window.navigator object contains information about the visitor's browser. The window.navigator object can be written without the window prefix.
-
-```js
-console.log(navigator); or
-window.navigator
-```
+The `window.navigator` object contains information about the visitor's browser. The `window.navigator` object can be written without the window prefix.
 
 **[⬆](#Questions)**
 ---
@@ -783,8 +763,8 @@ if (person == null || person == "") {
 ---
 #### Q35
 ### ✍Array methods
-- concat()
 ```js
+// concat()
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var arr2 = ["india", "usa", "uk","china", "russia", "germany"];
 var concat = arr1.concat(arr2);
@@ -792,45 +772,40 @@ console.log(concat);
 
 RESULT:
 ["cricket", "football", "hockey", "baseball", "kabaddi", "india", "usa", "uk", "china", "russia", "germany"]
-```
-- fill()
-```js
+
+// fill()
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var fill = arr1.fill("soccer");
 console.log(fill);
 
 RESULT:
 ["soccer", "soccer", "soccer", "soccer", "soccer"]
-```
-- indexOf()
-```js
+
+// indexOf()
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var indexOf = arr1.indexOf("hockey");
 console.log(indexOf);
 
 RESULT:
 2
-```
-- join()
-```js
+
+// join()
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var join = arr1.join();
 console.log(join);
 
 RESULT:
 cricket,football,hockey,baseball,kabaddi
-```
-- map()
-```js
+
+// map()
 var arr1 = [4, 9, 16, 25, 36];
 var map = arr1.map(Math.sqrt);
 console.log(map);
 
 RESULT:
 [2, 3, 4, 5, 6]
-```
-- shift()
-```js
+
+// shift()
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var shift = arr1.shift();
 console.log(shift);
@@ -838,9 +813,8 @@ console.log(arr1);
 RESULT:
 Cricket
 ["football", "hockey", "baseball", "kabaddi"]
-```
-- unshift()
-```js
+
+// unshift()
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var unshift = arr1.unshift("golf");
 console.log(unshift);
@@ -849,9 +823,8 @@ console.log(arr1);
 RESULT:
 6
 ["golf", "cricket", "football", "hockey", "baseball", "kabaddi"]
-```
-- pop()
-```js
+
+// pop()
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var pop = arr1.pop();
 console.log(pop);
@@ -860,9 +833,8 @@ console.log(arr1);
 RESULT:
 Kabaddi
 ["cricket", "football", "hockey", "baseball"]
-```
-- push()
-```js
+
+// push()
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var push = arr1.push("golf");
 console.log(push);
@@ -870,36 +842,32 @@ console.log(arr1);
 RESULT:
 6
 ["cricket", "football", "hockey", "baseball", "kabaddi", "golf"]
-```
-- reverse()
-```js
+
+// reverse()
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var reverse = arr1.reverse();
 console.log(reverse);
 
 RESULT:
 ["kabaddi", "baseball", "hockey", "football", "cricket"]
-```
-- slice()
-```js
+
+// slice()
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var slice = arr1.slice(1, 3);
 console.log(slice);
 
 RESULT:
 ["football", "hockey"]
-```
-- sort()
-```js
+
+// sort()
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var sort = arr1.sort();
 console.log(sort);
 
 RESULT:
 ["baseball", "cricket", "football", "hockey", "kabaddi"]
-```
-- splice()
-```js
+
+// splice()
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var splice = arr1.splice(1, 2, "golf"); //splice(position, howmany, items,...)
 console.log(splice);
@@ -908,18 +876,16 @@ console.log(arr1);
 RESULT:
 ["football", "hockey"]
 ["cricket", "golf", "baseball", "kabaddi"]
-```
-- toString()
-```js
+
+// toString()
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var toString = arr1.toString();
 console.log(toString);
 
 RESULT:
 cricket,football,hockey,baseball,kabaddi
-```
-- split()
-```js
+
+// split()
 var arr1 = "How are doing today?";
 var split = arr1.split(" ");
 console.log(split);
@@ -932,14 +898,45 @@ today?,doing,are,How
 
 **[⬆](#Questions)**
 ---
-
 #### Q36
 ### ✍String methods
+Some of the common String methods are
+- `str.length`
+- `str.slice(start, end)`
+- `str.substring(start, end)`
+- `str.substr(start, length)`
+- `str.replace()`
+- `str.toUpperCase()`
+- `str.toLowerCase()`
+- `str.concat()`
+- `str.trim()`
+- `str.padStart()`
+- `str.padEnd()`
+- `str.charAt(position)`
+- `str.charCodeAt(position)`
+- `str.split()`
 
 **[⬆](#Questions)**
 ---
 #### Q37
 ### ✍Different errors in JS.
+- `Error` objects are thrown when runtime errors occur. The `Error` object can also be used as a base object for user-defined exceptions.
+
+- `Error()`: Creates a `new Error` object.
+
+- `EvalError`: Creates an instance representing an error that occurs regarding the global function `eval()`.
+
+- `RangeError`: Creates an instance representing an error that occurs when a numeric variable or parameter is outside of its valid range.
+
+- `ReferenceError`: Creates an instance representing an error that occurs when de-referencing an invalid reference.
+
+- `SyntaxError`: Creates an instance representing a syntax error.
+
+- `TypeError`: Creates an instance representing an error that occurs when a variable or parameter is not of a valid type.
+
+- `URIError`: Creates an instance representing an error that occurs when `encodeURI()` or `decodeURI()` are passed invalid parameters.
+
+- `AggregateError`: Creates an instance representing several errors wrapped in a single error when multiple errors need to be reported by an operation, for example by `Promise.any()`.
 
 **[⬆](#Questions)**
 ---

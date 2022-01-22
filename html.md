@@ -67,24 +67,43 @@ The tags that are deprecated are the following:
 ---
 #### Q5
 ### ✍What are semantic elements and explain a few of them? What are their advantages? 
+- HTML5’s semantic elements help structure the code we create, making it more readable and easier to maintain.
+- They help us structure the code and choose code hierarchy properly.
+- It helps in accessibility.
+- Several new semantic tags (element clearly describes its meaning to both the browser and the developer) were also added to complement the structural logic of modern web applications. These include the`main`,`nav`,`article`,`section`,`header`,`footer`,  <code>form</code>,  <code>table</code> and <code>aside</code> tags
 
 **[⬆](#Questions)**
 ---
 #### Q6
 ### ✍What is doctype used for? 
-
+- The HTML document type declaration, also known as DOCTYPE , is the first line of code required in every HTML or XHTML document. The DOCTYPE declaration is an instruction to the web browser about what version of HTML the page is written in. 
+- This ensures that the web page is parsed the same way by different web browsers.
+- Doctype syntax for HTML5 and beyond:
+```
+<!DOCTYPE html>
+```
+- Doctype syntax for strict, transitional and frameset HTML 4.01:
+```
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+```
 
 **[⬆](#Questions)**
 ---
 #### Q7
 ### ✍What is DOM? 
-
+- The Document Object Model (DOM) is the data representation of the objects that comprise the structure and content of a document on the web.
+- It is a programming interface for web documents.
+![DOM](assets/dom.png)
 
 **[⬆](#Questions)**
 ---
 #### Q8
 ### ✍DOM Manipulation
-
+- When writing web pages and apps, one of the most common things you'll want to do is manipulate the document structure in some way. This is usually done by using the Document Object Model (DOM), a set of APIs for controlling HTML and styling information that makes heavy use of the Document object.
+- DOM manipulation is one of the most important things when writing JavaScript for web browsers.
+- We do DOM manipulation for creating application (webpage), changing the web elements, update the webpage, animate, etc.
 
 **[⬆](#Questions)**
 ---
@@ -215,7 +234,15 @@ In HTML5 you can use many APIs. Some of them are:
 ---
 #### Q15
 ### ✍What are the different types of script tags? (async,defer)
-
+- Async scripts are executed as soon as the script is loaded, so it doesn't guarantee the order of execution (a script you included at the end may execute before the first script file )
+```js
+<script async src="https://examples.com/long.js"></script>
+```
+- Defer scripts guarantees the order of execution in which they appear in the page.
+```js
+<script defer src="https://examples.com/long.js"></script>
+```
+![Async and Defer](assets/async-defer.png)
 
 **[⬆](#Questions)**
 ---
@@ -227,7 +254,12 @@ YES
 ---
 #### Q17
 ### ✍How the browser renders HTML and CSS? Explain in detail.
-
+- The main components of browser are
+![Browser Flow](assets/browser-components.png)
+- When a web page is loaded, the browser first reads the HTML text and constructs DOM Tree from it.  - Then it processes the CSS whether that is inline, embedded, or external CSS and constructs the CSSOM Tree from it. 
+- After these trees are constructed, then it constructs the Render-Tree from it.
+![Main Flow](assets/main-flow.png)
+![Webkit Flow](assets/webkit-flow.png)
 
 **[⬆](#Questions)**
 ---
@@ -238,10 +270,3 @@ A web worker is a script that runs in the background (i.e., in another thread) w
 **[⬆](#Questions)**
 ---
 
-##### What is DOM?
-
-##### What are the different types of script tags? (async,defer)
-
-##### DOM manipulation.
-
-##### How the browser renders HTML and CSS? Explain in detail.

@@ -254,12 +254,14 @@ YES
 ---
 #### Q17
 ### ✍How the browser renders HTML and CSS? Explain in detail.
-- The main components of browser are
-![Browser Flow](assets/browser-components.png)
+###### The main components of browser are
+  ![Browser Flow](assets/browser-components.png)
 - When a web page is loaded, the browser first reads the HTML text and constructs DOM Tree from it.  - Then it processes the CSS whether that is inline, embedded, or external CSS and constructs the CSSOM Tree from it. 
-- After these trees are constructed, then it constructs the Render-Tree from it.
-![Main Flow](assets/main-flow.png)
-![Webkit Flow](assets/webkit-flow.png)
+- After these trees are constructed, then it constructs the Render-Tree from it. 
+###### Main Flow Diagram
+<img src = "assets/main-flow.png" width ="auto" /> </br>
+###### Webkit Flow Diagram
+<img src = "assets/webkit-flow.png" width ="auto" />
 
 **[⬆](#Questions)**
 ---

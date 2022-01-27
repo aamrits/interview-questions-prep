@@ -71,11 +71,11 @@ The *Virtual DOM* works in three simple steps.
 
 2. Then the difference between the previous DOM representation and the new one is calculated.
 
-![vdom2](assets/react/images/vdom2.png)
+![vdom2](assets/react/vdom2.png)
 
 3. Once the calculations are done, the real DOM will be updated with only the things that have actually changed.
 
-![vdom3](assets/react/images/vdom3.png)
+![vdom3](assets/react/vdom3.png)
 
 - Updating virtual DOM in ReactJS is faster because ReactJS uses
 ReactJS uses observable’s to find the modified components. Whenever setState() method is called on any component, ReactJS makes that component dirty and re-renders it. Creating the whole Virtual DOM from scratch is fast and doesn't affect performance. ReactJS maintains two virtual DOM, one with the updated state Virtual DOM and other with the previous state Virtual DOM.
@@ -117,7 +117,7 @@ The re-rendering or re-painting of the UI is what makes it slow. Therefore, the 
 - JSX is a XML-like syntax extension to ECMAScript (the acronym stands for JavaScript XML). Basically it just provides syntactic sugar for the `React.createElement()` function, giving us expressiveness of JavaScript along with HTML like template syntax.
 - JSX is not valid and is translated to regular JavaScript at runtime.
 
-In the example below text inside <h1> tag is returned as JavaScript function to the render function.
+In the example below text inside `<h1>` tag is returned as JavaScript function to the render function.
 
 ```jsx
 class App extends React.Component {
@@ -167,7 +167,7 @@ Inside a functional component, we are passing props as an argument of the functi
 ---
 #### Q8
 ### ✍What is render props pattern? Explain.
-The term “render props” refers to a simple technique for sharing code between React components using a prop whose value is a function.
+The term **render props** refers to a simple technique for sharing code between React components using a prop whose value is a function.
 
 ```jsx
 <Route path='/page' component={Page} />
@@ -490,7 +490,7 @@ The five distinct levels of atomic design — atoms > molecules > organisms > te
 ### ✍What are pure components? Explain with example.
 `React.PureComponent` is exactly the same as `React.Component` except that it handles the `shouldComponentUpdate()` method for you. When props or state changes, PureComponent will do a shallow comparison on both props and state. Component on the other hand won't compare current props and state to next out of the box. Thus, the component will re-render by default whenever shouldComponentUpdate is called.
 
-- A React component is considered pure if it renders the same output for the same state and props.
+A React component is considered pure if it renders the same output for the same state and props.
 Pure components have some performance improvements and render optimizations since React implements the shouldComponentUpdate() method for them with a shallow comparison for props and state.
 
 ```jsx
@@ -1412,9 +1412,9 @@ function ThemedButton() {
 ---
 #### QA8
 ### ✍What is a reducer?
-- A reducer is a function which takes two arguments, i.e., the current state and an action and returns based on both arguments a new state.
+A reducer is a function which takes two arguments, i.e., the current state and an action and returns based on both arguments a new state.
 
-- Reducers always return the accumulation of the state (based on all previous and current actions). Therefore, they act as a reducer of state. Each time a Redux reducer is called, the state and action are passed as parameters. This state is then reduced (or accumulated) based on the action, and then the next state is returned. You could *reduce* a collection of actions and an initial state (of the store) on which to perform these actions to get the resulting final state.
+Reducers always return the accumulation of the state (based on all previous and current actions). Therefore, they act as a reducer of state. Each time a Redux reducer is called, the state and action are passed as parameters. This state is then reduced (or accumulated) based on the action, and then the next state is returned. You could *reduce* a collection of actions and an initial state (of the store) on which to perform these actions to get the resulting final state.
 
 **[⬆](#Questions)**
 ---

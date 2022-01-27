@@ -530,7 +530,21 @@ Example : the react version is specified as *^16.6.3*, which means that npm will
 ---
 #### Q23
 ### ✍React steps to find differences in both Virtual DOM (how diffing works in React)?
+Below is the DOM structure
 
+![html-dom](assets/react/html-dom.png)
+
+Since DOM is represented as a tree structure, changes to the DOM is pretty quick but the changed element, and it’s children’s has to go through **Reflow/Layout** stage and then the changes has to be **Re-painted** which are slow. Therefore more the items to reflow/repaint, more slow your app becomes.
+
+*What Virtual-DOM does is, it tries to minimize these two stages, and thereby getting a better performance for a big complex app.*
+
+- First, making the component dirty.
+- Next step is to update the *virtual DOM* and then use the *diffing algorithm* to do the *reconciliation* and update the actual DOM.
+
+The reconciliation process is where React
+- Compares the previous internal instance with the next internal instance.
+- Updates the internal Instance which is a Component Tree structure in JavaScript Object(**Virtual DOM**).
+- And updates the actual DOM only at the node where there is an actual change along with it’s children.
 
 **[⬆](#Questions)**
 ---
@@ -1138,20 +1152,71 @@ Some limitations of React
 
 #### QA1
 ### ✍How does React state usestate and useEffect work internally
-- useState is a hook that encapsulates local state management. useState saves us from having to create class-based components for state-related responsibilities, since it gives functional components the power and flexibility to handle it themselves.
-```
+- `useState` is a hook that encapsulates local state management. `useState` saves us from having to create class-based components for state-related responsibilities, since it gives functional components the power and flexibility to handle it themselves.
+
+```jsx
 const [state, setState] = useState(initialstate)
 ```
-- useEffect is a hook for encapsulating code that has ‘side effects,’ and is like a combination of componentDidMount, componentDidUpdate, and componentWillUnmount. Previously, functional components didn’t have access to the component life cycle, but with useEffect you can tap into it.
-```
+
+- `useEffect` is a hook for encapsulating code that has ‘side effects,’ and is like a combination of componentDidMount, componentDidUpdate, and componentWillUnmount. Previously, functional components didn’t have access to the component life cycle, but with `useEffect` you can tap into it.
+
+```jsx
 useEffect(callback[, dependencies]);
 ```
 
 **[⬆](#Questions)**
 ---
 #### QA2
-### ✍How does useEffect work internally
+### ✍How does useEffect work internally.
+By default, `useEffect` runs after each render of the component where it’s called.
 
+When you call `useEffect` in your component, this is effectively queuing or scheduling an effect to maybe run, after the render is done.
+
+After rendering finishes, `useEffect` will check the list of dependency values against the values from the last render, and will call your effect function if any one of them has changed.
+
+```jsx
+import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
+
+function Reddit() {
+  // Initialize state to hold the posts
+  const [posts, setPosts] = useState([]);
+
+  // effect functions can't be async, so declare the
+  // async function inside the effect, then call it
+  useEffect(() => {
+    async function fetchData() {
+      // Call fetch as usual
+      const res = await fetch(
+        "https://www.reddit.com/r/reactjs.json"
+      );
+
+      // Pull out the data as usual
+      const json = await res.json();
+
+      // Save the posts into state
+      // (look at the Network tab to see why the path is like this)
+      setPosts(json.data.children.map(c => c.data));
+    }
+
+    fetchData();
+  }); // <-- we didn't pass a value. what do you think will happen?
+
+  // Render as usual
+  return (
+    <ul>
+      {posts.map(post => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  );
+}
+
+ReactDOM.render(
+  <Reddit />,
+  document.querySelector("#root")
+);
+```
 
 **[⬆](#Questions)**
 ---
@@ -1180,20 +1245,168 @@ export default React.memo(MyFunctionComponent);
 **[⬆](#Questions)**
 ---
 #### QA5
-### ✍Explain useCallback()
+### ✍Explain useCallback().
+```jsx
+const memoizedCallback = useCallback(
+  () => {
+    doSomething(a, b);
+  },
+  [a, b],
+);
+```
+
+`useCallback()` returns a *memoized* callback.
+
+###### Purpose
+An object (including a function object) equals only to itself.
+
+```jsx
+function MyComponent() {
+  // handleClick is re-created on each render
+  const handleClick = () => {
+    console.log('Clicked!');
+  };
+  // ...
+}
+```
+
+`handleClick` is a different function object on every rendering of `MyComponent`.
+
+Consider a component that renders a big list of items. The list could be big, maybe hundreds of items. To prevent useless list re-renderings, you wrap it into `React.memo()`. 
+
+```jsx
+// A good use case
+import { useCallback } from 'react';
+export function MyParent({ term }) {
+  const onItemClick = useCallback(event => {
+    console.log('You clicked ', event.currentTarget);
+  }, [term]);
+
+  return (
+    <MyBigList
+      term={term}
+      onItemClick={onItemClick}
+    />
+  );
+}
+```
+
+`onItemClick` callback is memoized by `useCallback()`. As long as term is the same, `useCallback()` returns the same function object. When `MyParent` component re-renders, `onItemClick` function object remains the same and doesn't break the memoization of `MyBigList`. This is a good example of `useCallback()`.
+
+```jsx
+// A BAD use case
+import { useCallback } from 'react';
+function MyComponent() {
+  // Contrived use of `useCallback()`
+  const handleClick = useCallback(() => {
+    // handle the click event
+  }, []);
+  return <MyChild onClick={handleClick} />;
+}
+
+function MyChild ({ onClick }) {
+  return <button onClick={onClick}>I am a child</button>;
+}
+```
+
+- `<MyChild>` component is light and its re-rendering doesn't create performance issues.
+- `useCallback()` hook is called every time `MyComponent` renders.
+- By using `useCallback()` you also increased code complexity
 
 
 **[⬆](#Questions)**
 ---
 #### QA6
 ### ✍How is React.memo different from useMemo ( two very different things )
-`React.memo()` is similar to PureComponent in that it will help us control when our components rerender. With PureComponent and `React.memo()`, we can have only some components render.
+`React.memo()` is a higher-order component that we can use to wrap components that we do not want to re-render unless props within them change
+
+`useMemo()` is a React Hook that we can use to wrap functions within a component. We can use this to ensure that the values within that function are re-computed only when one of its dependencies change
 
 **[⬆](#Questions)**
 ---
 #### QA7
-### ✍useReducer, useContext hook
+### ✍useReducer, useContext hook.
+`useReducer` is an alternative to `useState`. Accepts a reducer of type `(state, action) => newState`, and returns the current state paired with a `dispatch` method.
 
+```jsx
+const [state, dispatch] = useReducer(reducer, initialArg, init);
+```
+
+`useReducer` is usually preferable to useState when you have complex state logic that involves multiple sub-values or when the next state depends on the previous one. `useReducer` also lets you optimize performance for components that trigger deep updates because you can pass dispatch down instead of callbacks.
+
+```jsx
+const initialState = {count: 0};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return {count: state.count + 1};
+    case 'decrement':
+      return {count: state.count - 1};
+    default:
+      throw new Error();
+  }
+}
+
+function Counter() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+    <>
+      Count: {state.count}
+      <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+      <button onClick={() => dispatch({type: 'increment'})}>+</button>
+    </>
+  );
+}
+```
+
+`useContext` accepts a context object (the value returned from `React.createContext`) and returns the current context value for that context. The current context value is determined by the value prop of the nearest `<MyContext.Provider>` above the calling component in the tree.
+
+```jsx
+const value = useContext(MyContext);
+```
+
+When the nearest `<MyContext.Provider>` above the component updates, this Hook will trigger a rerender with the latest context value passed to that MyContext provider. Even if an ancestor uses `React.memo` or `shouldComponentUpdate`, a rerender will still happen starting at the component itself using `useContext`.
+
+```jsx
+const themes = {
+  light: {
+    foreground: "#000000",
+    background: "#eeeeee"
+  },
+  dark: {
+    foreground: "#ffffff",
+    background: "#222222"
+  }
+};
+
+const ThemeContext = React.createContext(themes.light);
+
+function App() {
+  return (
+    <ThemeContext.Provider value={themes.dark}>
+      <Toolbar />
+    </ThemeContext.Provider>
+  );
+}
+
+function Toolbar(props) {
+  return (
+    <div>
+      <ThemedButton />
+    </div>
+  );
+}
+
+function ThemedButton() {
+  const theme = useContext(ThemeContext);
+  return (
+    <button style={{ background: theme.background, color: theme.foreground }}>
+      I am styled by theme context!
+    </button>
+  );
+}
+```
 
 **[⬆](#Questions)**
 ---

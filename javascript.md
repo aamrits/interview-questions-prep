@@ -100,27 +100,21 @@
 - [CSRF](#QE2)
 - [Content security policy](#QE3)
 
-## Old Questions
-* [JavaScript can display data in following ways](#javascript-can-display-data-in-following-ways)
-* [JavaScript Data Types](#javascript-data-types)
-* [JavaScript Objects](#some-of-the-javascript-objects-are)
-* [Creating an object](#creating-an-object)
-* [isNAN()](#isnan)
-* [void(0)](#void0)
-* [Tainted property in javascript](#tainted-property-in-javascript)
-
 # Answers
 #### Q1 
 ### ✍How does JavaScript works. JS engine archietecture. How JavaScript is so fast.
 JavaScript is a **dynamically** typed language unlike C++.
+
 ```js
 var x = 17;
 ```
-- when we define `x`, we don't worry about the type of the variable or the memory it will take. This makes prototyping fast.
+
+- When we define `x`, we don't worry about the type of the variable or the memory it will take. This makes prototyping fast.
 - JS Engine use JIT (Just In Time) Compilation. It interpretes and compiles at the same time.
 - Modern JS engines are 2 compilers, one is optimizing compiler. Its job is to re-compile `hot functions` with type information and optimize it in the process.
 - If the type is changed, then it has to de-optimize (small performance hit).
 - Google Chrome browser's V8 engine is the fastest. Here, the baseline compiler is Ignition. The optimising compiler is Turbofan. The machine code is called Bytecode.
+
 ![JS Engine 1](assets/js-engine1.png)
 ![JS Engine](assets/js-engine.png)
 
@@ -129,12 +123,17 @@ var x = 17;
 #### Q2
 ### ✍Explain event loop.
 ![Event Loop](assets/event-loop1.png)
+
 JavaScript is a **single threaded language**, i.e., it can execute one line at a time.
-1. The JavaScript Engine has a `memory heap` and `call stack`. Even before executing a single line of code, JS stores variables and functions in the heap. Variables are assigned "undefined" and functions are stored as it.
-2. After that `Global Execution Context` is created in the call stack. Each line is executed synchronously and after execution, gets popped out of the call stack.
-3. All the asynchronous events like `setTimeout` or **DOM APIs** or `XMLHttpRequest` are part of the **WebAPI**. When the timer expires or the reponse is fetched, it goes to the **callback queue**, where it waits for the call stack to be clear. Event loop checks this functionality.
+1. The JavaScript Engine has a **memory heap** and **call stack** . Even before executing a single line of code, JS stores variables and functions in the heap. *Variables are assigned **undefined** and functions are stored as it*.
+
+2. After that **Global Execution Context** is created in the call stack. Each line is executed synchronously and after execution, gets popped out of the call stack.
+
+3. All the asynchronous events like `setTimeout` or **DOM APIs** or `XMLHttpRequest` are part of the **WebAPI**. When the timer expires or the response is fetched, it goes to the **callback queue**, where it waits for the call stack to be clear. Event loop checks this functionality.
+
 5. Once the call stack is empty, event loop pushes the callback functions, which are waiting in the callback queue, to the call stack, to be executed. 
-6. Suppose, there is a fetch request (Promise) and also a setTimeout. In this case, Promises gets pushed to the **microtask queue**, after getting response. Microtask queue has more priority than callback queue (or task queue). So once the call stack is cleared, functions in the microtask queue gets pushed. After that callback functions in callback queue gets executed.
+
+6. Suppose, there is a fetch request (**Promise**) and also a setTimeout. In this case, Promises gets pushed to the **microtask queue** or **priority queue**, after getting response. Microtask queue has more priority than callback queue (or task queue). So once the call stack is cleared, functions in the microtask queue gets pushed. After that callback functions in callback queue gets executed.
 ![Event Loop 2](assets/event-loop2.png)
 
 **[⬆](#Questions)**
@@ -142,23 +141,28 @@ JavaScript is a **single threaded language**, i.e., it can execute one line at a
 #### Q3
 ### ✍Explain execution context.
 1. Before even code is executed, there is Global Execution Context. In GEC, `window` and `this` is available to us. Here, `this` refers to `window` Object.
+
 2. Once code is executed, variable names are assigned value. For a function, a separate Execution Context is created. Here, `arguments` and `this` is available to us. For each function call, seperation Execution Contexts are created.
-3. Execution Context has 2 phases: Creation and Execution.
+
+3. Execution Context has 2 phases: **Creation** and **Execution**.
 ![Execution Context](assets/execution-context.png)
 
 **[⬆](#Questions)**
 ---
 #### Q4
 ### ✍What is hoisting? Explain with example.
-- JavaScript Hoisting refers to the process whereby the interpreter appears to move the declaration of functions, variables or classes to the top of their scope, prior to execution of the code.
-- `var` variables are initialized with undefined, `let` and `const` variables are not initialized.
-- Functions are hoisted as it is. Hence, we can run a function before we declare.
+JavaScript Hoisting refers to the process whereby the interpreter appears to move the declaration of functions, variables or classes to the top of their scope, prior to execution of the code.
+
+`var` variables are initialized with undefined, `let` and `const` variables are not initialized.
+
+Functions are hoisted as it is. Hence, we can run a function before we declare.
 
 **[⬆](#Questions)**
 ---
 #### Q5
 ### ✍Scope chain.
 It refers to the **lexical environment**. If a variable or a function is not declared in its scope, but it is declared in its lexical parent, then that variable can be accessed in the function also.
+
 ```js
 function name() {
    var name = "Amrit";
@@ -175,14 +179,18 @@ name();
 #### Q6
 ### ✍var, let, const,Temporal Dead Zone.
 - `var` declarations are globally scoped or function scoped while `let` and `const` are block scoped.
+
 - `var` variables can be updated and re-declared within its scope; `let` variables can be updated but not re-declared; `const` variables can neither be updated nor re-declared.
+
 - They are all hoisted to the top of their scope. But while var variables are initialized with undefined, `let` and `const` variables are not initialized.
+
 - While `var` and `let` can be declared without being initialized, `const` must be initialized during declaration.
 
 **[⬆](#Questions)**
 ---
 #### Q7
 ### ✍What is type of null, undefined, function, NaN.
+
 ```js
 console.log(typeof null);  // "object"
 console.log(typeof undefined); // "undefined"
@@ -194,13 +202,16 @@ console.log(typeof NaN); // "number"
 ---
 #### Q8
 ### ✍null and undefined.
+
 - the type of undefined is `undefined`, whereas null is `object`.
+
 - When a variable is declared but no value is assigned, then it shows undefined. But we can assign to a variable. So `null` is an assignment value.
 
 **[⬆](#Questions)**
 ---
 #### Q9
 ### ✍typeOf() 
+
 ```js
 console.log(typeof undefined); // "undefined"
 console.log(typeof null);  // "object"
@@ -216,14 +227,15 @@ console.log(typeof function demo() {}); // "function"
 **[⬆](#Questions)**
 ---
 #### Q10
-### ✍Difference between == and === . 
-- `==` converts the variable values to the same type before performing comparison. This is called **type coercion**. 
-- ===` does not do any type conversion (coercion) and returns true only if both values and types are identical.
+### ✍Difference between `==` and `===` .
+- `==` converts the variable values to the same type before performing comparison. This is called **type coercion**.
+
+- `===` does not do any type conversion (coercion) and returns true only if both values and types are identical.
 
 **[⬆](#Questions)**
 ---
 #### Q11
-### ✍How does this keyword work? Provide some examples.
+### ✍How does `this` keyword work? Provide some examples.
 - Case 1
 ```js
 function displayName() {
@@ -231,7 +243,9 @@ function displayName() {
 }
 displayName();
 ```
+
 In case `this` is the window object as internally `window.displayName()` is getting called.
+
 - Case 2
 ```js
 let obj1 = {
@@ -241,7 +255,9 @@ let obj1 = {
 }
 obj1.displayName();
 ```
+
 In case 2, this will refer to `obj1`.
+
 - `this` keyword works dynamically. Let's take another example.
 - Case 3
 ```js
@@ -259,8 +275,10 @@ obj.sayHello();
 // Hello {name: 'Amrit', sayHello: ƒ}
 // Bye Window {window: Window, self: Window, document: document, name: '', location: Location, …}
 ```
+
 - In case 3, `sayHello()` will refer to obj as we're calling as `obj.sayHello()`. But `sayBye()` will refer to `window` object as we're simply calling the function `sayBye()`.
 - But if we will use arrow function in `sayBye()`, arrow function will check where the function is defined and log `this`. 
+
 ```js
 const obj = {
    name: 'Amrit',
@@ -283,6 +301,7 @@ In this case, arrow function is defined within `obj`. So this will log `obj` obj
 ### Q12
 ✍Difference between `call`, `apply` and `bind`. Give example.
 When we call this below function, internally `displayName()` is called as `displayName.call()`. Also we can call this function with `apply()` like this also, `displayName.apply()` 
+
 ```js
 function displayName() {
    console.log('John Doe');
@@ -290,7 +309,8 @@ function displayName() {
 displayName(); // John Doe
 displayName.call(); // John Doe
 ```
-- call()
+
+- `call()`
 ```js
 let user1 = {
    name: 'John',
@@ -308,7 +328,9 @@ user1.chargeBattery.call(user2, true, true); /
 console.log(user1); // {name: 'John', battery: 30, chargeBattery: ƒ}
 console.log(user2); //{name: 'Ron', battery: 100}
 ```
-- apply(): for `apply()`, all the arguments should be in array
+
+- `apply()`: for `apply()`, all the arguments should be in array.
+
 ```js
 let user1 = {
    name: 'John',
@@ -326,7 +348,8 @@ user1.chargeBattery.bind(user2, [true, true]); // for apply(), all the arguments
 console.log(user1); // {name: 'John', battery: 30, chargeBattery: ƒ}
 console.log(user2); // {name: 'Ron', battery: 100}
 ```
-- bind(): `bind()` return a function so that later we can call that function.
+
+- `bind()`: `bind()` return a function so that later we can call that function.
 ```js
 let user1 = {
    name: 'John',
@@ -349,7 +372,7 @@ console.log(user2); //{name: 'Ron', battery: 100}
 #### Q13
 ### ✍What is closure and what are the advantages of using closure.
 **Functions bundled with its lexical scope is called closure.**
-- Example
+
 ```js
 function x() {
    let a = 8;
@@ -361,6 +384,7 @@ function x() {
 let z = x(); // returns the function y
 console.log(z); // 8
 ```
+
 - Here, we have to understand when we call `x()`, the `function y` will be returned along with its lexical scope. So even if `function x()` is no longer executed and it doesn't exist anymore, in the variable z, the `function y()` is present along with its lexical scope. So the reference of `a` is present.
 - So when we call `z()`, 8 gets printed. In other words, it remembers its lexical scope. The reference to `a` is also stored in variable `z`. Hence 8 gets printed as `a = 8`. 
 - The reference of `a` is stored. Hence, if we change `a = 12` after `function y()`, the value will change to 12 and it will console log 12.
@@ -380,23 +404,26 @@ console.log(z); // 8
 ---
 #### Q14
 ### ✍Function statement, Function Expression, Anonymous Function, Named Function Expression, First Class Function, Higher-order Function.
-- Function Statement or Function Declaration
+- **Function Statement or Function Declaration**
+
 ```js
 function a() {
    console.log('a is called');
 }
 a(); // a is called
 ```
-- Function Expression. Here, it is treated as a variable, so it is not hoisted. On the other hand, Function Statement is hoisted.
+
+- **Function Expression**: Here, it is treated as a variable, so it is not hoisted. On the other hand, Function Statement is hoisted.
 ```js
 let b = function () {
    console.log('b is called');
 }
 b();  // b is called
 ```
-- Anonymous Functions are used when functions are used as values, just like Function Expression as an example.
 
-- Named Function Expression
+- **Anonymous Functions** are used when functions are used as values, just like Function Expression as an example.
+
+- **Named Function Expression**
 ```js
 let c = function abc() {
    console.log('c is called', abc);
@@ -406,11 +433,12 @@ c();
 //    console.log("c is called", abc);
 // }
 ```
+
 We can't call this function like `abc()` as it is defined as a value .
-- First Class Function (or First Class Citizens)
+- **First Class Function** (or First Class Citizens)
 The ability to pass functions as values or pass functions inside a function as arguments is known as First Class Function. We can also return a function from function. 
-- Higher-order Function
-A **higher-order function** is a function that accepts functions as parameters and/or returns a function.
+
+- **Higher-order function** is a function that accepts functions as parameters and/or returns a function.
 
 **[⬆](#Questions)**
 ---
@@ -422,15 +450,16 @@ function sum(a,b) {
 }
 console.log(sum(2, 3));
 ```
-a, b are the parameters. 2, 3 are `arguments`.
-The values which we pass insde a function are called as `arguments` and the labels or identiers which gets those values are known as `parameters`.
+a, b are the parameters. 2, 3 are **arguments**.
+The values which we pass insde a function are called as **arguments** and the labels or identiers which gets those values are known as **parameters**.
 
 **[⬆](#Questions)**
 ---
 #### Q16
 ### ✍Function overiding and overloading.
-- Function overloading is a feature of object oriented programming where two or more functions can have the same name but different parameters. When a function name is overloaded with different jobs it is called Function Overloading. But this is present C++. **In JavaScript, there is no Function Overloading**.
-- JavaScript supports overriding, so if you define two functions with the same name, the last one defined will override the previously defined version and every time a call will be made to the function, the last defined one will get executed.
+*Function overloading* is a feature of object oriented programming where two or more functions can have the same name but different parameters. When a function name is overloaded with different jobs it is called Function Overloading. But this is present C++. **In JavaScript, there is no Function Overloading**.
+
+JavaScript supports *overriding*, so if you define two functions with the same name, the last one defined will override the previously defined version and every time a call will be made to the function, the last defined one will get executed.
 
 **[⬆](#Questions)**
 ---
@@ -442,11 +471,65 @@ The values which we pass insde a function are called as `arguments` and the labe
 ---
 #### Q18
 ### ✍Implement debouncing.
+In JavaScript, a *debounce* function makes sure that your code is only triggered once per user input.
+
+Let's say that we want to show suggestions for a search query, but only after a visitor has finished typing it. We have to avoid API call on every key change.
+
+The *debounce* is a special function that handles two tasks:
+- Allocating a scope for the timer variable
+- Scheduling your function to be triggered at a specific time
+
+```js
+function debounce(func, timeout = 300){
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => { func.apply(this, args); }, timeout);
+  };
+}
+function saveInput(){
+  console.log('Saving data');
+}
+const processChange = debounce(() => saveInput());
+
+// HTML
+<input type="text" onkeyup="processChange()" />
+```
+
+When a visitor writes the first letter and releases the key, the debounce first resets the timer with clearTimeout(timer). Then it schedules the provided function, `saveInput()` to be invoked in 300 ms.
+
+Now let's say that the visitor keeps writing, so each key release triggers the debounce again. Every invocation needs to reset the timer, or, in other words, cancel the previous plans with `saveInput()`, and reschedule it for a new time, 300 ms in the future. This goes on as long as the visitor keeps hitting the keys under 300 ms.
 
 **[⬆](#Questions)**
 ---
 #### Q19
 ### ✍Implement throttling.
+*Throttling* is used to call a function after every millisecond or a particular interval of time only the first click is executed immediately.
+
+Suppose a button is clicked 500 times then the function will be clicked 500 times. By throttling, we can avoid this.
+
+```html
+<button id="throttle">Click Me</button>
+```
+
+```js
+const throttleFunction = (func, delay) => {
+   let prev = 0;
+   return (...args) => {
+      let now = new Date().getTime();
+
+      if((now - prev) > delay) {
+         prev = now;
+         return func(...args);
+      }
+   }
+}
+
+document.querySelector("#throttle").addEventListener("click", throttleFunction(() => {
+   console.log("button is clicked");
+}, 1500));
+
+```
 
 **[⬆](#Questions)**
 ---
@@ -502,8 +585,9 @@ console.log(curry(11)(2)(3));
 ---
 #### Q22
 ### ✍Difference between setTimeout vs setInterval.
-- setTimeout(function, milliseconds)
+###### setTimeout(function, milliseconds)
 Executes a function, after waiting a specified number of milliseconds.
+
 ```js
 function showTime() {
    setTimeout(function() {
@@ -511,8 +595,10 @@ function showTime() {
    }, 1000);
 }
 ```
-- setInterval(function, milliseconds)
+
+###### setInterval(function, milliseconds)
 Same as `setTimeout()`, but repeats the execution of the function continuously.
+
 ```js
 <button onclick="showTime()">Show Time</button>
 <p id="time"></p>
@@ -525,8 +611,10 @@ function showTime() {
    }, 1000);
 }
 ```
-- clearInterval()
+
+###### clearInterval()
 The `clearInterval()` method stops the execution of the function specified in `setInterval()`.
+
 ```js
 <button onclick="startTime()">Start</button>
 <button onclick="stopTime()">Stop</button>
@@ -549,7 +637,30 @@ function stopTime() {
 **[⬆](#Questions)**
 ---
 #### Q23
-### ✍Implement setInterval using setTimeout
+### ✍Implement setInterval using setTimeout.
+
+```js
+function customSetInterval (cb, interval) {
+  return setTimeout( () => {
+    if (typeof cb == 'function') {
+      cb();
+      customSetInterval(cb, interval);
+    } else {
+      console.error(new Error('Expecting a function as a callback'))
+    }
+  }, interval);
+}
+
+function resetCustomSetInterval (id) {
+  clearTimeout(id);
+}
+
+function hello (){
+  console.log('hello');
+}
+ 
+let id = customSetInterval(hello, 1000);
+```
 
 **[⬆](#Questions)**
 ---
@@ -559,31 +670,66 @@ The`window` is the actual global object.
 The`screen` is the screen, it contains properties about the user's display.
 The`document` is where the DOM is.
 
+Below are the main differences between window and document.
+
+| Window | Document |
+|---- | ---------
+| It is the root level element in any web page  | It is the direct child of the `window` object. This is also known as Document Object Model(DOM) |
+| By default `window` object is available implicitly in the page | You can access it via `window.document` or document.  |
+| It has methods like `alert()`, `confirm()` and properties like `document`, `location` | It provides methods like `getElementById`, `getElementsByTagName`, `createElement` etc  |
+
 ![My image](https://i.stack.imgur.com/BkAjU.jpg)
 
 **[⬆](#Questions)**
 ---
 #### Q25
 ### ✍Falsy values in js.
+There are only six falsey values in JavaScript, `undefined` , `null` , `NaN` , `0` , "" (empty string), and `false`.
+
+You can apply the filter method on the array by passing Boolean as a parameter. This way it removes all falsy values(0, undefined, null, false and "") from the array.
+
+```js
+const myArray = [false, null, 1,5, undefined]
+myArray.filter(Boolean); // [1, 5] // is same as myArray.filter(x => x);
+```
 
 **[⬆](#Questions)**
 ---
 #### Q26
 ### ✍What is a strict mode in js
+Strict Mode is a new feature in ECMAScript 5 that allows you to place a program, or a function, in a “strict” operating context.
+
 - Strict mode makes it easier to write **secure** JavaScript.
 - Strict mode changes previously accepted **bad syntax** into real errors.
 - As an example, in normal JavaScript, mistyping a variable name creates a new global variable. In **strict** mode, this will throw an error, making it impossible to accidentally create a global variable.
-- Using a variable, without declaring it, is not allowed.
+
+```js
+x = 3.14;   // This will cause an error because x is not declared
+myFunction();
+
+function myFunction() {
+  "use strict";
+  y = 3.14;   // This will cause an error
+}
+```
 
 **[⬆](#Questions)**
 ---
 #### Q27
 ### ✍What is eval()
+The eval() function evaluates JavaScript code represented as a string. The string can be a JavaScript expression, variable, statement, or sequence of statements.
+
+```js
+console.log(eval('1 + 2')); //  3
+```
 
 **[⬆](#Questions)**
 ---
 #### Q28
 ### ✍What are reference error and syntax error?
+The `ReferenceError` object represents an error when a variable that doesn't exist (or hasn't yet been initialized) in the current scope is referenced.
+
+Syntax error is due wrong syntax written in the code.
 
 **[⬆](#Questions)**✍
 ---
@@ -606,60 +752,69 @@ The`document` is where the DOM is.
 ---
 #### Q31
 ### ✍HTML DOM (Document Object Model)\
-HTML Document Object Model (DOM)is a standard Object model and programming interface for HTML. It defines all HTML elements as objects, the properties of HTML elements, the methods to access all HTML elements and the events for all HTML objects.\
-In general, the HTML DOM is a standard for how to get, change, add, or delete HTML elements.\
+HTML *Document Object Model (DOM)* is a standard Object model and programming interface for HTML. It defines all HTML elements as objects, the properties of HTML elements, the methods to access all HTML elements and the events for all HTML objects.
+
+In general, the HTML DOM is a standard for how to get, change, add, or delete HTML elements.
+
 Some examples of DOM
-
-- document.getElementById()
-- document.querySelector()
-- document.getElementsByTagName()
-- document.getElementsByClassName()
-- element.innerHTML (new html content)
-- element.attribute (new value)
-- element.style.property (new style)
-- document.createElement(element), document.removeChild(element),  document.appendChild(element),  document.replaceChild(element),  document.removeChild(element)
-
+- `document.getElementById()`
 ```js
-// document.getElementById()
 <input type="text" id="text1" />
 document.getElementById('text1').value = 9999;
+```
 
-// document.querySelector()
+- `document.querySelector()`
+```js
 document.querySelector('.demo').innerHTML = "Hello";
+```
 
-// document.getElementsByTagName()
-// The getElementsByTagName() method returns a collection of all elements in the document with the specified tag name.
+- `document.getElementsByTagName()`
+```js
 <h4 id="demo">Check the console for details.</h4>
 <ul>
        <li>Ice cream</li>
        <li>Honey</li>
        <li>Vanilla</li>
 </ul>
+
+// The getElementsByTagName() method returns a collection of all elements in the document with the specified tag name.
 var x = document.getElementsByTagName("li");
 document.getElementById("demo").innerHTML = x[1].innerHTML;
+```
 
-// document.getElementsByClassName
+- `document.getElementsByClassName()`
+```js
 <h4 id="demo" class="demo">Check the console for details.</h4>
 var x = document.getElementsByClassName('demo');
 x[0].innerHTML = 'hello';
+```
 
-// element.innerHTML
+- `element.innerHTML` (new html content)
+```js
 <h4 id="demo" class="demo">Check the console for details.</h4>
 document.getElementById('demo').innerHTML = "inner html changed";
+```
 
-// element.attribute
+- `element.attribute` (new value)
+```js
 <a href="#" id="link">Link</a>
+<button id="text1">Click me</button>
 var a = document.getElementById('link').attributes.length;
 console.log(a); //2
 
-// element.setAttribute(attribute, value)
 document.getElementById('link').setAttribute('href', 'https://www.google.co.in/');
 document.getElementById('text1').setAttribute('type', 'button');
+```
 
-// element.style.property = new style
+- `element.style.property` (new style)
+```js
 document.getElementById('link').style.color = "red";
 document.getElementById('link').style.textTransform = "uppercase";
+```
 
+- `document.createElement` (element), `document.removeChild` (element), `document.appendChild` (element),  `document.replaceChild` (element), `document.removeChild` (element)
+
+```js
 // document.createElement(element), document.removeChild(element),  document.appendChild(element),  document.replaceChild(element),  document.removeChild(element)
 var btn = document.createElement("button");
 var t = document.createTextNode("Click Me");
@@ -725,10 +880,13 @@ The `window.navigator` object contains information about the visitor's browser. 
 #### Q33
 ### ✍alert, confirm and popup
 - Alert box: `window.alert()` instructs the browser to display a dialog with an optional message, and to wait until the user dismisses the dialog.
+
 ```js
 alert('Hi There!');
 ```
+
 - Confirm box: `window.confirm()` instructs the browser to display a dialog with an optional message, and to wait until the user either confirms or cancels the dialog.
+
 ```js
 if (confirm("Press a button!")) {
    console.log('You pressed OK');
@@ -736,7 +894,9 @@ if (confirm("Press a button!")) {
    console.log('You pressed cancelled.');
 }
 ```
-- Prompt box: `window.prompt()` instructs the browser to display a dialog with an optional message prompting the user to input some text, and to wait until the user either submits the text or cancels the dialog
+
+- Prompt box: `window.prompt()` instructs the browser to display a dialog with an optional message prompting the user to input some text, and to wait until the user either submits the text or cancels the dialog.
+
 ```js
 var person = prompt("Please enter your name", "");
 
@@ -763,137 +923,380 @@ if (person == null || person == "") {
 ---
 #### Q35
 ### ✍Array methods
+Some of the common Array methods are
+- `Array.prototype.concat()`: The `concat()` method is used to merge two or more arrays. This method returns a new array.
+- `Array.prototype.indexOf()`: The `indexOf()` method returns the first index at which a given element can be found in the array, or -1 if it is not present.
+- `Array.prototype.join()`: The `join()` method creates and returns a new string by concatenating all of the elements in an array, separated by commas or a specified separator string.
+- `Array.prototype.shift()`: The `shift()` method removes the first element from an array and returns that removed element. This method changes the length of the array.
+- `Array.prototype.unshift()`: The `unshift()` method adds one or more elements to the beginning of an array and returns the new length of the array.
+- `Array.prototype.pop()`:The `pop()` method removes the last element from an array and returns that element. This method changes the length of the array.
+- `Array.prototype.push()`: The `push()` method adds one or more elements to the end of an array and returns the new length of the array.
+- `Array.prototype.reverse()`: The `reverse()` method reverses an array in place. The first array element becomes the last, and the last array element becomes the first.
+- `Array.prototype.slice()`: The `slice()` method returns a shallow copy of a portion of an array into a new array object selected from start to end (end not included) where start and end represent the index of items in that array. The original array will not be modified.
+- `Array.prototype.sort()`: The `sort()` method sorts the elements of an array in place and returns the sorted array.
+- `Array.prototype.splice()`: The `splice()` method changes the contents of an array by removing or replacing existing elements and/or adding new elements in place. To access part of an array without modifying it, we use `slice()`.
+- `Array.prototype.toString()`: The `toString()` method returns a string representing the specified array and its elements.
+- `Array.prototype.map()`: The `map()` method creates a new array populated with the results of calling a provided function on every element in the calling array.
+- `Array.prototype.filter()`: The `filter()` method creates a new array with all elements that pass the test implemented by the provided function.
+- `Array.prototype.reduce()`: The `reduce()` method executes a user-supplied *reducer* callback function on each element of the array, in order, passing in the return value from the calculation on the preceding element. The final result of running the reducer across all elements of the array is a single value.
+- `Array.prototype.includes()`: The `includes()` method determines whether an array includes a certain value among its entries, returning `true` or `false` as appropriate.
+- `Array.prototype.find()`: The `find()` method returns the value of the first element in the provided array that satisfies the provided testing function. If no values satisfy the testing function, `undefined` is returned.
+- `Array.prototype.some()`: The `some()` method tests whether at least one element in the array passes the test implemented by the provided function. It returns a `Boolean`.
+- `Array.prototype.fill()`: The `fill()` method changes all elements in an array to a static value, from a start index (default 0) to an end index (default array.length). It returns the modified array.
+- `Array.from()`: The `Array.from()` static method creates a new, shallow-copied Array instance from an array-like or iterable object.
+- `Array.of()`: The `Array.of()` method creates a new Array instance from a variable number of arguments, regardless of number or type of the arguments
+- `Array.isArray()`: The `Array.isArray()` method determines whether the passed value is an `Array`.
+
 ```js
-// concat()
+/* 
+Array.prototype.concat()
+Syntax: 
+concat()
+concat(value0)
+concat(value0, value1)
+concat(value0, value1, ... , valueN) 
+Returns a new Array instance
+*/
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
 var arr2 = ["india", "usa", "uk","china", "russia", "germany"];
-var concat = arr1.concat(arr2);
-console.log(concat);
+console.log(arr1.concat(arr2));
 
 RESULT:
 ["cricket", "football", "hockey", "baseball", "kabaddi", "india", "usa", "uk", "china", "russia", "germany"]
 
-// fill()
+/* 
+Array.prototype.indexOf()
+Syntax: 
+indexOf(searchElement)
+indexOf(searchElement, fromIndex)
+Returns first index at which a given element can be found, or -1, if not found
+*/
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
-var fill = arr1.fill("soccer");
-console.log(fill);
-
-RESULT:
-["soccer", "soccer", "soccer", "soccer", "soccer"]
-
-// indexOf()
-var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
-var indexOf = arr1.indexOf("hockey");
-console.log(indexOf);
+console.log(arr1.indexOf("hockey"));
+console.log(arr1.indexOf("golf"));
 
 RESULT:
 2
+-1
 
-// join()
+/* 
+Array.prototype.join()
+Syntax: 
+join()
+join(separator)
+Returns String
+*/
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
-var join = arr1.join();
-console.log(join);
+console.log(arr1.join());
 
 RESULT:
 cricket,football,hockey,baseball,kabaddi
 
-// map()
-var arr1 = [4, 9, 16, 25, 36];
-var map = arr1.map(Math.sqrt);
-console.log(map);
-
-RESULT:
-[2, 3, 4, 5, 6]
-
-// shift()
+/* 
+Array.prototype.shift()
+Syntax: 
+shift()
+Returns the removed element
+*/
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
-var shift = arr1.shift();
-console.log(shift);
+console.log(arr1.shift());
 console.log(arr1);
+
 RESULT:
 Cricket
 ["football", "hockey", "baseball", "kabaddi"]
 
-// unshift()
+/* 
+Array.prototype.unshift()
+Syntax: 
+unshift(element0)
+unshift(element0, element1)
+unshift(element0, element1,... , elementN)
+Returns the new length of the array.
+*/
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
-var unshift = arr1.unshift("golf");
-console.log(unshift);
+console.log(arr1.unshift("golf"));
 console.log(arr1);
 
 RESULT:
 6
 ["golf", "cricket", "football", "hockey", "baseball", "kabaddi"]
 
-// pop()
+/* 
+Array.prototype.pop()
+Syntax: 
+pop()
+Returns that element
+*/
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
-var pop = arr1.pop();
-console.log(pop);
+console.log(arr1.pop());
 console.log(arr1);
 
 RESULT:
 Kabaddi
 ["cricket", "football", "hockey", "baseball"]
 
-// push()
+/* 
+Array.prototype.push()
+Syntax: 
+push(element0)
+push(element0, element1)
+push(element0, element1, ... , elementN)
+Returns the new length of the array.
+*/
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
-var push = arr1.push("golf");
-console.log(push);
+console.log(arr1.push("golf"));
 console.log(arr1);
+
 RESULT:
 6
 ["cricket", "football", "hockey", "baseball", "kabaddi", "golf"]
 
-// reverse()
+/* 
+Array.prototype.reverse()
+Syntax: 
+reverse()
+*/
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
-var reverse = arr1.reverse();
-console.log(reverse);
+console.log(arr1.reverse());
 
 RESULT:
 ["kabaddi", "baseball", "hockey", "football", "cricket"]
 
-// slice()
+/* 
+Array.prototype.slice()
+Syntax: 
+slice()
+slice(start)
+slice(start, end)
+Returns a new Array.
+*/
 var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
-var slice = arr1.slice(1, 3);
-console.log(slice);
+console.log(arr1.slice(2));
+console.log(arr1.slice(1, 3));
 
 RESULT:
+["hockey", "baseball", "kabaddi"]
 ["football", "hockey"]
 
-// sort()
-var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
-var sort = arr1.sort();
-console.log(sort);
+/* 
+Array.prototype.sort()
+Syntax: 
+sort()
+Returns the same Array.
+*/
+const months = ['March', 'Jan', 'Feb', 'Dec'];
+const array1 = [1, 30, 4, 21, 100000];
+console.log(months.sort());
+console.log(array1.sort());
+
+// ascending order
+var numbers = [1, 30, 4, 21, 100000];
+numbers.sort(function(a, b) {
+  return a - b;
+});
+console.log(numbers);
 
 RESULT:
-["baseball", "cricket", "football", "hockey", "kabaddi"]
+["Dec", "Feb", "Jan", "March"]
+[1, 100000, 21, 30, 4]
+[1, 4, 21, 30, 100000]
 
-// splice()
-var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
-var splice = arr1.splice(1, 2, "golf"); //splice(position, howmany, items,...)
-console.log(splice);
-console.log(arr1);
+/* 
+Array.prototype.splice()
+Syntax: 
+splice(start)
+splice(start, deleteCount)
+splice(start, deleteCount, item1)
+splice(start, deleteCount, item1, item2, itemN)
+Returns the same Array.
+*/
+const months = ['Jan', 'March', 'April', 'June'];
+months.splice(1, 0, 'Feb'); // inserts at index 1
+console.log(months);
 
-RESULT:
-["football", "hockey"]
-["cricket", "golf", "baseball", "kabaddi"]
-
-// toString()
-var arr1 = ["cricket", "football", "hockey", "baseball", "kabaddi"];
-var toString = arr1.toString();
-console.log(toString);
-
-RESULT:
-cricket,football,hockey,baseball,kabaddi
-
-// split()
-var arr1 = "How are doing today?";
-var split = arr1.split(" ");
-console.log(split);
-console.log(arr1.split(" ").reverse().join());
+months.splice(4, 1, 'May'); // replaces 1 element at index 4
+console.log(months);
 
 RESULT:
-["How", "are", "doing", "today?"]
-today?,doing,are,How
+["Jan", "Feb", "March", "April", "June"]
+["Jan", "Feb", "March", "April", "May"]
+
+/* 
+Array.prototype.toString()
+Syntax: 
+toString()
+Returns String.
+*/
+const array1 = [1, 2, 'a', '1a'];
+console.log(array1.toString());
+
+RESULT:
+"1,2,a,1a"
+
+/* 
+Array.prototype.map()
+Syntax: 
+map((element) => { ... })
+map((element, index) => { ... })
+map((element, index, array) => { ... })
+Returns new Array.
+*/
+const array1 = [1, 4, 9, 16];
+const map1 = array1.map(x => x * 2);
+console.log(map1);
+
+RESULT:
+[2, 8, 18, 32]
+
+/* 
+Array.prototype.filter()
+Syntax: 
+filter((element) => { ... })
+filter((element, index) => { ... })
+filter((element, index, array) => { ... })
+Returns new Array.
+*/
+const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+const result = words.filter(word => word.length > 6);
+console.log(result);
+
+RESULT:
+["exuberant", "destruction", "present"]
+
+/* 
+Array.prototype.reduce()
+Syntax: 
+reduce((previousValue, currentValue) => { ... } )
+reduce((previousValue, currentValue, currentIndex) => { ... } )
+reduce((previousValue, currentValue, currentIndex, array) => { ... } )
+reduce((previousValue, currentValue, currentIndex, array) => { ... }, initialValue)
+Returns new Array.
+*/
+const array1 = [1, 2, 3, 4];
+//  If initialValue is not specified, previousValue is initialized to the first value (of array or string), and currentValue is initialized to the second value (of array or string).
+const reducer = (previousValue, currentValue) => previousValue + currentValue; // 1 + 2 + 3 + 4
+console.log(array1.reduce(reducer));
+
+console.log(array1.reduce(reducer, 5)); // 5 + 1 + 2 + 3 + 4
+
+RESULT:
+10
+15
+
+/* 
+Array.prototype.includes()
+Syntax: 
+includes(searchElement)
+includes(searchElement, fromIndex)
+Returns Boolean.
+*/
+const array1 = [1, 2, 3, 5, 8, 0];
+console.log(array1.includes(2));
+console.log(array1.includes(2, 2));
+
+RESULT:
+true
+false
+
+/* 
+Array.prototype.find()
+Syntax: 
+find((element) => { ... } )
+find((element, index) => { ... } )
+find((element, index, array) => { ... } )
+Returns value of first element.
+*/
+const array1 = [5, 12, 8, 130, 44];
+const found = array1.find(element => element > 10);
+console.log(found);
+
+RESULT:
+12
+
+/* 
+Array.prototype.some()
+Syntax: 
+some((element) => { ... } )
+some((element, index) => { ... } )
+some((element, index, array) => { ... } )
+Returns Boolean.
+*/
+const array = [1, 2, 3, 4, 5];
+const even = (element) => element % 2 === 0; // checks whether an element is even
+console.log(array.some(even));
+
+RESULT:
+true
+
+/* 
+Array.prototype.fill()
+Syntax: 
+fill(value)
+fill(value, start)
+fill(value, start, end)
+Returns new Array.
+*/
+const array1 = [1, 2, 3, 4];
+console.log(array1.fill(0, 2, 4)); // fill with 0 from position 2 until position 4
+console.log(array1.fill(5, 1)); // fill with 5 from position 1
+console.log(array1.fill(6)); // fill with 6 from position 0 to 4 array1.length
+
+RESULT:
+[1, 2, 0, 0]
+[1, 5, 5, 5]
+[6, 6, 6, 6]
+
+/* 
+Array.from()
+Syntax: 
+Array.from(arrayLike, (element) => { ... } )
+Array.from(arrayLike, (element, index) => { ... } )
+Returns new Array instance.
+*/
+console.log(Array.from('foo'));
+console.log(Array.from([1, 2, 3], x => x + x));
+
+RESULT:
+["f", "o", "o"]
+[2, 4, 6]
+
+/* 
+Array.of()
+Syntax: 
+Array.of(element0)
+Array.of(element0, element1)
+Array.of(element0, element1, ..., elementN)
+Returns new Array instance.
+*/
+Array.of(7); // [7]
+Array(7); // array of 7 empty slots
+
+Array.of(1, 2, 3); // [1, 2, 3]
+Array(1, 2, 3);    // [1, 2, 3]
+
+RESULT:
+[7]
+[,,,,,,]
+[1, 2, 3]
+[1, 2, 3]
+
+/* 
+Array.isArray()
+Syntax: 
+Array.isArray(value)
+Returns Boolean
+*/
+Array.isArray([1, 2, 3]);
+Array.isArray({foo: 123});
+Array.isArray('foobar');
+Array.isArray(undefined);
+
+RESULT:
+true
+false
+false
+false
 ```
 
 **[⬆](#Questions)**
@@ -901,20 +1304,326 @@ today?,doing,are,How
 #### Q36
 ### ✍String methods
 Some of the common String methods are
-- `str.length`
-- `str.slice(start, end)`
-- `str.substring(start, end)`
-- `str.substr(start, length)`
-- `str.replace()`
-- `str.toUpperCase()`
-- `str.toLowerCase()`
-- `str.concat()`
-- `str.trim()`
-- `str.padStart()`
-- `str.padEnd()`
-- `str.charAt(position)`
-- `str.charCodeAt(position)`
-- `str.split()`
+- `String.prototype.slice()`: The `slice()` method extracts a section of a string and returns it as a new string, without modifying the original string.
+- `String.prototype.substring()`: The `substring()` method returns the part of the `string` between the start and end indexes, or to the end of the string.
+- `String.prototype.replace()`: The `replace()` method returns a new `string` with some or all matches of a pattern replaced by a replacement. The pattern can be a `string` or a `RegExp`, and the replacement can be a `string` or a `function` to be called for each match. If `pattern` is a string, only the first occurrence will be replaced.
+- `String.prototype.toUpperCase()`: The `toUpperCase()` method returns the calling string value converted to uppercase (the value will be converted to a string if it isn't one).
+- `String.prototype.toLowerCase()`: The `toLowerCase()` method returns the calling string value converted to lower case.
+- `String.prototype.concat()`: The `concat()` method concatenates the string arguments to the calling string and returns a new string.
+- `String.prototype.trim()`: The `trim()` method removes whitespace from both ends of a string and returns a new string, without modifying the original string. Whitespace in this context is all the whitespace characters (space, tab, no-break space, etc.) and all the line terminator characters (LF, CR, etc.).
+- `String.prototype.padStart()`: The `padStart()` method pads the current string with another string (multiple times, if needed) until the resulting string reaches the given length. The padding is applied from the start of the current string.
+- `String.prototype.padEnd()`: The `padEnd()` method pads the current string with a given string (repeated, if needed) so that the resulting string reaches a given length. The padding is applied from the end of the current string.
+- `String.prototype.charAt()`: This `charAt` method returns a new string consisting of the single UTF-16 code unit located at the specified offset into the string.
+- `String.prototype.charCodeAt()`: The `charCodeAt()` method returns an integer between 0 and 65535 representing the UTF-16 code unit at the given index.
+- `String.prototype.split()`: The `split()` method divides a `String` into an ordered list of substrings, puts these substrings into an array, and returns the array.
+- `String.prototype.match()`: The `match()` method retrieves the result of matching a string against a `regular expression`.
+- `String.prototype.matchAll()`: The `matchAll()` method returns an iterator of all results matching a string against a `regular expression`, including `capturing groups`.
+- `String.prototype.search()`: The `search()` method executes a search for a match between a regular expression and this String object.
+- `String.prototype.toString()`: The `toString()` method returns a string representing the specified object.
+- `String.prototype.valueOf()`: The `valueOf()` method returns the primitive value of a `String` object.
+- `String.prototype.indexOf()`: The `indexOf()` method, given one argument: a substring to search for, searches the entire calling string, and returns the index of the first occurrence of the specified substring. Given a second argument: a number, the method returns the first occurrence of the specified substring at an index greater than or equal to the specified number.
+- `String.prototype.includes()`: The `includes()` method performs a case-sensitive search to determine whether one string may be found within another string, returning true or false as appropriate.
+
+```js
+/* 
+String.prototype.slice()
+Syntax: 
+slice(beginIndex)
+slice(beginIndex, endIndex)
+Returns a new String
+*/
+const str = 'The quick brown fox jumps over the lazy dog.';
+console.log(str.slice(31));
+console.log(str.slice(4, 19));
+console.log(str.slice(-4)); // If negative, slice() begins extraction from str.length + beginIndex
+
+RESULT:
+"the lazy dog."
+"quick brown fox"
+"dog."
+
+/* 
+String.prototype.substring()
+Syntax: 
+substring(indexStart)
+substring(indexStart, indexEnd)
+Returns a new String
+*/
+const str = 'Mozilla';
+console.log(str.substring(2));
+console.log(str.substring(1, 3));
+
+RESULT:
+"zilla"
+"oz"
+
+/* 
+String.prototype.replace()
+Syntax: 
+replace(regexp, newSubstr)
+replace(regexp, replacerFunction)
+Returns a new String 
+*/
+const p = 'The quick brown fox jumps over the lazy dog. If the dog reacted, was it really lazy?';
+console.log(p.replace('dog', 'monkey'));
+
+const regex = /Dog/i;
+console.log(p.replace(regex, 'ferret'));
+
+RESULT:
+"The quick brown fox jumps over the lazy monkey. If the dog reacted, was it really lazy?"
+"The quick brown fox jumps over the lazy ferret. If the dog reacted, was it really lazy?"
+
+/* 
+String.prototype.toUpperCase()
+Syntax: 
+toUpperCase()
+Returns a new String converted to uppercase
+*/
+const sentence = 'The quick brown fox jumps over the lazy dog.';
+console.log(sentence.toUpperCase());
+
+RESULT:
+"THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG."
+
+/* 
+String.prototype.toLowerCase()
+Syntax: 
+toLowerCase()
+Returns a new String converted to lowercase 
+*/
+const sentence = 'The quick brown fox jumps over the lazy dog.';
+console.log(sentence.toLowerCase());
+
+RESULT:
+"the quick brown fox jumps over the lazy dog."
+
+/* 
+String.prototype.concat()
+Syntax: 
+concat(str1)
+concat(str1, str2)
+concat(str1, str2, ... , strN)
+Returns a new String
+*/
+const str1 = 'Hello';
+const str2 = 'World';
+
+console.log(str1.concat(' ', str2));
+console.log(str2.concat(', ', str1));
+
+RESULT:
+"Hello World"
+"World, Hello"
+
+/* 
+String.prototype.trim()
+Syntax: 
+trim()
+Returns a new String
+*/
+const greeting = '   Hello world!   ';
+console.log(greeting.trim());
+
+RESULT:
+"Hello world!"
+
+/* 
+String.prototype.padStart()
+Syntax: 
+padStart(targetLength)
+padStart(targetLength, padString)
+Returns a String of the specified targetLength with padString applied from the start.
+*/
+const str1 = '5';
+console.log(str1.padStart(2, '0'));
+
+const fullNumber = '2034399002125581';
+const last4Digits = fullNumber.slice(-4);
+console.log(last4Digits);
+const maskedNumber = last4Digits.padStart(fullNumber.length, '*');
+console.log(maskedNumber);
+
+RESULT:
+"05"
+"5581"
+"************5581"
+
+/* 
+String.prototype.padEnd()
+Syntax: 
+padEnd(targetLength)
+padEnd(targetLength, padString)
+Returns a String of the specified targetLength with ith the padString applied at the end of the current str.
+*/
+const str1 = 'Breaded Mushrooms';
+console.log(str1.padEnd(25, '.'));
+
+const str2 = '200';
+console.log(str2.padEnd(5));
+
+RESULT:
+"Breaded Mushrooms........"
+"200  "
+
+/* 
+String.prototype.charAt()
+Syntax: 
+charAt(index)
+Returns a string representing the character
+*/
+const sentence = 'The quick brown fox jumps over the lazy dog.';
+const index = 4;
+console.log(`The character at index ${index} is ${sentence.charAt(index)}`);
+
+RESULT:
+"The character at index 4 is q"
+
+/* 
+String.prototype.charCodeAt()
+Syntax: 
+charCodeAt(index)
+Returns a number representing the UTF-16 code unit value
+*/
+const sentence = 'The quick brown fox jumps over the lazy dog.';
+const index = 4;
+console.log(`The character code ${sentence.charCodeAt(index)} is equal to ${sentence.charAt(index)}`);
+
+RESULT:
+"The character code 113 is equal to q"
+
+/* 
+String.prototype.split()
+Syntax: 
+split()
+split(separator)
+split(separator, limit)
+Returns An Array of strings
+*/
+const str = 'The quick brown fox jumps over the lazy dog.';
+const words = str.split(' ');
+console.log(words);
+
+const chars = str.split('');
+console.log(chars[8]);
+
+const strCopy = str.split();
+console.log(strCopy);
+
+RESULT:
+["The", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog."]
+"k"
+["The quick brown fox jumps over the lazy dog."]
+
+/* 
+String.prototype.match()
+Syntax: 
+match(regexp)
+Returns an Array
+*/
+const paragraph = 'The quick brown fox jumps over the lazy dog. It barked.';
+const regex = /[A-Z]/g;
+const found = paragraph.match(regex);
+console.log(found);
+
+RESULT:
+["T", "I"]
+
+/* 
+String.prototype.matchAll()
+Syntax: 
+matchAll(regexp)
+Returns an iterator (which is not a restartable iterable) of matches.
+*/
+const regexp = /t(e)(st(\d?))/g;
+const str = 'test1test2';
+const array = [...str.matchAll(regexp)];
+
+console.log(array[0]);
+console.log(array[1]); 
+
+RESULT:
+["test1", "e", "st1", "1"]
+["test2", "e", "st2", "2"]
+
+/* 
+String.prototype.search()
+Syntax: 
+search(regexp)
+Returns the index of the first match between the regular expression and the given string, or -1 if no match was found.
+*/
+const paragraph = 'The quick brown fox jumps over the lazy dog. If the dog barked, was it really lazy?';
+const regex = /[^\w\s]/g; // any character that is not a word character or whitespace
+
+console.log(paragraph.search(regex));
+console.log(paragraph[paragraph.search(regex)]);
+
+RESULT:
+43
+"."
+
+/* 
+String.prototype.toString()
+Syntax: 
+toString()
+Returns a string representing the calling object.
+*/
+const stringObj = new String('foo');
+
+console.log(stringObj);
+console.log(stringObj.toString());
+
+RESULT:
+{ "foo" }
+"foo"
+
+/* 
+String.prototype.valueOf()
+Syntax: 
+valueOf()
+Returns a string representing the primitive value of a given String object.
+*/
+const stringObj = new String('foo');
+
+console.log(stringObj);
+console.log(stringObj.valueOf());
+
+RESULT:
+{ "foo" }
+"foo"
+
+/* 
+String.prototype.indexOf()
+Syntax: 
+indexOf(searchString)
+indexOf(searchString, position)
+Returns the index of the first occurrence of searchString found, or -1 if not found.
+*/
+const paragraph = 'The quick brown fox jumps over the lazy dog. If the dog barked, was it really lazy?';
+const searchTerm = 'dog';
+const indexOfFirst = paragraph.indexOf(searchTerm);
+
+console.log(`The index of the first '${searchTerm}' from the beginning is ${indexOfFirst}`);
+console.log(`The index of the 2nd '${searchTerm}' is ${paragraph.indexOf(searchTerm, (indexOfFirst + 1))}`);
+
+RESULT:
+"The index of the first 'dog' from the beginning is 40"
+"The index of the 2nd 'dog' is 52"
+
+/* 
+String.prototype.includes()
+Syntax:
+includes(searchString)
+includes(searchString, position) 
+Returns Boolean
+*/
+const sentence = 'The quick brown fox jumps over the lazy dog.';
+const word = 'fox';
+console.log(`The word '${word}' ${sentence.includes(word) ? 'is' : 'is not'} in the sentence`);
+
+RESULT:
+"The word 'fox' is in the sentence"
+```
 
 **[⬆](#Questions)**
 ---
@@ -922,21 +1631,17 @@ Some of the common String methods are
 ### ✍Different errors in JS.
 - `Error` objects are thrown when runtime errors occur. The `Error` object can also be used as a base object for user-defined exceptions.
 
-- `Error()`: Creates a `new Error` object.
+`Error()`: Creates a `new Error` object.
 
-- `EvalError`: Creates an instance representing an error that occurs regarding the global function `eval()`.
-
-- `RangeError`: Creates an instance representing an error that occurs when a numeric variable or parameter is outside of its valid range.
-
-- `ReferenceError`: Creates an instance representing an error that occurs when de-referencing an invalid reference.
-
-- `SyntaxError`: Creates an instance representing a syntax error.
-
-- `TypeError`: Creates an instance representing an error that occurs when a variable or parameter is not of a valid type.
-
-- `URIError`: Creates an instance representing an error that occurs when `encodeURI()` or `decodeURI()` are passed invalid parameters.
-
-- `AggregateError`: Creates an instance representing several errors wrapped in a single error when multiple errors need to be reported by an operation, for example by `Promise.any()`.
+| Error Name | Description |
+|---- | ---------
+| EvalError  | An error has occurred in the eval() function |
+| RangeError | An error has occurred with a number "out of range"  |
+| ReferenceError | An error due to an illegal reference|
+| SyntaxError | An error due to a syntax error|
+| TypeError | An error due to a type error |
+| URIError | An error due to encodeURI() |
+| AggregateError | Creates an instance representing several errors wrapped in a single error when multiple errors need to be reported by an operation, for example by `Promise.any()` |
 
 **[⬆](#Questions)**
 ---
@@ -964,6 +1669,7 @@ const a = 6;
 a = 7;
 console.log(a); //Uncaught TypeError: Assignment to constant variable.
 ```
+
 But if we use an array or an object, we can modify it.
 ```js
 const arr = [1, 2, 3];
@@ -977,6 +1683,7 @@ const arr1 = {
 arr1.job = 'developer';
 console.log(arr1); //{name: "amrit", age: 30, job: "developer"}
 ```
+
 - var and let: `let` is block scoped. `var` is function scoped.
 - Default parameters in ES6: In ES6, if we use the default parameter, it won’t return `undefined`, and it will use its value when we forget to assign a parameter!
 ```js
@@ -985,13 +1692,14 @@ const person = function (name, age = 22) {
 } 
 console.log(person('amrit')); //Name is amrit and age is 22
 ```
+
 - Import and export: `export` allows you to export a module to be used in another JavaScript component. We use `import` to import that module to use it in our component.
 
 **[⬆](#Questions)**
 ---
 #### QA2
 ### ✍Difference between the arrow and normal function.
-The arrow function will check where the function is defined and not how the function is called. Please check Q11 about [`this` keyword](#Q11) for more example.
+The *arrow function* will check where the function is defined and not how the function is called. Please check Q11 about [`this` keyword](#Q11) for more example.
 ```js
 // Example
 var x = function() {
@@ -1063,33 +1771,34 @@ console.log('The result of division is ' + divideNumber); // The result of divis
 ---
 #### QA4
 ### ✍Promises
-- Promises are a new feature of ES6. It’s a method to write asynchronous code. It can be used when, for example, we want to fetch data from an API, or when we have a function that takes time to be executed.
-- The Promise object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value.
+Promises are a new feature of ES6. It’s a method to write asynchronous code. It can be used when, for example, we want to fetch data from an API, or when we have a function that takes time to be executed.
+
+The Promise object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value.
 ```javascript
 let cleanRoom = function() {
-    return new Promise(function(resolve, reject) {
-        resolve("Room is cleaned.");
-    });
+   return new Promise(function(resolve, reject) {
+      resolve("Room is cleaned.");
+   });
 };
 
 let garbage = function(message) {
-    return new Promise(function(resolve, reject) {
-        resolve(message + "Garbage is taken.");
-    });
+   return new Promise(function(resolve, reject) {
+      resolve(message + "Garbage is taken.");
+   });
 };
 
 let iceCream = function(message) {
-    return new Promise(function(resolve, reject) {
-        resolve(message + "Give Icecream.");
-    });
+   return new Promise(function(resolve, reject) {
+      resolve(message + "Give Icecream.");
+   });
 };
 
 cleanRoom().then(function(result) {
-    return garbage(result);
+   return garbage(result);
 }).then(function(result) {
-    return iceCream(result);
+   return iceCream(result);
 }).then(function(result) {
-    console.log("All tasks finished." + result)
+   console.log("All tasks finished." + result)
 })
 ```
 
@@ -1097,6 +1806,7 @@ cleanRoom().then(function(result) {
 ---
 #### QA5
 ### ✍Async-await
+
 
 **[⬆](#Questions)**
 ---
@@ -1142,7 +1852,7 @@ Refer the question about [Features of ES6](#QA1)
 ---
 #### QA9
 ### ✍Pollyfill for map, reduce, filter and forEach.
-- Pollyfill for forEach
+**Pollyfill for forEach**
 ```js
 let albums = ["Bobby Tarantino", "The Incredible True Story", "Supermarket", "Under Pressure"];
 
@@ -1162,7 +1872,7 @@ albums.polyfillForEach((item, index) => {
 });
 ```
 
-- Pollyfill for map
+**Pollyfill for map**
 ```js
 Array.prototype.polyfillForMap = function (callback) {
    let arr = [];
@@ -1180,7 +1890,7 @@ console.log(resultAlbums);
 // ['0 is Bobby Tarantino', '1 is The Incredible True Story', '2 is Supermarket', '3 is Under Pressure']
 ```
 
-- Pollyfill for filter
+**Pollyfill for filter**
 ```js
 const names = [
    {name: 'Sachin', age: 40},
@@ -1208,7 +1918,7 @@ console.log(filteredNames);
 // [{"name": "Sachin", "age": 40}, {"name": "Mohan", "age": 35}]
 ```
 
-- Pollyfill for reduce
+**Pollyfill for reduce**
 ```js
 let logicAlbums = [
    "Bobby Tarantino",
@@ -1387,6 +2097,15 @@ console.log(combineAlbums);
 ---
 #### QD4
 ### ✍Async, defer script attributes
+- Async scripts are executed as soon as the script is loaded, so it doesn't guarantee the order of execution (a script you included at the end may execute before the first script file )
+```js
+<script async src="https://examples.com/long.js"></script>
+```
+- Defer scripts guarantees the order of execution in which they appear in the page.
+```js
+<script defer src="https://examples.com/long.js"></script>
+```
+![Async and Defer](assets/async-defer.png)
 
 **[⬆](#Questions)**
 ---

@@ -61,6 +61,7 @@
 - [Event bubbling, event capturing/trickling, and event delegation.](#QA13)
 - [Difference between stop propagation and prevent default method.](#QA14)
 - [Explain map, forEach, filter and reduce higher order functions](#QA15) 
+- [JavaScript Design Patterns](#QA16)
 
 ## JavaScript Array, Objects, etc.
 - [How to empty an array.](#QB1)
@@ -1981,6 +1982,23 @@ console.log(combineAlbums);
 ---
 #### QA15
 ### ✍Difference between stop propagation and prevent default method.
+
+
+**[⬆](#Questions)**
+---
+#### QA16
+### ✍JavaScript Design Patterns.
+A design pattern is a reusable solution that can be applied to commonly occurring problems in software design.
+
+- **The Constructor Pattern**: A constructor is a special method used to initialize a newly created object. Since almost everything is an object in JavaScript, object constructors are used to create specific types of objects.
+
+- **The Module Pattern**: Modules help in keeping the units of code for a project cleanly separately and organized. It is used to organize objects, functions, classes or variables so that they can be easily exported or imported into other files.
+
+- **The Singleton Pattern**: The singleton pattern restricts the instantiation of a class to one object. The singleton instance can be exposed through module export.
+
+- **The Observer Pattern**: The observer pattern allows one object to be notified when another object changes, without requiring the object to have knowledge of its dependents. The methods notify() and update() can be used to implement the observer pattern in JS.
+
+- **The Prototype Pattern**: The prototype pattern allows to create objects based on a template of an existing object through cloning. The constructors in JS use the prototype pattern under the hood.
 
 **[⬆](#Questions)**
 ---

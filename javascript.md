@@ -747,7 +747,7 @@ Syntax error is due wrong syntax written in the code.
 ---
 #### Q30
 ### ✍Insert content in HTML using JavaScript.
-- document.getElementById('id').innerHTML
+- `document.getElementById('id').innerHTML`
 
 **[⬆](#Questions)**
 ---

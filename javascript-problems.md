@@ -3,18 +3,18 @@
 - [Write a function to remove duplicates in an array, sort it in the descending order.](#QA1)
 - [How to empty an array.](#QA2)
 - [Remove duplicate values from an array.](#QA3)
-- [Shuffle elements in an array.](#QB5)
+- [Shuffle elements in an array.](#QA4)
 
 ## Strings
-- [Given a string, reverse each word in the sentence.](#QB13)
-- [Given two strings, return true if they are anagrams of one another.](#QB14)
-- [Find a maximum consecutive repeating char in a given string.](#QB15)
+- [Given a string, reverse each word in the sentence.](#QB1)
+- [Given two strings, return true if they are anagrams of one another.](#QB2)
+- [Find a maximum consecutive repeating char in a given string.](#QB3)
 
 ## Objects
-- [Check if a given object is empty or not.](#QB11)
+- [Check if a given object is empty or not.](#QC1)
 
 ## Recursion
-- [Write a function for factorial program.](#QC1)
+- [Write a function for factorial program.](#QD1)
 
 ## Binary Search
 
@@ -37,7 +37,7 @@ console.log(output.sort((a, b) => { return b-a }));
 
 **[⬆](#Questions)**
 ---
-#### QAC1
+#### QD1
 ### ✍Write a function for factorial program.
 <details><summary><b>Answer</b></summary>
 

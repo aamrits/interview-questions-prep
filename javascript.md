@@ -59,26 +59,19 @@
    - Implement both recursive and iterative approaches
 - [Polyfill for promises and Promise.all](#QA12)
 - [Event bubbling, event capturing/trickling, and event delegation.](#QA13)
-- [Difference between stop propagation and prevent default method.](#QA14)
-- [Explain map, forEach, filter and reduce higher order functions](#QA15) 
+- [Explain map(), forEach(), filter() and reduce() higher order functions](#QA14) 
+- [Difference between stop propagation and prevent default method.](#QA15)
 - [JavaScript Design Patterns](#QA16)
 
 ## JavaScript Array, Objects, etc.
-- [How to empty an array.](#QB1)
-- [Remove duplicate values from an array.](#QB2)
-- [Explain with examples of a deep and shallow copy.](#QB3)
-- [Remove falsy values from Array.](#QB4)
-- [Shuffle elements in an array.](#QB5)
-- [splice vs slice method.](#QB6)
-- [What is array destructuring.](#QB7)
-- [Different ways of creating an object.](#QB8)
-- [Object creation patterns.](#QB9)
-- [Deep copy of an object.](#QB10)
-- [Check if a given object is empty or not.](#QB11)
-- [Add/remove properties from Objects.](#QB12)
-- [Given a string, reverse each word in the sentence.](#QB13)
-- [Given two strings, return true if they are anagrams of one another.](#QB14)
-- [Find a maximum consecutive repeating char in a given string.](#QB15)
+- [Explain with examples of a deep and shallow copy.](#QB1)
+- [Remove falsy values from Array.](#QB2)
+- [splice vs slice method.](#QB3)
+- [What is array destructuring.](#QB4)
+- [Different ways of creating an object.](#QB5)
+- [Object creation patterns.](#QB6)
+- [Deep copy of an object.](#QB7)
+- [Add/remove properties from Objects.](#QB8)
 
 ## JavaScript Misc
 - [What are the advantages of using Axios over Fetch API.](#QC1)
@@ -345,7 +338,7 @@ let user2 = {
    battery: 70
 }
 // call the chargeBattery() present in user1 and use it in user2 
-user1.chargeBattery.bind(user2, [true, true]); // for apply(), all the arguments should be in array
+user1.chargeBattery.apply(user2, [true, true]); // for apply(), all the arguments should be in array
 console.log(user1); // {name: 'John', battery: 30, chargeBattery: ƒ}
 console.log(user2); // {name: 'Ron', battery: 100}
 ```
@@ -467,6 +460,43 @@ JavaScript supports *overriding*, so if you define two functions with the same n
 
 #### Q17
 ### ✍OOPs concept in JS (Objects, Classes, Encapsulation(constructor), Inheritance(prototypal with example))
+- consider the below object
+```js
+function DogObject(name, age) {
+    this.name = name;
+    this.age = age;
+}
+DogObject.prototype.speak = function() {
+    return "I am a dog";
+}
+let john = new DogObject("John", 45);
+```
+- Here, `speak()` function is attached to the DogObject by using `prototype`. This is known as **prototype chaining**.
+
+- `class`
+```js
+class Animals { // encapsulation: class holds the data variables along with the functions
+   constructor(name, specie) {
+      this.name = name;
+      this.specie = specie;
+   }
+   sing() {
+      return `${this.name} can sing`;
+   }
+   dance() {
+      return `${this.name} can dance`;
+   }
+}
+let bingo = new Animals("Bingo", "Hairy"); // inheritance
+console.log(bingo);
+
+// OUTPUT
+// {
+//   name: "Bingo",
+//   specie: "Hairy"
+// }
+```
+- As you see, `Class` behaves the same way as `Object`. It is just a syntactic sugar on objects.
 
 **[⬆](#Questions)**
 ---
@@ -914,11 +944,11 @@ if (person == null || person == "") {
 ### ✍cookies, sessions and localstorage
 | Cookies                   | Sessions           | Localstorage  |
 | ------------------------  |:------------------------:| ------------------------:|
-| The storage capacity of local storage is 5MB/10MB      | The storage capacity of session storage is 5MB | The storage capacity of Cookies is 4KB |
-| As it is not session-based, it must be deleted via javascript or manually | It’s session-based and works per window or tab. This means that data is stored only for the duration of a session, i.e., until the browser (or tab) is closed | Cookies expire based on the setting and working per tab and window |
-| The client  can only read local storage | The client can only read local storage | Both clients and servers can read and write the cookies |
-| There is no transfer of data to the server | There is no transfer of data to the server | Data transfer to the server is exist |
-| There are fewer old browsers that support it | There are fewer old browsers that support it | It is supported by all the browser including older browser |
+| The storage capacity of Cookies is 4KB | The storage capacity of session storage is 5MB |  The storage capacity of local storage is 5MB/10MB |
+| Cookies expire based on the setting and working per tab and window | It’s session-based and works per window or tab. This means that data is stored only for the duration of a session, i.e., until the browser (or tab) is closed | As it is not session-based, it must be deleted via javascript or manually |
+| Both clients and servers can read and write the cookies | The client can only read local storage | The client  can only read local storage |
+| Data transfer to the server is exist | There is no transfer of data to the server | There is no transfer of data to the server |
+| It is supported by all the browser including older browser | There are fewer old browsers that support it | There are fewer old browsers that support it |
 
 **[⬆](#Questions)**
 ---
@@ -1807,14 +1837,40 @@ cleanRoom().then(function(result) {
 ---
 #### QA5
 ### ✍Async-await
+**Async** keyword is used to define an asynchronous function, which returns a AsyncFunction object.
 
+**Await** keyword is used to pause async function execution until a Promise is fulfilled, that is resolved or rejected, and to resume execution of the async function after fulfillments. When resumed, the value of the await expression is that of the fulfilled Promise.
+
+Key points:
+- `Await` can only be used inside an async function.
+- Functions with the `async` keyword will always return a promise.
+- Multiple awaits will always run in sequential order under a same function.
+- If a promise resolves normally, then await promise returns the result. But in case of a rejection it throws the error, just if there were a throw statement at that line.
+- `Async` function cannot wait for multiple promises at the same time.
+- Performance issues can occur if using await after await as many times one statement doesn't depend on the previous one.
+
+```js
+async function asyncFunction() {
+
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("i am resolved!"), 1000)
+  });
+
+  const result = await promise; 
+  // wait till the promise resolves (*)
+
+  console.log(result); // "i am resolved!"
+}
+
+asyncFunction();
+```
 
 **[⬆](#Questions)**
 ---
 #### QA6
 ### ✍Spread operator, rest and destructing.
 ```javascript
-//example 1
+// example 1: spread operator
 var a = [1, 2, 3];
 var b = [4, 5, 6];
 
@@ -1822,16 +1878,25 @@ a.push(...b); //using spread operator
 // Array.prototype.push.apply(a, b);
 console.log(a);
 
-//example 2
+// example 2: rest
 var dowhatever = ['talk', 'run', 'watch tv'];
 var life = ['born', 'walk', 'eat', ...dowhatever, 'die'];
 console.log(life);
+
+// example 3: destructuring
+const arr = ['a', 'b', 'c'];
+
+for (let [index, elem] of arr.entries()) {
+  console.log(index, ': ', elem);
+}
 ```
 
 **[⬆](#Questions)**
 ---
 #### QA7
 ### ✍Iterators
+An iterator is an object which defines a sequence and a return value upon its termination. It implements the Iterator protocol with a next() method which returns an object with two properties: value (the next value in the sequence) and done (which is true if the last value in the sequence has been consumed).
+
 ```javascript
 var i = [1, 3, 5];
 
@@ -1933,7 +1998,7 @@ Array.prototype.pollyfillForReduce = function (callback, initialValue) {
 
    for (let i = 0; i < this.length; i++) {
       if (accumulator !== undefined) {
-         accumulator = callback.call(undefined, accumulator, this[i], i);
+         accumulator = callback.call(accumulator, this[i], i, this);
       } else {
          accumulator = this[i];
       }
@@ -1951,7 +2016,51 @@ console.log(combineAlbums);
 **[⬆](#Questions)**
 ---
 #### QA10
-### ✍Pollyfill for call, apply,bind.
+### ✍Pollyfill for call, apply, bind.
+```js
+const test = {
+	a: 123,
+   b: 456,
+   // _this: function tester (a, b) {
+   //    return `a: ${this.a} and b: ${this.b} | arguments - a: ${a} and ${b}`;
+   // }
+}
+
+function tester (a, b) {
+	return `a: ${this.a} and b: ${this.b} | arguments - a: ${a} and ${b}`;
+}
+
+// original - bind(), call(), apply()
+const bindExecutor = tester.bind(test, 80, 90);
+console.log(bindExecutor()); // "a: 123 and b: 456 | arguments - a: 80 and 90"
+
+console.log(tester.call(test, 80, 90)); // "a: 123 and b: 456 | arguments - a: 80 and 90"
+
+console.log(tester.apply(test, [80, 90])); // "a: 123 and b: 456 | arguments - a: 80 and 90"
+
+// pollyfill - bind(), call(), apply()
+Function.prototype.myBind = function (scope, ...args) {
+	scope._this = this; // put 'this' inside object's scope.
+  return function () {
+  	return scope._this(...args);
+  }
+}
+
+const bindExecutor1 = tester.myBind(test, 80, 90);
+console.log(bindExecutor1()); // "a: 123 and b: 456 | arguments - a: 80 and 90"
+
+Function.prototype.myCall = function (scope, ...args) {
+	scope._this = this;
+  return scope._this(...args);
+}
+console.log(tester.myCall(test, 80, 90)); // "a: 123 and b: 456 | arguments - a: 80 and 90"
+
+Function.prototype.myApply = function (scope, args) {
+	scope._this = this;
+  return scope._this(...args);
+}
+console.log(tester.myApply(test, [80, 90])); // "a: 123 and b: 456 | arguments - a: 80 and 90"
+```
 
 **[⬆](#Questions)**
 ---
@@ -1964,24 +2073,226 @@ console.log(combineAlbums);
 ---
 #### QA12
 ### ✍Polyfill for promises and Promise.all
+- Polyfill for Promise()
+```js
+class PromiseSimple {
+  constructor(executionFunction) {
+    this.promiseChain = [];
+    this.handleError = () => {};
+
+    this.onResolve = this.onResolve.bind(this);
+    this.onReject = this.onReject.bind(this);
+
+    executionFunction(this.onResolve, this.onReject);
+  }
+
+  then(handleSuccess) {
+    this.promiseChain.push(handleSuccess);
+
+    return this;
+  }
+
+  catch(handleError) {
+    this.handleError = handleError;
+
+    return this;
+  }
+
+  onResolve(value) {
+    let storedValue = value;
+
+    try {
+      this.promiseChain.forEach((nextFunction) => {
+         storedValue = nextFunction(storedValue);
+      });
+    } catch (error) {
+      this.promiseChain = [];
+
+      this.onReject(error);
+    }
+  }
+
+  onReject(error) {
+    this.handleError(error);
+  }
+}
+
+// Execution: API related stuff
+fakeApiBackend = () => {
+  const user = {
+    username: 'treyhuffine',
+    favoriteNumber: 42,
+    profile: 'https://gitconnected.com/treyhuffine'
+  };
+
+  // Introduce a randomizer to simulate the probability of encountering an error
+  if (Math.random() > .05) {
+    return { 
+      data: user, 
+      statusCode: 200,
+    };
+  } else {
+    const error = {
+      statusCode: 404,
+      message: 'Could not find user',
+      error: 'Not Found',
+    };
+
+    return error;
+  }
+};
+
+// Promise call
+const makeApiCall = () => {
+  return new PromiseSimple((resolve, reject) => {
+    // Use a timeout to simulate the network delay waiting for the response.
+    // This is THE reason you use a promise. It waits for the API to respond
+    // and after received, it executes code in the `then()` blocks in order.
+    // If it executed is immediately, there would be no data.
+    setTimeout(() => {
+      const apiResponse = fakeApiBackend();
+
+      if (apiResponse.statusCode >= 400) {
+        reject(apiResponse);
+      } else {
+        resolve(apiResponse.data);
+      }
+    }, 5000);
+  });
+};
+
+// Promise execution
+makeApiCall()
+  .then((user) => {
+    console.log('In the first .then()');
+    return user;
+  })
+  .then((user) => {
+    console.log(`User ${user.username}'s favorite number is ${user.favoriteNumber}`);
+    return user;
+  })
+  .then((user) => {
+    console.log('The previous .then() told you the favoriteNumber')
+    return user.profile;
+  })
+  .then((profile) => {
+    console.log(`The profile URL is ${profile}`);
+  })
+  .then(() => {
+    console.log('This is the last then()');
+  })
+  .catch((error) => {
+    console.log(error.message);
+  });
+```
+
+- Polyfill for Promise.all()
+```js
+function task(time) {
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      resolve(time);
+    }, time);
+  });
+}
+const taskList = [task(1000), task(5000), task(3000)];
+// returns promise with results in an array
+function myPromiseAll(taskList) {
+  const results = []
+  let promisesCompleted = 0;
+  return new Promise((resolve, reject) => {
+    taskList.forEach((promise, index) => {
+      promise.then((val) => {
+        results[index] = val;
+        promisesCompleted += 1;
+        if (promisesCompleted === taskList.length) {
+          resolve(results)
+        }
+      })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  });
+}
+myPromiseAll(taskList)
+  .then(results => {
+    console.log("got results", results)
+  })
+  .catch(console.error)
+```
+NOTE: Promise.all will fail if even one of the promises fail. The order of the results array is maintained and is equal to the task list.
 
 **[⬆](#Questions)**
 ---
 #### QA13
 ### ✍Event bubbling, event capturing/trickling, and event delegation.
-- A bubbling event goes from the target element straight up. 
+- **Event bubbling** goes from the target element straight up.
 - In other words,`event.stopPropagation()` stops the move upwards, but on the current element all other handlers will run.
 - To stop the bubbling and prevent handlers on the current element from running, there’s a method`event.stopImmediatePropagation()`. After it no other handlers execute.
+```js
+<div onclick="alert('The handler!')">
+  <em>If you click on <code>EM</code>, the handler on <code>DIV</code> runs.</em>
+</div>
+
+<body onclick="alert(`the bubbling doesn\'t reach here`)">
+  <button onclick="event.stopPropagation()">Click me</button>
+</body>
+```
+- **Event capturing** is a type of event propagation where the event is first captured by the outermost element and then successively triggers on the descendants (children) of the target element in the same nesting hierarchy till it reaches the inner DOM element.
 
 **[⬆](#Questions)**
 ---
 #### QA14
-### ✍Explain map, forEach, filter and reduce higher order functions.
+### ✍Explain map(), forEach(), filter() and reduce() higher order functions.
+- map(): `map()` takes a callback and run it against every element on the array but whats makes it unique is it generate a new array based on your existing array.
+```js
+var arr = [10, 20, 30];
+
+var mapped = arr.map(function(elem) {
+   return elem * 10;
+});
+console.log(mapped); // [100, 200, 300]
+```
+
+- forEach(): It takes a callback function and run that callback function on each element of array one by one.
+```js
+var arr = [10, 20, 30];
+
+arr.forEach(function (elem, index){
+   console.log(elem + ' comes at ' + index);
+});
+// 10 comes at 0
+// 20 comes at 1
+// 30 comes at 2
+```
+
+- filter(): The main difference between `forEach()` and `filter()` is that forEach just loop over the array and executes the callback but filter executes the callback and check its return value. If the value is true element remains in the resulting array but if the return value is false the element will be removed for the resulting array. `filter()` will return a new filtered array every time.
+```js
+var arr = [10, 20, 30]; 
+
+var result = arr.filter(function(elem){
+    return elem !== 20;
+})
+console.log(result); // [10, 30]
+```
+
+- reduce(): `reduce()` method of the array object is used to reduce the array to one single value.
+```js
+var arr = [10, 20, 30];
+
+var sum = arr.reduce(function(sum, elem) {
+    return sum + elem;
+});
+console.log(sum); // Output: 60
+```
 
 **[⬆](#Questions)**
 ---
 #### QA15
 ### ✍Difference between stop propagation and prevent default method.
+- `stopPropagation` prevents further propagation of the current event in the capturing and bubbling phases.
+- `preventDefault` prevents the default action the browser makes on that event.
 
 
 **[⬆](#Questions)**
@@ -2003,77 +2314,122 @@ A design pattern is a reusable solution that can be applied to commonly occurrin
 **[⬆](#Questions)**
 ---
 #### QB1
-### ✍How to empty an array.
+### ✍Explain with examples of a deep and shallow copy.
+**Shallow copy** is a bit-wise copy of an object. A new object is created that has an exact copy of the values in the original object. If any of the fields of the object are references to other objects, just the reference addresses are copied i.e., only the memory address is copied.
+
+```js
+let obj = {
+  a: 1,
+  b: 2,
+};
+let objCopy = Object.assign({}, obj);
+console.log(objCopy); // Result - { a: 1, b: 2 }
+objCopy.a = 5;
+console.log(objCopy); // Result - { a: 5, b: 2 }
+console.log(obj); // Result - { a: 5, b: 2 }
+```
+
+A **deep copy** copies all fields, and makes copies of dynamically allocated memory pointed to by the fields. A deep copy occurs when an object is copied along with the objects to which it refers.
+
+```js
+let obj = { 
+  a: 1,
+  b: { 
+    c: 2,
+  },
+}
+let newObj = JSON.parse(JSON.stringify(obj));
+obj.b.c = 20;
+console.log(obj); // { a: 1, b: { c: 20 } }
+console.log(newObj); // { a: 1, b: { c: 2 } } (New Object Intact!)
+```
 
 **[⬆](#Questions)**
 ---
 #### QB2
-### ✍Remove duplicate values from an array.
+### ✍Remove falsy values from Array.
+There are only six falsey values in JavaScript, `undefined` , `null` , `NaN` , `0` , "" (empty string), and `false`.
+
+You can apply the filter method on the array by passing Boolean as a parameter. This way it removes all falsy values(0, undefined, null, false and "") from the array.
+
+```js
+const myArray = [false, null, 1,5, undefined]
+myArray.filter(Boolean); // [1, 5] // is same as myArray.filter(x => x);
+```
 
 **[⬆](#Questions)**
 ---
 #### QB3
-### ✍Explain with examples of a deep and shallow copy.
+### ✍splice vs slice method.
+Some of the major difference in a tabular form
+
+| Slice                   | Splice           | 
+| ------------------------  |:------------------------:|
+| Doesn't modify the original array(immutable) | Modifies the original array(mutable) |
+| Returns the subset of original array | Returns the deleted elements as array |
+| Used to pick the elements from array | Used to insert or delete elements to/from array |
 
 **[⬆](#Questions)**
 ---
 #### QB4
-### ✍Remove falsy values from Array.
+### ✍What is array destructuring.
+```js
+const arr = ['a', 'b', 'c'];
+
+for (let [index, elem] of arr.entries()) {
+  console.log(index, ': ', elem);
+}
+```
 
 **[⬆](#Questions)**
 ---
-#### QB5✍
-### ✍Shuffle elements in an array.
+#### QB5
+### ✍Different ways of creating an object.
+```js
+// Initialize object literal with curly brackets
+const objectLiteral = {};
+
+// Initialize object constructor with new Object
+const objectConstructor = new Object();
+
+// Object.create
+var employee = {
+  name: 'Alex',
+  displayName: function () {
+    console.log(this.name);
+  }
+};
+
+var emp1 = Object.create(employee);
+console.log(emp1.displayName());  // output "Alex"
+```
 
 **[⬆](#Questions)**
 ---
 #### QB6
-### ✍splice vs slice method.
-
-**[⬆](#Questions)**
----
-#### QB7
-### ✍What is array destructuring.
-
-**[⬆](#Questions)**
----
-#### QB8
-### ✍Different ways of creating an object.
-
-**[⬆](#Questions)**
----
-#### QB9
 ### ✍Object creation patterns.
 
 **[⬆](#Questions)**
 ---
-#### QB10
+#### QB7
 ### ✍Deep copy of an object.
+```js
+let obj = { 
+  a: 1,
+  b: { 
+    c: 2,
+  },
+}
+let newObj = JSON.parse(JSON.stringify(obj));
+obj.b.c = 20;
+console.log(obj); // { a: 1, b: { c: 20 } }
+console.log(newObj); // { a: 1, b: { c: 2 } } (New Object Intact!)
+```
 
 **[⬆](#Questions)**
 ---
-#### QB11
-### ✍Check if a given object is empty or not.
-
-**[⬆](#Questions)**
----
-#### QB12
+#### QB8
 ### ✍Add/remove properties from Objects.
-
-**[⬆](#Questions)**
----
-#### QB13
-### ✍Given a string, reverse each word in the sentence.
-
-**[⬆](#Questions)**
----
-#### QB14
-### ✍Given two strings, return true if they are anagrams of one another.
-
-**[⬆](#Questions)**
----
-#### QB15
-### ✍Find a maximum consecutive repeating char in a given string.
 
 **[⬆](#Questions)**
 ---

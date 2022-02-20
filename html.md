@@ -111,11 +111,11 @@ The tags that are deprecated are the following:
 ### ✍Different types of storage (local storage, session storage, cookies)and which one is the best way to store data?
 | Cookies                   | Sessions           | Localstorage  |
 | ------------------------  |:------------------------:| ------------------------:|
-| The storage capacity of local storage is 5MB/10MB      | The storage capacity of session storage is 5MB | The storage capacity of Cookies is 4KB |
-| As it is not session-based, it must be deleted via javascript or manually | It’s session-based and works per window or tab. This means that data is stored only for the duration of a session, i.e., until the browser (or tab) is closed | Cookies expire based on the setting and working per tab and window |
-| The client  can only read local storage | The client can only read local storage | Both clients and servers can read and write the cookies |
-| There is no transfer of data to the server | There is no transfer of data to the server | Data transfer to the server is exist |
-| There are fewer old browsers that support it | There are fewer old browsers that support it | It is supported by all the browser including older browser |
+| The storage capacity of Cookies is 4KB | The storage capacity of session storage is 5MB |  The storage capacity of local storage is 5MB/10MB |
+| Cookies expire based on the setting and working per tab and window | It’s session-based and works per window or tab. This means that data is stored only for the duration of a session, i.e., until the browser (or tab) is closed | As it is not session-based, it must be deleted via javascript or manually |
+| Both clients and servers can read and write the cookies | The client can only read local storage | The client  can only read local storage |
+| Data transfer to the server is exist | There is no transfer of data to the server | There is no transfer of data to the server |
+| It is supported by all the browser including older browser | There are fewer old browsers that support it | There are fewer old browsers that support it |
 
 **[⬆](#Questions)**
 ---

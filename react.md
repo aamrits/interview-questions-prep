@@ -298,6 +298,8 @@ Service workers are scripts that are run by the browser. They do not have any di
 ---
 #### Q14
 ### ✍react-redux vs context API vs passing props
+- React only supports unidirectional flow, meaning, data gets passed from parent to child and to its child and so forth. 
+- In the application, we may want to pass data from one component to another (who are not parent-child). In that case, we use redux store.
 
 
 **[⬆](#Questions)**

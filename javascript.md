@@ -222,9 +222,9 @@ console.log(typeof function demo() {}); // "function"
 ---
 #### Q10
 ### ✍Difference between `==` and `===` .
-- `==` converts the variable values to the same type before performing comparison. This is called **type coercion**.
+`==` converts the variable values to the same type before performing comparison. This is called **type coercion**.
 
-- `===` does not do any type conversion (coercion) and returns true only if both values and types are identical.
+`===` does not do any type conversion (coercion) and returns true only if both values and types are identical.
 
 **[⬆](#Questions)**
 ---
@@ -252,8 +252,7 @@ obj1.displayName();
 
 In case 2, this will refer to `obj1`.
 
-- `this` keyword works dynamically. Let's take another example.
-- Case 3
+- Case 3: `this` keyword works dynamically. Let's take another example.
 ```js
 const obj = {
    name: 'Amrit',
@@ -271,7 +270,7 @@ obj.sayHello();
 ```
 
 - In case 3, `sayHello()` will refer to obj as we're calling as `obj.sayHello()`. But `sayBye()` will refer to `window` object as we're simply calling the function `sayBye()`.
-- But if we will use arrow function in `sayBye()`, arrow function will check where the function is defined and log `this`. 
+- But if we will use arrow function in `sayBye()`, arrow function will check the surrounding environment where is defined and log `this`. 
 
 ```js
 const obj = {
@@ -286,7 +285,7 @@ const obj = {
 }
 obj.sayHello();
 // Hello {name: 'Amrit', sayHello: ƒ}
-// Bye {name: 'Amrit', sayHello: ƒ}
+// Bye {name: 'Amrit', sayHello: ƒ} // the surrounding env is sayHello function
 ```
 In this case, arrow function is defined within `obj`. So this will log `obj` object.
 
@@ -294,6 +293,7 @@ In this case, arrow function is defined within `obj`. So this will log `obj` obj
 ---
 ### Q12
 ✍Difference between `call`, `apply` and `bind`. Give example.
+
 When we call this below function, internally `displayName()` is called as `displayName.call()`. Also we can call this function with `apply()` like this also, `displayName.apply()` 
 
 ```js
@@ -323,7 +323,7 @@ console.log(user1); // {name: 'John', battery: 30, chargeBattery: ƒ}
 console.log(user2); //{name: 'Ron', battery: 100}
 ```
 
-- `apply()`: for `apply()`, all the arguments should be in array.
+- for `apply()`, all the arguments should be in array.
 
 ```js
 let user1 = {
@@ -343,7 +343,7 @@ console.log(user1); // {name: 'John', battery: 30, chargeBattery: ƒ}
 console.log(user2); // {name: 'Ron', battery: 100}
 ```
 
-- `bind()`: `bind()` return a function so that later we can call that function.
+- `bind()` returns a function so that later we can call that function.
 ```js
 let user1 = {
    name: 'John',

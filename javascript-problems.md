@@ -4,6 +4,8 @@
 - [How to empty an array.](#QA2)
 - [Remove duplicate values from an array.](#QA3)
 - [Shuffle elements in an array.](#QA4)
+- [Find average of an array.](#QA5)
+- [Use javascript function to perform a quick sort.](#QA6)
 
 ## Strings
 - [Given a string, reverse each word in the sentence. Example "emocleW ot aidnI". Return as "Welcome to India"](#QB1)
@@ -49,6 +51,51 @@ console.log(output.sort((a, b) => { return b-a }));
 ---
 #### QA4
 ### ✍Shuffle elements in an array.
+
+**[⬆](#Questions)**
+---
+#### QA5
+### ✍Find average of an array.
+<details><summary><b>Answer</b></summary>
+
+```js
+const numbers = [1, 2, 3, 4, 5];
+
+const getAverage = (array) => (array.reduce((total, current) => {
+	return total + current;
+}, 0)) / array.length;
+
+console.log(getAverage(numbers)); // 3
+```
+</details>
+
+**[⬆](#Questions)**
+---
+#### QA6
+### ✍Use javascript function to perform a quick sort.
+<details><summary><b>Answer</b></summary>
+
+```js
+function quickSort(arr) {
+    if (arr.length <= 1) return arr;
+
+    const newArr = arr.slice();
+    let pivot = newArr[0];
+    const left = [];
+    const right = [];
+
+    // start from index 1 as we're taking the first element as pivot
+    for (let i = 1; i < newArr.length; i++) {
+        newArr[i] < pivot ? left.push(newArr[i]) : right.push(newArr[i]);
+    }
+
+    return [...quickSort(left), pivot, ...quickSort(right)];
+}
+
+const numbers = [5, 3, 7, 6, 2, 9];
+console.log(quickSort(numbers)); // [2, 3, 5, 6, 7, 9]
+```
+</details>
 
 **[⬆](#Questions)**
 ---

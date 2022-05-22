@@ -11,6 +11,11 @@
 - [Given a string, reverse each word in the sentence. Example "emocleW ot aidnI". Return as "Welcome to India"](#QB1)
 - [Given two strings, return true if they are anagrams of one another.](#QB2)
 - [Find a maximum consecutive repeating char in a given string.](#QB3)
+- [Remove duplicate characters from a string](#QB4)
+```
+Input: string = 'india is unique'
+Output: 'indasuqe'
+```
 
 ## Objects
 - [Check if a given object is empty or not.](#QC1)

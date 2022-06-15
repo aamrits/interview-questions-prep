@@ -72,6 +72,7 @@
 - [Object creation patterns.](#QB6)
 - [Deep copy of an object.](#QB7)
 - [Add/remove properties from Objects.](#QB8)
+- [Looping through Array and Objects.](#QB9)
 
 ## JavaScript Misc
 - [What are the advantages of using Axios over Fetch API.](#QC1)
@@ -1804,8 +1805,64 @@ console.log('The result of division is ' + divideNumber); // The result of divis
 ### ✍Promises
 Promises are a new feature of ES6. It’s a method to write asynchronous code. It can be used when, for example, we want to fetch data from an API, or when we have a function that takes time to be executed.
 
-The Promise object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value.
+The `Promise` Object represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
+
+A promise is a returned object to which you attach callbacks, instead of passing callbacks into a function.
+
+Instead of passing like this:
 ```javascript
+createAudioFileAsync(audioSettings, successCallback, failureCallback);
+NOTE: successCallback and failureCallback are callback functions.
+```
+we would attach like this:
+```javascript
+createAudioFileAsync(audioSettings).then(successCallback, failureCallback);
+```
+
+The `.then()` method takes up to two arguments; the first argument is a callback function for the resolved case of the promise, and the second argument is a callback function for the rejected case. Each .then() returns a newly generated promise object.
+
+A Promise is in one of these states:
+- **pending**: initial state, neither fulfilled nor rejected.
+- **fulfilled**: meaning that the operation was completed successfully.
+- **rejected**: meaning that the operation failed.
+
+Promise chain is one of the great things about using promises.
+
+If we were to use 2 or more asynchronous operations, where subsequent operation starts when previous operation succeeds, we can simply use the `.then()` function, as it returns a new promise.
+
+```javascript
+// Before ES6: classic callback pyramid of doom
+doSomething(function(result) {
+  doSomethingElse(result, function(newResult) {
+    doThirdThing(newResult, function(finalResult) {
+      console.log('Got the final result: ' + finalResult);
+    }, failureCallback);
+  }, failureCallback);
+}, failureCallback);
+
+// ES6:
+doSomething()
+.then(function(result) {
+  return doSomethingElse(result);
+})
+.then(function(newResult) {
+  return doThirdThing(newResult);
+})
+.then(function(finalResult) {
+  console.log('Got the final result: ' + finalResult);
+})
+.catch(failureCallback);
+
+// ES6: with arrow functions
+doSomething()
+.then(result => doSomethingElse(result))
+.then(newResult => doThirdThing(newResult))
+.then(finalResult => {
+  console.log(`Got the final result: ${finalResult}`);
+})
+.catch(failureCallback);
+
+// Another example
 let cleanRoom = function() {
    return new Promise(function(resolve, reject) {
       resolve("Room is cleaned.");
@@ -1832,6 +1889,139 @@ cleanRoom().then(function(result) {
    console.log("All tasks finished." + result)
 })
 ```
+The arguments to then are optional, and catch(failureCallback) is short for then(null, failureCallback).
+
+From ECMAScript 2017, async/await is used as a wrapper (syntactic sugar) of promises.
+```javascript
+async function foo() {
+  try {
+    const result = await doSomething();
+    const newResult = await doSomethingElse(result);
+    const finalResult = await doThirdThing(newResult);
+    console.log(`Got the final result: ${finalResult}`);
+  } catch(error) {
+    failureCallback(error);
+  }
+}
+```
+Whenever a promise is rejected, one of two events is sent to the global scope:
+rejectionhandled: Sent when a promise is rejected, after that rejection has been handled by the executor's reject function.
+unhandledrejection: Sent when a promise is rejected but there is no rejection handler available.
+
+In both cases, the event has a promise property indicating the promise that was rejected, and a reason property that provides the reason given for the promise to be rejected.
+```javascript
+// Creating a Promise around setTimeout:
+setTimeout(() => saySomething("10 seconds passed"), 10*1000);
+
+// Using Promise:
+const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+wait(10*1000).then(() => saySomething("10 seconds")).catch(failureCallback);
+```
+
+`Promise.resolve()` and `Promise.reject()` are shortcuts to manually create an already resolved or rejected promise respectively.
+
+`Promise.all()` and `Promise.race()` are two composition tools for running asynchronous operations in parallel.
+
+`Promise.all()`:
+```javascript
+Promise.all([func1(), func2(), func3()])
+.then(([result1, result2, result3]) => { /* use result1, result2 and result3 */ });
+
+// NOTE: However, even if one promise fail, Promise.all() will throw error and abort other calls. To avoid this, we can use Promise.allSettled(), which ensures all operations are complete (fulfilled or rejected) before resolving.
+```
+
+Promise callbacks are handled as a MicroTask and it has more priority than task queues.
+```javascript
+const promise = new Promise(function(resolve, reject) {
+  console.log("Promise callback");
+  resolve();
+}).then(function(result) {
+  console.log("Promise callback (.then)");
+});
+
+setTimeout(function() {
+  console.log("event-loop cycle: Promise (fulfilled)", promise)
+}, 0);
+
+console.log("Promise (pending)", promise);
+
+Output:
+Promise callback
+Promise (pending) Promise {<pending>}
+Promise callback (.then)
+event-loop cycle: Promise (fulfilled) Promise {<fulfilled>}
+
+// Bad example!
+doSomething().then(function(result) {
+  doSomethingElse(result) // Forgot to return promise from inner chain + unnecessary nesting
+  .then(newResult => doThirdThing(newResult));
+}).then(() => doFourthThing());
+// Forgot to terminate chain with a catch!
+
+// Good example!
+doSomething()
+.then(function(result) {
+  return doSomethingElse(result);
+})
+.then(newResult => doThirdThing(newResult))
+.then(() => doFourthThing())
+.catch(error => console.error(error));
+```
+
+Few other **methods** of `Promise`:
+`Promise.any()`:
+`Promise.any()` takes an iterable of Promise objects. It returns a single promise that resolves as soon as any of the promises in the iterable fulfills, with the value of the fulfilled promise. If no promises in the iterable fulfill (if all of the given promises are rejected), then the returned promise is rejected with an AggregateError, a new subclass of Error that groups together individual errors.
+
+**Syntax:**
+`Promise.any(iterable)`
+*Return value*
+* If iterable passed is empty, then rejected Promise
+* If iterable passed contains no promises, then asynchronously resolved Promise.
+* A pending Promise in all other cases. The returning Promise is either resolved/rejected asynchronously.
+
+This method is useful for returning the first Promise that fulfills. Unlike `Promise.all()`, which returns an array of fulfillment values, we only get one fulfillment value(assuming at least one promise fulfills). This can be beneficial if we need only one promise to fulfill but we do not care which one does.
+
+Also unlike `Promise.race()`, which returns the first settled value (either fulfillment or rejection), this method returns the first fulfilled value. This method will ignore all rejected promises up until the first promise that fulfills.
+
+```javascript
+Example:
+const pErr = new Promise((resolve, reject) => {
+  reject("Always fails");
+});
+
+const pSlow = new Promise((resolve, reject) => {
+  setTimeout(resolve, 500, "Done eventually");
+});
+
+const pFast = new Promise((resolve, reject) => {
+  setTimeout(resolve, 100, "Done quick");
+});
+
+Promise.any([pErr, pSlow, pFast]).then((value) => {
+  console.log(value); // pFast fulfills first
+})
+// expected output: "Done quick"
+
+// Promise.any() rejects with an AggregateError if no promise fulfills.
+Example:
+const pErr = new Promise((resolve, reject) => {
+  reject('Always fails');
+});
+
+Promise.any([pErr]).catch((err) => {
+  console.log(err);
+})
+// expected output: "AggregateError: No Promise in Promise.any was resolved"
+```
+
+`Promise.prototype.finally()`:
+The `finally()` method returns a Promise. When the promise is finally either fulfilled or rejected, the specified callback function is executed. This provides a way for code to be run whether the promise was fulfilled successfully, or instead rejected.
+This helps to avoid duplicating code in both the promise's `then()` and `catch()` handlers.
+
+Few use cases:
+* Unlike `Promise.resolve(2).then(() => {}, () => {})` (which will be resolved with undefined), `Promise.resolve(2).finally(() => {})` will be resolved with 2.
+
+* Similarly, unlike `Promise.reject(3).then(() => {}, () => {})` (which will be fulfilled with undefined), `Promise.reject(3).finally(() => {})` will be rejected with 3.
 
 **[⬆](#Questions)**
 ---
@@ -2431,6 +2621,31 @@ console.log(newObj); // { a: 1, b: { c: 2 } } (New Object Intact!)
 #### QB8
 ### ✍Add/remove properties from Objects.
 
+
+**[⬆](#Questions)**
+---
+#### QB9
+### ✍Looping through Array and Objects.
+`for...in`:
+- The `for...in` statement iterates a specified variable over all the enumerable properties of an object. 
+
+`for...of`
+The `for...of` statement creates a loop Iterating over iterable objects (including Array, Map, Set, arguments object and so on).
+
+Difference between for...in and for...of statement
+```javascript
+const arr = [3, 5, 7];
+arr.foo = 'hello';
+
+for (let i in arr) {
+   console.log(i); // logs "0", "1", "2", "foo"
+}
+
+for (let i of arr) {
+   console.log(i); // logs 3, 5, 7
+}
+```
+
 **[⬆](#Questions)**
 ---
 #### QC1
@@ -2440,11 +2655,45 @@ console.log(newObj); // { a: 1, b: { c: 2 } } (New Object Intact!)
 ---
 #### QC2
 ### ✍Explain the CORS mechanism.
+CORS stands for Cross Origin Resource Sharing, and it’s a protocol that allows servers to receive requests from different domains.
+
+Developers often make external API requests to fetch data form external servers. Sometimes these servers could be from different domains too.
+
+Example:
+👉 My app in rootlearn[.]com making a GET request to rootlearn[.]com is a same origin request
+👉 My app in rootlearn[.]com making a GET request to google[.]com is a cross origin request
+
+But these cross domain requests are restricted by the browser ❌
+
+Once developers have configured CORS on the server to accepts requests from other domains the browser will kick in a preflight check ✅
+
+It is to verify whether resource sharing is allowed on the destination server. The preflight request uses the HTTP method OPTIONS.
+
+![CORS mechanism](assets/cors-infographic.png)
 
 **[⬆](#Questions)**
 ---
 #### QC3
 ### ✍Explain JWT in detail.
+JSON Web Token (JWT) is a token-based standard that allows us to securely transfer information between two parties without storing anything in a database.
+
+JWT token consists of three parts:
+✔️ Header
+✔️ Payload
+✔️ Signature
+Each one being BaseURL64 encoded to form the token.
+
+JWT authentication follows a 4 step process:
+
+1) Client (Browser) sends post request with credentials to auth server to authenticate themselves
+
+2) Auth Server authenticates user credential and generates a JWT. Server does not store anything and sends the token to the browser to save. It allows users to authenticate without their credentials in the future. It's best advised to store the token in an http only cookie.
+
+3) Thereafter for every request the client sends the JWT in the authorization header. Validation happens using token introspection with the auth server.
+
+4) Once validated, resource server sends the necessary data to the client.
+
+![JWT](assets/jwt-infographic.png)
 
 **[⬆](#Questions)**
 ---
@@ -2505,6 +2754,12 @@ console.log(newObj); // { a: 1, b: { c: 2 } } (New Object Intact!)
 ---
 #### QE2
 ### ✍CSRF
+Cross-Site Request Forgery (CSRF) is an attack that forces users to submit a request to a web application when they are authenticated. It happens through a link that tricks user to send a forged request.
+
+Ways to prevent:
+- The application has to validate the token before processing it.
+- Logging off the application after sometime.
+- Not allowing browsers to remember credentials.
 
 **[⬆](#Questions)**
 ---

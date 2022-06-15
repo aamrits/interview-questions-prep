@@ -1812,7 +1812,7 @@ A promise is a returned object to which you attach callbacks, instead of passing
 Instead of passing like this:
 ```javascript
 createAudioFileAsync(audioSettings, successCallback, failureCallback);
-NOTE: successCallback and failureCallback are callback functions.
+// NOTE: successCallback and failureCallback are callback functions.
 ```
 we would attach like this:
 ```javascript
@@ -1945,11 +1945,11 @@ setTimeout(function() {
 
 console.log("Promise (pending)", promise);
 
-Output:
-Promise callback
-Promise (pending) Promise {<pending>}
-Promise callback (.then)
-event-loop cycle: Promise (fulfilled) Promise {<fulfilled>}
+// Output:
+// Promise callback
+// Promise (pending) Promise {<pending>}
+// Promise callback (.then)
+// event-loop cycle: Promise (fulfilled) Promise {<fulfilled>}
 
 // Bad example!
 doSomething().then(function(result) {
@@ -1969,12 +1969,12 @@ doSomething()
 ```
 
 Few other **methods** of `Promise`:
-`Promise.any()`:
-`Promise.any()` takes an iterable of Promise objects. It returns a single promise that resolves as soon as any of the promises in the iterable fulfills, with the value of the fulfilled promise. If no promises in the iterable fulfill (if all of the given promises are rejected), then the returned promise is rejected with an AggregateError, a new subclass of Error that groups together individual errors.
+
+`Promise.any()`: It takes an iterable of Promise objects. It returns a single promise that resolves as soon as any of the promises in the iterable fulfills, with the value of the fulfilled promise. If no promises in the iterable fulfill (if all of the given promises are rejected), then the returned promise is rejected with an AggregateError, a new subclass of Error that groups together individual errors.
 
 **Syntax:**
 `Promise.any(iterable)`
-*Return value*
+**Return value**
 * If iterable passed is empty, then rejected Promise
 * If iterable passed contains no promises, then asynchronously resolved Promise.
 * A pending Promise in all other cases. The returning Promise is either resolved/rejected asynchronously.
@@ -2014,8 +2014,7 @@ Promise.any([pErr]).catch((err) => {
 // expected output: "AggregateError: No Promise in Promise.any was resolved"
 ```
 
-`Promise.prototype.finally()`:
-The `finally()` method returns a Promise. When the promise is finally either fulfilled or rejected, the specified callback function is executed. This provides a way for code to be run whether the promise was fulfilled successfully, or instead rejected.
+`Promise.prototype.finally()`: The `finally()` method returns a Promise. When the promise is finally either fulfilled or rejected, the specified callback function is executed. This provides a way for code to be run whether the promise was fulfilled successfully, or instead rejected.
 This helps to avoid duplicating code in both the promise's `then()` and `catch()` handlers.
 
 Few use cases:
@@ -2678,20 +2677,16 @@ It is to verify whether resource sharing is allowed on the destination server. T
 JSON Web Token (JWT) is a token-based standard that allows us to securely transfer information between two parties without storing anything in a database.
 
 JWT token consists of three parts:
-✔️ Header
-✔️ Payload
-✔️ Signature
+- ✔️ Header
+- ✔️ Payload
+- ✔️ Signature
 Each one being BaseURL64 encoded to form the token.
 
 JWT authentication follows a 4 step process:
-
-1) Client (Browser) sends post request with credentials to auth server to authenticate themselves
-
-2) Auth Server authenticates user credential and generates a JWT. Server does not store anything and sends the token to the browser to save. It allows users to authenticate without their credentials in the future. It's best advised to store the token in an http only cookie.
-
-3) Thereafter for every request the client sends the JWT in the authorization header. Validation happens using token introspection with the auth server.
-
-4) Once validated, resource server sends the necessary data to the client.
+- Client (Browser) sends post request with credentials to auth server to authenticate themselves
+- Auth Server authenticates user credential and generates a JWT. Server does not store anything and sends the token to the browser to save. It allows users to authenticate without their credentials in the future. It's best advised to store the token in an http only cookie.
+- Thereafter for every request the client sends the JWT in the authorization header. Validation happens using token introspection with the auth server.
+- Once validated, resource server sends the necessary data to the client.
 
 ![JWT](assets/jwt-infographic.png)
 

@@ -1905,8 +1905,8 @@ async function foo() {
 }
 ```
 Whenever a promise is rejected, one of two events is sent to the global scope:
-rejectionhandled: Sent when a promise is rejected, after that rejection has been handled by the executor's reject function.
-unhandledrejection: Sent when a promise is rejected but there is no rejection handler available.
+- rejectionhandled: Sent when a promise is rejected, after that rejection has been handled by the executor's reject function.
+- unhandledrejection: Sent when a promise is rejected but there is no rejection handler available.
 
 In both cases, the event has a promise property indicating the promise that was rejected, and a reason property that provides the reason given for the promise to be rejected.
 ```javascript
@@ -1927,10 +1927,11 @@ wait(10*1000).then(() => saySomething("10 seconds")).catch(failureCallback);
 Promise.all([func1(), func2(), func3()])
 .then(([result1, result2, result3]) => { /* use result1, result2 and result3 */ });
 
-// NOTE: However, even if one promise fail, Promise.all() will throw error and abort other calls. To avoid this, we can use Promise.allSettled(), which ensures all operations are complete (fulfilled or rejected) before resolving.
+// NOTE: However, even if one promise fail, Promise.all() will throw error and abort other calls. 
+// To avoid this, we can use Promise.allSettled(), which ensures all operations are complete (fulfilled or rejected) before resolving.
 ```
 
-Promise callbacks are handled as a MicroTask and it has more priority than task queues.
+Promise callbacks are handled as a **MicroTask** and it has *more priority than task queues*.
 ```javascript
 const promise = new Promise(function(resolve, reject) {
   console.log("Promise callback");

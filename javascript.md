@@ -1819,7 +1819,7 @@ we would attach like this:
 createAudioFileAsync(audioSettings).then(successCallback, failureCallback);
 ```
 
-The `.then()` method takes up to two arguments; the first argument is a callback function for the resolved case of the promise, and the second argument is a callback function for the rejected case. Each .then() returns a newly generated promise object.
+The `.then()` method takes up to two arguments; the first argument is a callback function for the resolved case of the promise, and the second argument is a callback function for the rejected case. Each `.then()` returns a newly generated promise object.
 
 A Promise is in one of these states:
 - **pending**: initial state, neither fulfilled nor rejected.
@@ -1828,7 +1828,7 @@ A Promise is in one of these states:
 
 Promise chain is one of the great things about using promises.
 
-If we were to use 2 or more asynchronous operations, where subsequent operation starts when previous operation succeeds, we can simply use the `.then()` function, as it returns a new promise.
+If we were to use 2 or more asynchronous operations, where the subsequent operation starts when the previous operation succeeds, we can simply use the `.then()` function, as it returns a new promise.
 
 ```javascript
 // Before ES6: classic callback pyramid of doom
@@ -1905,10 +1905,10 @@ async function foo() {
 }
 ```
 Whenever a promise is rejected, one of two events is sent to the global scope:
-- rejectionhandled: Sent when a promise is rejected, after that rejection has been handled by the executor's reject function.
-- unhandledrejection: Sent when a promise is rejected but there is no rejection handler available.
+- **rejectionhandled**: Sent when a promise is rejected, after that rejection has been handled by the executor's reject function.
+- **unhandledrejection**: Sent when a promise is rejected but there is no rejection handler available.
 
-In both cases, the event has a promise property indicating the promise that was rejected, and a reason property that provides the reason given for the promise to be rejected.
+In both cases, the event has a promise property indicating the promise that was rejected and a reason property that provides the reason given for the promise to be rejected.
 ```javascript
 // Creating a Promise around setTimeout:
 setTimeout(() => saySomething("10 seconds passed"), 10*1000);
@@ -1984,7 +1984,7 @@ Few other **methods** of `Promise`:
 
 This method is useful for returning the first Promise that fulfills. Unlike `Promise.all()`, which returns an array of fulfillment values, we only get one fulfillment value(assuming at least one promise fulfills). This can be beneficial if we need only one promise to fulfill but we do not care which one does.
 
-Also unlike `Promise.race()`, which returns the first settled value (either fulfillment or rejection), this method returns the first fulfilled value. This method will ignore all rejected promises up until the first promise that fulfills.
+Also unlike `Promise.race()`, which returns the first settled value (either fulfillment or rejection), *this method returns the first fulfilled value*. This method will ignore all rejected promises up until the first promise that fulfills.
 
 ```javascript
 Example:

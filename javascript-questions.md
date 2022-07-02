@@ -11,7 +11,7 @@
 - [Enlist Array methods.](#QA9)
 - [Enlist String methods](#QA10)
 - [Difference between setTimeout() and setInterval().](#QA11)
-- [Explain Event bubbling and capturing.](#QA12)
+- [Explain Event bubbling, event capturing/trickling, and event delegation.](#QA12)
 - [Difference between Cookies, sessions and localStorage.](#QA13)
 - [Explain Alert, confirm and prompt.](#QA14)
 - [Enlist Errors in JS.](#QA15)
@@ -1089,8 +1089,20 @@ RESULT:
 **[⬆](#Questions)**
 ---
 #### QA12
-### ✍Explain Event bubbling and capturing.
+### ✍Explain Event bubbling, event capturing/trickling, and event delegation.
+- **Event bubbling** goes from the target element straight up.
+- In other words,`event.stopPropagation()` stops the move upwards, but on the current element all other handlers will run.
+- To stop the bubbling and prevent handlers on the current element from running, there’s a method`event.stopImmediatePropagation()`. After it no other handlers execute.
+```js
+<div onclick="alert('The handler!')">
+  <em>If you click on <code>EM</code>, the handler on <code>DIV</code> runs.</em>
+</div>
 
+<body onclick="alert(`the bubbling doesn\'t reach here`)">
+  <button onclick="event.stopPropagation()">Click me</button>
+</body>
+```
+- **Event capturing** is a type of event propagation where the event is first captured by the outermost element and then successively triggers on the descendants (children) of the target element in the same nesting hierarchy till it reaches the inner DOM element.
 
 **[⬆](#Questions)**
 ---

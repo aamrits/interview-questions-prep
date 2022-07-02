@@ -30,7 +30,7 @@
 - [What are the advantages of using Axios over Fetch API.](#QC1)
 - [Explain the CORS mechanism.](#QC2)
 - [Explain JWT in detail.](#QC3)
-- [Use AJAX and XMLHttpRequest to get reponse from an URL. ](#QC4)
+- [Use AJAX and XMLHttpRequest to get reponse from an URL.](#QC4)
 
 ## Web Performance
 - [Critical rendering path (must watch)](#QD1)
@@ -1173,8 +1173,8 @@ if (person == null || person == "") {
 `for...in`:
 - The `for...in` statement iterates a specified variable over all the enumerable properties of an object. 
 
-`for...of`
-The `for...of` statement creates a loop Iterating over iterable objects (including Array, Map, Set, arguments object and so on).
+`for...of`:
+- The `for...of` statement creates a loop Iterating over iterable objects (including Array, Map, Set, arguments object and so on).
 
 Difference between for...in and for...of statement
 ```javascript
@@ -1487,7 +1487,7 @@ Few use cases:
 ---
 #### QB3
 ### ✍Explain Higher Order Functions. Explain forEach(), map(), filter(), reduce() with examples. Write polyfill for each method.
-- forEach(): It takes a callback function and run that callback function on each element of array one by one.
+- **forEach():** It takes a callback function and run that callback function on each element of array one by one.
 ```js
 var arr = [10, 20, 30];
 
@@ -1499,7 +1499,7 @@ arr.forEach(function (elem, index){
 // 30 comes at 2
 ```
 
-- map(): `map()` takes a callback and run it against every element on the array but whats makes it unique is it generate a new array based on your existing array.
+- **map():** `map()` takes a callback and run it against every element on the array but whats makes it unique is it generate a new array based on your existing array.
 ```js
 var arr = [10, 20, 30];
 
@@ -1509,7 +1509,7 @@ var mapped = arr.map(function(elem) {
 console.log(mapped); // [100, 200, 300]
 ```
 
-- filter(): The main difference between `forEach()` and `filter()` is that forEach just loop over the array and executes the callback but filter executes the callback and check its return value. If the value is true element remains in the resulting array but if the return value is false the element will be removed for the resulting array. `filter()` will return a new filtered array every time.
+- **filter():** The main difference between `forEach()` and `filter()` is that forEach just loop over the array and executes the callback but filter executes the callback and check its return value. If the value is true element remains in the resulting array but if the return value is false the element will be removed for the resulting array. `filter()` will return a new filtered array every time.
 ```js
 var arr = [10, 20, 30]; 
 
@@ -1519,7 +1519,7 @@ var result = arr.filter(function(elem){
 console.log(result); // [10, 30]
 ```
 
-- reduce(): `reduce()` method of the array object is used to reduce the array to one single value.
+- **reduce():** `reduce()` method of the array object is used to reduce the array to one single value.
 ```js
 var arr = [10, 20, 30];
 

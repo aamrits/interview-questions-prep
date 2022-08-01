@@ -1084,7 +1084,16 @@ RESULT:
 ---
 #### QA11 
 ### ✍Difference between setTimeout() and setInterval().
+`setTimeout(expression, timeout);` runs the code/function once after the timeout.
 
+`setInterval(expression, timeout);` runs the code/function repeatedly, with the length of the timeout between each repeat.
+
+```js
+var intervalID = setInterval(alert, 1000); // Will alert every second.
+// clearInterval(intervalID); // Will clear the timer.
+
+setTimeout(alert, 1000); // Will alert once, after a second.
+```
 
 **[⬆](#Questions)**
 ---
@@ -1250,7 +1259,51 @@ console.log(newObj); // { a: 1, b: { c: 2 } } (New Object Intact!)
 ---
 #### QA19 
 ### ✍Explain Debouncing and Throttling with example.
+`Debounce`: In the debouncing technique, no matter how many times the user fires the event, the attached function will be executed only after the specified time once the user stops firing the event.
 
+**Function for Debounce**
+```js
+function debounce(targetFunction, waitingTime = 1000) {
+   let timer;
+   return (...args) => {
+      if (timer) clearTimeout(timer); // clear any previous timer
+      timer = setTimeout(() => {
+      targetFunction(...args);
+      }, waitingTime);
+   }
+}
+
+const debounceAndCallApi3 = debounce(api3, 3000);
+
+document.getElementById("searchText").addEventListener("keyup", (e) => {
+   const textValue = e.target.value;
+
+   callApi1(textValue); // instantly calls Api 1
+   waitAndCallApi2(textValue); // waits before Api call
+
+   debounceAndCallApi3(textValue);
+});
+```
+
+`Throttle`: Throttling is a technique in which, no matter how many times the user fires the event, the attached function will be executed only once in a given time interval.
+~
+**Function for Throttle**
+```js
+let  throttleFunction  =  function (func, delay) {
+// If setTimeout is already scheduled, no need to do anything
+if (timerId) {
+   return;
+}
+
+// Schedule a setTimeout after delay seconds
+timerId  =  setTimeout(function () {
+   func();
+   // Once setTimeout function execution is finished, timerId = undefined so that in <br>
+   // the next scroll event function execution can be scheduled by the setTimeout
+   timerId  =  undefined;
+}, delay);
+}
+```
 
 **[⬆](#Questions)**
 ---

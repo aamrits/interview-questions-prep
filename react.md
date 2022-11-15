@@ -7,7 +7,7 @@
 - [What is JSX?](#Q5)
 - [Difference between class components and functional components.](#Q6)
 - [What is the difference between state and props.](#Q7)
-- [What is render props pattern? Explain.](#Q8)
+- [What is render props pattern? Explain some of the React Design Pattern.](#Q8)
 - [Lifecycle methods](#Q9)
 - [Differences between controlled and uncontrolled components. Give example.](#Q10)
 - [What is a higher-order component? Give example.](#Q11)
@@ -15,7 +15,7 @@
 - [What is context API? or How can we avoid prop drilling?](#Q13)
 - [react-redux vs context API vs passing props](#Q14)
 - [How to prevent re-renders on React functional components?](#Q15)
-- [What is React router?](#Q16)
+- [What is React router dom?](#Q16)
 - [Difference between state and ref.](#Q17)
 - [What are error boundaries in ReactJs?](#Q18)
 - [How to pass data from child component to parent components?](#Q19)
@@ -29,34 +29,30 @@
 - [Why should we not update the state directly?](#Q27)
 - [How to pass a parameter to an event handler or callback?](#Q28)
 - [What are synthetic events in React?](#Q29)
-- [Explain refs. Explain the use of refs](#Q30)
-- [What is the difference between Shadow DOM and Virtual DOM?](#Q31)
-- [Stateless and stateful components](#Q32)
-- [How you implement Server-Side Rendering or SSR?](#Q33)
-- [How to enable production mode in React?](#Q34)
-- [What is CRA and its benefits?](#Q35)
-- [How to re-render the view when the browser is resized?](#Q36)
-- [What is React Router? How React Router is different from history library?](#Q37) 
-- [What is Flux?](#Q38)
-- [What is Redux?](#Q39)
-- [What are the core principles of Redux?](#Q40)
-- [What is the difference between mapStateToProps() and mapDispatchToProps()?](#Q41)
-- [Explain the flow of Redux](#Q42)
-- [What is code-splitting?](#Q43)
-- [What are the limitations with HOCs?](#44)
-- [What is dynamic import? Explain React.lazy() and Suspense()](#Q45)
-- [Enlist advantages and lmitations of React.](#Q46)
+- [What is the difference between Shadow DOM and Virtual DOM?](#Q30)
+- [Stateless and stateful components](#Q31)
+- [How you implement Server-Side Rendering or SSR?](#Q32)
+- [How to enable production mode in React?](#Q33)
+- [What is CRA and its benefits?](#Q34)
+- [How to re-render the view when the browser is resized?](#Q35)
+- [What is React Router? How React Router is different from history library?](#Q36) 
+- [What is Flux?](#Q37)
+- [What is Redux? What are the core principles of Redux? Explain the flow.](#Q38)
+- [What is the difference between mapStateToProps() and mapDispatchToProps()? Explain the flow of Redux in Class based component.](#Q39)
+- [Explain Redux Saga with an example.](#Q40)
+- [What is code-splitting?](#Q41)
+- [What are the limitations with HOCs?](#42)
+- [What is dynamic import? Explain React.lazy() and Suspense()](#Q43)
+- [Enlist advantages and lmitations of React.](#Q44)
 
 ## Hooks
-- [How does React state usestate and useEffect work internally](#QA1)
+- [Explain usestate and useEffect.](#QA1)
 - [How does useEffect work internally](#QA2)
 - [Optimization hooks](#QA3)
 - [How do you memoize a component?](#QA4)
 - [Explain useCallback()](#QA5)
-- [How is React.memo different from useMemo ( two very different things )](#QA6)
-- [useReducer, useContext hook](#QA7)
-- [What is a reducer?](#QA8)
-- [How to fetch data with React Hooks?](#QA9)
+- [useReducer, useContext hook](#QA6)
+- [How to fetch data with React Hooks?](#QA7)
 
 # Answers
 #### Q1
@@ -147,7 +143,7 @@ The constructor for a React component is called before it is mounted. When imple
 - Passing Props
 Inside a class component
 ```
-<Component name="Riya" />
+<Component name="Amrit" />
 ```
 Inside a functional component, we are passing props as an argument of the function (by destructuring).
 
@@ -166,7 +162,7 @@ Inside a functional component, we are passing props as an argument of the functi
 **[⬆](#Questions)**
 ---
 #### Q8
-### ✍What is render props pattern? Explain.
+### ✍What is render props pattern? Explain some of the React Design Pattern.
 The term **render props** refers to a simple technique for sharing code between React components using a prop whose value is a function.
 
 ```jsx
@@ -177,6 +173,15 @@ const extraProps = { color: 'red' }
   <Page {...props} data={extraProps}/>
 )}/>
 ```
+
+Some of the React Design Pattern are:
+- React HOC Pattern
+- React Render Props Pattern
+- React Compound Pattern (While implementing a Multiple Tab Component)
+- React Hooks Pattern
+
+Example of these patterns are given below
+https://react-hzgrec.stackblitz.io
 
 **[⬆](#Questions)**
 ---
@@ -257,13 +262,13 @@ class UserProfile extends React.Component {
 }
 ```
 
-- In most cases, it's recommend to use controlled components to implement forms. In a controlled component, form data is handled by a React component. The alternative is uncontrolled components, where form data is handled by the DOM itself. Instead of writing an event handler for all of your state updates, you use a ref to retrieve values from the DOM. Example: manage focus.
+- In most cases, it's recommend to use controlled components to implement forms. In a controlled component, form data is handled by a React component. The alternative is uncontrolled components, where form data is handled by the DOM itself. Instead of writing an event handler for all of your state updates, you use a ref to retrieve values from the DOM. Example: manage focus, getting width and height of DIV element (see Q8).
 
 **[⬆](#Questions)**
 ---
 #### Q11
 ### ✍What is a higher-order component? Give example.
-A *higher-order component (HOC)* is a function that takes a component and returns a new component. Basically, it's a pattern that is derived from React's compositional nature.
+A *higher-order component (HOC)* is a function that takes a component, adds some logic and returns that component with that additional logic. Basically, it's a pattern that is derived from React's compositional nature.
 
 We call them **pure components** because they can accept any dynamically provided child component but they won't modify or copy any behavior from their input components.
 
@@ -323,14 +328,102 @@ export default React.memo(MyFunctionComponent);
 **[⬆](#Questions)**
 ---
 #### Q16
-### ✍What is React router?
-React Router is the standard routing library for React. From the docs: *“React Router keeps your UI in sync with the URL. It has a simple API with powerful features like lazy code loading, dynamic route matching, and location transition handling built right in.*
+### ✍What is React router dom?
+`react-router-dom` is a specialized package that you can use only in web-browser-based application development.
+
+- Implement the basic routing
+```jsx
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+export default function BasicExample() {
+  return (
+    <Router>
+      <div>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+        </ul>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
+}
+
+// You can think of these components as "pages" in your app.
+
+function Home() {
+  return (
+    <div>
+      <h2>Home</h2>
+    </div>
+  );
+}
+
+function About() {
+  return (
+    <div>
+      <h2>About</h2>
+    </div>
+  );
+}
+```
+
+- Implement routing with URL parameters
+```jsx
+<Switch>
+  <Route path="/:id" children={<Child />} />
+</Switch>
+ 
+function Child() {
+  let { id } = useParams();
+
+  return (
+    <div>
+      <h3>ID: {id}</h3>
+    </div>
+  );
+}
+```
+
+- Implement routing with Redirect
+```jsx
+// - A <Switch> renders the first child <Route> that matches
+// - A <Redirect> may be used to redirect old URLs to new ones
+// - A <Route path="*> always matches
+
+<Switch>
+  <Route exact path="/">
+    <Home />
+  </Route>
+  <Route path="/old-match">
+    <Redirect to="/will-match" />
+  </Route>
+  <Route path="/will-match">
+    <WillMatch />
+  </Route>
+  <Route path="*">
+    <NoMatch />
+  </Route>
+</Switch>
+```
 
 **[⬆](#Questions)**
 ---
 #### Q17
-### ✍Difference between state and ref.
-`useState` would be used in the cases when we want to maintain and update the properties during the re-rendering of view.`useRef` we will use if we want to persist the values throughout the lifetime of the component.
+### ✍Difference between state and ref. Explain the use of refs.
+`useState` would be used in the cases when we want to maintain and update the properties during the re-rendering of view. We will use `useRef` if we want to persist the values throughout the lifetime of the component.
 
 The *ref* is used to return a reference to the element. *They should be avoided in most cases*, however, they can be useful when you need a direct access to the DOM element or an instance of a component.
 
@@ -369,6 +462,43 @@ class SearchBar extends Component {
       );
    }
 }
+```
+
+You can use `ref` in hooks like this:
+```jsx
+import React, { forwardRef } from "react";
+
+const Component1 = (props, ref) => {
+  return <div ref = {ref}>
+    I'm Component 1 and width is: {props.width}
+  </div>
+}
+
+// React HOC Pattern
+export default getDimensions(forwardRef(Component1));
+
+// getDimensions.js
+import React, { useState, useEffect, useRef } from "react";
+
+const getDimensions = (Element) => {
+  function GetDimensions(props) {
+
+    const [width, setWidth] = useState(0);
+    const ref1 = useRef();
+
+    useEffect(() => {
+      if (ref1.current) {
+        setWidth(ref1.current.offsetWidth);
+      }
+    }, [ref1])
+
+    return <Element ref={ref1} width={width} {...props} />
+  }
+
+  return GetDimensions;
+}
+
+export default getDimensions;
 ```
 
 **[⬆](#Questions)**
@@ -790,62 +920,18 @@ handleClick = (id) => () => {
 **[⬆](#Questions)**
 ---
 #### Q30
-### ✍Explain refs. Explain the use of refs.
-The *ref* is used to return a reference to the element. *They should be avoided in most cases*, however, they can be useful when you need a direct access to the DOM element or an instance of a component.
-
-- You can create *ref* by using `React.createRef()` method
-```jsx
-class MyComponent extends React.Component {
-  constructor(props) {
-    super(props)
-    this.myRef = React.createRef()
-  }
-  render() {
-    return <div ref={this.myRef} />
-  }
-}
-```
-
-- You can also use *ref callbacks approach* regardless of React version. For example, the search bar component's input element accessed as follows:
-```jsx
-class SearchBar extends Component {
-   constructor(props) {
-      super(props);
-      this.txtSearch = null;
-      this.state = { term: '' };
-      this.setInputSearchRef = e => {
-         this.txtSearch = e;
-      }
-   }
-   onInputChange(event) {
-      this.setState({ term: this.txtSearch.value });
-   }
-   render() {
-      return (
-         <input
-            value={this.state.term}
-            onChange={this.onInputChange.bind(this)}
-            ref={this.setInputSearchRef} />
-      );
-   }
-}
-```
-
-**[⬆](#Questions)**
----
-#### Q31
 ### ✍What is the difference between Shadow DOM and Virtual DOM?
 The *Shadow DOM* is a browser technology designed primarily for scoping variables and CSS in *web components*. The *Virtual DOM* is a concept implemented by libraries in JavaScript on top of browser APIs.
 
 **[⬆](#Questions)**
 ---
-#### Q32
+#### Q31
 ### ✍Stateless and stateful components
 
 
 **[⬆](#Questions)**
 ---
-#### Q33
+#### Q32
 ### ✍How you implement Server-Side Rendering or SSR?
 React is already equipped to handle rendering on Node servers. A special version of the DOM renderer is available, which follows the same pattern as on the client side.
 
@@ -861,13 +947,13 @@ This method will output the regular HTML as a string, which can be then placed i
 
 **[⬆](#Questions)**
 ---
-#### Q34
+#### Q33
 ### ✍How to enable production mode in React?
 You should use Webpack's `DefinePlugin` method to set `NODE_ENV` to `production`, by which it strip out things like propType validation and extra warnings. Apart from this, if you minify the code, for example, Uglify's dead-code elimination to strip out development only code and comments, it will drastically reduce the size of your bundle.
 
 **[⬆](#Questions)**
 ---
-#### Q35
+#### Q34
 ### ✍What is CRA and its benefits?
 The `create-react-app` CLI tool allows you to quickly create & run React applications with no configuration step.
 
@@ -895,7 +981,7 @@ It includes everything we need to build a React app:
 
 **[⬆](#Questions)**
 ---
-#### Q36
+#### Q35
 ### ✍How to re-render the view when the browser is resized?
 You can listen to the resize event in `componentDidMount()` and then update the dimensions (width and height). You should remove the listener in `componentWillUnmount()` method.
 
@@ -930,13 +1016,15 @@ class WindowDimensions extends React.Component {
 
 **[⬆](#Questions)**
 ---
-#### Q37
+#### Q36
 ### ✍What is React Router? How React Router is different from history library?
+React Router is the standard routing library for React. From the docs: *“React Router keeps your UI in sync with the URL. It has a simple API with powerful features like lazy code loading, dynamic route matching, and location transition handling built right in.*
+
 React Router is a wrapper around the `history` library which handles interaction with the browser's `window.history` with its browser and hash histories. It also provides memory history which is useful for environments that don't have global history, such as mobile app development (React Native) and unit testing with Node.
 
 **[⬆](#Questions)**
 ---
-#### Q38
+#### Q37
 ### ✍What is Flux?
 *Flux is an application design paradigm* used as a replacement for the more traditional MVC pattern. It is a new kind of architecture that complements React and the concept of Unidirectional Data Flow.
 
@@ -946,24 +1034,21 @@ The workflow between dispatcher, stores and views components with distinct input
 
 **[⬆](#Questions)**
 ---
-#### Q39
-### ✍What is Redux?
+#### Q38
+### ✍What is Redux? What are the core principles of Redux? Explain the flow.
 *Redux* is a predictable state container for JavaScript apps based on the *Flux design pattern*. Redux can be used together with React, or with any other view library. It is tiny (about 2kB) and has no dependencies.
 
-**[⬆](#Questions)**
----
-#### Q40
-### ✍What are the core principles of Redux?
-Redux follows three fundamental principles:
+![redux](assets/react/redux-flow.gif)
 
+The core principles of Redux:
 - **Single source of truth**: The state of your whole application is stored in an object tree within a single store. The single state tree makes it easier to keep track of changes over time and debug or inspect the application.
 - **State is read-only**: The only way to change the state is to emit an action, an object describing what happened. This ensures that neither the views nor the network callbacks will ever write directly to the state.
 - **Changes are made with pure functions**: To specify how the state tree is transformed by actions, you write reducers. Reducers are just pure functions that take the previous state and an action as parameters, and return the next state.
 
 **[⬆](#Questions)**
 ---
-#### Q41
-### ✍What is the difference between mapStateToProps() and mapDispatchToProps()?
+#### Q39
+### ✍What is the difference between mapStateToProps() and mapDispatchToProps()? Explain the flow of Redux in Class based component.
 `mapStateToProps()` is a utility which helps your component get updated state (which is updated by some other components):
 
 ```jsx
@@ -1012,13 +1097,13 @@ export default connect(mapStateToProps, mapDispatchToProps)(App)
 
 **[⬆](#Questions)**
 ---
-#### Q42
-### ✍Explain the flow of Redux
+#### Q40
+### ✍Explain Redux Saga with an example.
 
 
 **[⬆](#Questions)**
 ---
-#### Q43
+#### Q41
 ### ✍What is code-splitting?
 Code-Splitting is a feature supported by bundlers like Webpack and Browserify which can create multiple bundles that can be dynamically loaded at runtime. The react project supports code splitting via dynamic import() feature.
 
@@ -1058,7 +1143,7 @@ export default App;
 
 **[⬆](#Questions)**
 ---
-#### Q44
+#### Q42
 ### ✍What are the limitations with HOCs?
 - **Don’t use HOCs inside the render method**: A new version of component will be created at every render, leading to performance issue.
 - **Static methods must be copied over**: When you apply a HOC to a component the new component does not have any of the static methods of the original component
@@ -1087,7 +1172,7 @@ function enhance(WrappedComponent) {
 
 **[⬆](#Questions)**
 ---
-#### Q45
+#### Q43
 ### ✍What is dynamic import? Explain React.lazy() and Suspense()
 The dynamic import() syntax is a ECMAScript proposal not currently part of the language standard. It is expected to be accepted in the near future. You can achieve code-splitting into your app using dynamic import.
 
@@ -1106,34 +1191,32 @@ import("./math").then(math => {
 The `React.lazy` function lets you render an dynamic import as a regular component. It will automatically load the bundle containing the OtherComponent when the component gets rendered. This must return a Promise which resolves to a module with a default export containing a React component.
 ```jsx
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
-
-function MyComponent() {
-  return (
-    <div>
-      <OtherComponent />
-    </div>
-  );
-}
 ```
 
 If the module containing the dynamic import is not yet loaded by the time parent component renders, you must show some fallback content while you’re waiting for it to load using a loading indicator. This can be done using **Suspense** component.
 ```jsx
-const OtherComponent = React.lazy(() => import('./OtherComponent'));
+import React, { Suspense } from 'react';
 
-function MyComponent() {
+const Header = React.lazy(() => import("./Header"));
+const Footer = React.lazy(() => import("./Footer"));
+
+export default function App() {
   return (
-    <div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <OtherComponent />
+    <div className="App">
+      <Suspense fallback={<div>Header Loading...</div>}>
+        <Header />
+      </Suspense>
+      <Suspense fallback={<div>Footer Loading...</div>}>
+        <Footer />
       </Suspense>
     </div>
-  );
+  )
 }
 ```
 
 **[⬆](#Questions)**
 ---
-#### Q46
+#### Q44
 ### ✍Enlist advantages and lmitations of React.
 Main advantages of React
 - Increases the application's performance with Virtual DOM.
@@ -1153,7 +1236,7 @@ Some limitations of React
 ---
 
 #### QA1
-### ✍How does React state usestate and useEffect work internally
+### ✍Explain usestate and useEffect.
 - `useState` is a hook that encapsulates local state management. `useState` saves us from having to create class-based components for state-related responsibilities, since it gives functional components the power and flexibility to handle it themselves.
 
 ```jsx
@@ -1181,28 +1264,22 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
 function Reddit() {
-  // Initialize state to hold the posts
   const [posts, setPosts] = useState([]);
 
-  // effect functions can't be async, so declare the
-  // async function inside the effect, then call it
   useEffect(() => {
     async function fetchData() {
-      // Call fetch as usual
+
       const res = await fetch(
         "https://www.reddit.com/r/reactjs.json"
       );
 
-      // Pull out the data as usual
       const json = await res.json();
 
-      // Save the posts into state
-      // (look at the Network tab to see why the path is like this)
       setPosts(json.data.children.map(c => c.data));
     }
 
     fetchData();
-  }); // <-- we didn't pass a value. what do you think will happen?
+  });
 
   // Render as usual
   return (
@@ -1229,7 +1306,7 @@ ReactDOM.render(
 **[⬆](#Questions)**
 ---
 #### QA4
-### ✍How do you memoize a component?
+### ✍How do you memoize a component? How `useMemo` is different from `React.memo`.
 To optimize, and prevent multiple React renders, `React.memo()` is used.
 In programming, memoization is an optimization technique. It’s primarily used to speed up computing by story the result of a function and returning the cached result, when the same inputs occur again.
 
@@ -1242,6 +1319,12 @@ const MemoComponent = React.memo(function MemoComponent(props) {
 
 // another way
 export default React.memo(MyFunctionComponent);
+```
+
+`useMemo()` is a React Hook that we can use to wrap functions within a component. We can use this to ensure that the values within that function are re-computed only when one of its dependencies change.
+
+```jsx
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 ```
 
 **[⬆](#Questions)**
@@ -1319,14 +1402,6 @@ function MyChild ({ onClick }) {
 **[⬆](#Questions)**
 ---
 #### QA6
-### ✍How is React.memo different from useMemo ( two very different things )
-`React.memo()` is a higher-order component that we can use to wrap components that we do not want to re-render unless props within them change
-
-`useMemo()` is a React Hook that we can use to wrap functions within a component. We can use this to ensure that the values within that function are re-computed only when one of its dependencies change
-
-**[⬆](#Questions)**
----
-#### QA7
 ### ✍useReducer, useContext hook.
 `useReducer` is an alternative to `useState`. Accepts a reducer of type `(state, action) => newState`, and returns the current state paired with a `dispatch` method.
 
@@ -1412,15 +1487,7 @@ function ThemedButton() {
 
 **[⬆](#Questions)**
 ---
-#### QA8
-### ✍What is a reducer?
-A reducer is a function which takes two arguments, i.e., the current state and an action and returns based on both arguments a new state.
-
-Reducers always return the accumulation of the state (based on all previous and current actions). Therefore, they act as a reducer of state. Each time a Redux reducer is called, the state and action are passed as parameters. This state is then reduced (or accumulated) based on the action, and then the next state is returned. You could *reduce* a collection of actions and an initial state (of the store) on which to perform these actions to get the resulting final state.
-
-**[⬆](#Questions)**
----
-#### QA9
+#### QA7
 ### ✍How to fetch data with React Hooks?
 The effect hook called `useEffect` is used to fetch the data with axios from the API and to set the data in the local state of the component with the state hook’s update function.
 

@@ -586,7 +586,7 @@ function CountInputChanges() {
 }
 ```
 
-![without-dependency-arg](assets/react/infinite-loop-without-dependency-arg.jpg)
+![without-dependency-arg](/assets/react/infinite-loop-without-dependency-arg.jpg)
 
 **Component Update with dependency argument**
 ```jsx
@@ -608,7 +608,7 @@ function CountInputChanges() {
 }
 ```
 
-![with-dependency-arg](assets/react/infinite-loop-with-dependency-arg.jpg)
+![with-dependency-arg](/assets/react/infinite-loop-with-dependency-arg.jpg)
 
 **[⬆](#Questions)**
 ---

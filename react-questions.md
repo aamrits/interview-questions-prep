@@ -375,34 +375,35 @@ After rendering finishes, `useEffect` will check the list of dependency values a
 
 ```jsx
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import "./style.css";
 
-function App() {
-  const [data, setData] = useState({ hits: [] });
+export default function App() {
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    (async () => {
-      const result = await axios(
-        'http://hn.algolia.com/api/v1/search?query=react',
-      );
+    const getData = async() => {
+      const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+      const result = await response.json();
+      setData(result);
+    }
 
-      setData(result.data);
-    })()
+    getData();
   }, []);
 
   return (
-    <ul>
-      {data.hits.map(item => (
-        <li key={item.objectID}>
-          <a href={item.url}>{item.title}</a>
-        </li>
-      ))}
-    </ul>
+    <div>
+      {data.length > 0 ? (
+        data.map((item) => (
+          <ul>
+            <li>{item.title}</li>
+          </ul>
+        ))
+      ) : ''}
+    </div>
   );
 }
-
-export default App;
 ```
+Code Link: [Click here](https://stackblitz.com/edit/react-hmj9yc?file=src/App.js)
 
 **[⬆](#Questions)**
 ---
@@ -413,50 +414,68 @@ export default App;
 - The child component calls the parent callback function using `props`.
 
 ```jsx
+// Parent
+import React, { useState } from 'react';
+import InputForm from './InputForm';
+
+export default function App() {
+
+  const [input, setInput] = useState('');
+  const [text, setText] = useState('');
+
+  // from child we are getting 'e' from handleChange
+  const handleChange = (e) => {
+    setInput(e.target.value)
+  }
+
+  // from child we are getting addInputValue
+  const addInputValue = () => {
+    setText(input);
+    setInput('');
+  }
+
+  return (
+    <div>
+      <InputForm 
+        text={input}
+        handleChange={handleChange}
+        addInputValue={addInputValue}
+      />
+
+      <p>{text}</p>
+    </div>
+  );
+}
+
+// InputForm.js (Child)
 import React from 'react';
 
-class Parent extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      data: null
-    }
+const InputForm = ({text, handleChange, addInputValue}) => {
+  
+  const handleOnchange = (e) => {
+    handleChange(e);
   }
 
-  handleCallback = (childData) =>{
-    this.setState({data: childData})
+  const addValue = () => {
+    addInputValue();
   }
 
-  render(){
-    const {data} = this.state;
-    return(
-      <div>
-        <Child parentCallback = {this.handleCallback}/>
-        {data}
-      </div>
-    )
-  }
+  return (
+    <>
+      <input 
+        type="text" 
+        name="input"
+        value={text}
+        onChange={handleOnchange}
+      />
+      <button onClick={addValue}>Add</button>
+    </>
+  )
 }
 
-class Child extends React.Component{
-  onTrigger = (event) => {
-    this.props.parentCallback("Data from child");
-    event.preventDefault();
-  }
-
-  render(){
-    return(
-      <div>
-        <form onSubmit = {this.onTrigger}>
-          <input type = "submit" value = "Submit"/>
-        </form>
-      </div>
-    )
-  }
-}
-
-export default Parent;
+export default InputForm;
 ```
+Code Link: [Click Here](https://stackblitz.com/edit/react-coiiac?file=src/App.js)
 
 **[⬆](#Questions)**
 ---
@@ -466,13 +485,27 @@ The **Uncontrolled Components** are the ones that store their own state internal
 
 - In most cases, it's recommend to use controlled components to implement forms. In a controlled component, form data is handled by a React component. The alternative is uncontrolled components, where form data is handled by the DOM itself. Instead of writing an event handler for all of your state updates, you use a ref to retrieve values from the DOM. Example: manage focus, getting width and height of DIV element.
 
-`useState` would be used in the cases when we want to maintain and update the properties during the re-rendering of view. We will use `useRef` if we want to persist the values throughout the lifetime of the component.
+`useState` would be used in the cases when we want to maintain and update the properties during the re-rendering of view. We use the combination of `useRef` and `forwardRef` hook, if we want to persist the values throughout the lifetime of the component.
 
 The *ref* is used to return a reference to the element. *They should be avoided in most cases*, however, they can be useful when you need a direct access to the DOM element or an instance of a component.
 
 You can use `ref` in hooks like this:
 ```jsx
+// App.js
+import React from "react";
+import Component1 from './Component1'
+
+export default function App() {
+  return (
+    <div>
+      <Component1 />
+    </div>
+  );
+}
+
+// Component1.js
 import React, { forwardRef } from "react";
+import getDimensions from './getDimensions';
 
 const Component1 = (props, ref) => {
   return <div ref = {ref}>
@@ -506,6 +539,7 @@ const getDimensions = (Element) => {
 
 export default getDimensions;
 ```
+Code Link: [Click Here](https://stackblitz.com/edit/react-u1atqp?file=src/App.js)
 
 **[⬆](#Questions)**
 ---
@@ -513,17 +547,18 @@ export default getDimensions;
 ### ✍What is a higher-order component? Give example.
 A *higher-order component (HOC)* is a function that takes a component, adds some logic and returns that component with that additional logic. Basically, it's a pattern that is derived from React's compositional nature.
 
-We call them **pure components** because they can accept any dynamically provided child component but they won't modify or copy any behavior from their input components.
+HOCs can also be called **Pure components**, which means they only re-run or re-render only if the input data (or values in dependency array) changes.
 
 ```js
 const EnhancedComponent = higherOrderComponent(WrappedComponent)
 ```
-
 HOC can be used for many use cases:
 - Code reuse, logic and bootstrap abstraction.
 - Render hijacking.
 - State abstraction and manipulation.
 - Props manipulation.
+
+However, it is to be noted that we can't use HOC inside the `render()` method.
 
 **[⬆](#Questions)**
 ---
@@ -550,7 +585,9 @@ function CountInputChanges() {
   )
 }
 ```
+
 ![without-dependency-arg](assets/react/infinite-loop-without-dependency-arg.png)
+
 **Component Update with dependency argument**
 ```jsx
 import { useEffect, useState } from 'react';
@@ -570,6 +607,7 @@ function CountInputChanges() {
   )
 }
 ```
+
 ![with-dependency-arg](assets/react/infinite-loop-with-dependency-arg.png)
 
 **[⬆](#Questions)**
@@ -727,7 +765,7 @@ Some of the React Design Pattern are:
 - React Hooks Pattern
 
 Example of these patterns are given below
-https://react-hzgrec.stackblitz.io
+Code Link: [Click here](https://react-hzgrec.stackblitz.io)
 
 **[⬆](#Questions)**
 ---

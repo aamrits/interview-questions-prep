@@ -347,6 +347,7 @@ Example : the react version is specified as *^16.6.3*, which means that npm will
 
 **[⬆](#Questions)**
 ---
+## React Hook based Questions
 #### QA1
 ### ✍Explain usestate and useEffect.
 - `useState` is a hook that encapsulates local state management. `useState` saves us from having to create class-based components for state-related responsibilities, since it gives functional components the power and flexibility to handle it themselves.
@@ -1067,6 +1068,7 @@ This method will output the regular HTML as a string, which can be then placed i
 
 **[⬆](#Questions)**
 ---
+## React Class based Questions
 #### QB1
 ### ✍Lifecycle methods
 The component lifecycle has three distinct lifecycle phases:

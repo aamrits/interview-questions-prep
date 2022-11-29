@@ -51,7 +51,9 @@
 # Answers
 #### QA1 
 ### ✍Explain event loop. How execution context? Explain JS engine archietecture. How JavaScript is so fast?
-![Event Loop](assets/event-loop1.png)
+![Event Loop](./assets/event-loop1.png)
+
+![Kiku](assets/event-loop1.png)
 
 JavaScript is a **single threaded language**, i.e., it can execute one line at a time.
 - The JavaScript Engine has a **memory heap** and **call stack** . Even before executing a single line of code, JS stores variables and functions in the heap. *Variables are assigned **undefined** and functions are stored as it*.

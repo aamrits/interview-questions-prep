@@ -51,7 +51,8 @@
 # Answers
 #### QA1 
 ### ✍Explain event loop. How execution context? Explain JS engine archietecture. How JavaScript is so fast?
-![Event Loop](assets/event-loop1.png)
+
+![Event Loop](./assets/event-loop1.png)
 
 JavaScript is a **single threaded language**, i.e., it can execute one line at a time.
 - The JavaScript Engine has a **memory heap** and **call stack** . Even before executing a single line of code, JS stores variables and functions in the heap. *Variables are assigned **undefined** and functions are stored as it*.
@@ -63,6 +64,7 @@ JavaScript is a **single threaded language**, i.e., it can execute one line at a
 - Once the call stack is empty, event loop pushes the callback functions, which are waiting in the callback queue, to the call stack, to be executed. 
 
 - Suppose, there is a fetch request (**Promise**) and also a setTimeout. In this case, Promises gets pushed to the **microtask queue** or **priority queue**, after getting response. Microtask queue has more priority than callback queue (or task queue). So once the call stack is cleared, functions in the microtask queue gets pushed. After that callback functions in callback queue gets executed.
+
 ![Event Loop 2](assets/event-loop2.png)
 
 As per the code execution,

@@ -95,7 +95,8 @@ The tags that are deprecated are the following:
 ### ✍What is DOM? 
 - The Document Object Model (DOM) is the data representation of the objects that comprise the structure and content of a document on the web.
 - It is a programming interface for web documents.
-![DOM](assets/dom.png)
+
+![DOM](https://i.ibb.co/WzR5xBS/dom.png)
 
 **[⬆](#Questions)**
 ---
@@ -242,7 +243,7 @@ In HTML5 you can use many APIs. Some of them are:
 ```js
 <script defer src="https://examples.com/long.js"></script>
 ```
-![Async and Defer](assets/async-defer.png)
+![Async and Defer](https://i.ibb.co/X8x3Scy/async-defer.png)
 
 **[⬆](#Questions)**
 ---
@@ -255,7 +256,9 @@ YES
 #### Q17
 ### ✍How the browser renders HTML and CSS? Explain in detail.
 ###### The main components of browser are
-  ![Browser Flow](assets/browser-components.png)
+
+![Browser Flow](https://i.ibb.co/jJJwKPr/browser-components.png)
+
 - When a web page is loaded, the browser first reads the HTML text and constructs DOM Tree from it.  - Then it processes the CSS whether that is inline, embedded, or external CSS and constructs the CSSOM Tree from it. 
 - After these trees are constructed, then it constructs the Render-Tree from it. 
 ###### Main Flow Diagram

@@ -110,14 +110,14 @@ var x = 17;
 - If the type is changed, then it has to de-optimize (small performance hit).
 - Google Chrome browser's V8 engine is the fastest. Here, the baseline compiler is Ignition. The optimising compiler is Turbofan. The machine code is called Bytecode.
 
-![JS Engine 1](assets/js-engine1.png)
-![JS Engine](assets/js-engine.png)
+![JS Engine 1](https://i.ibb.co/qdHcR49/js-engine1.png)
+![JS Engine](https://i.ibb.co/ZTJrCJd/js-engine.png)
 
 **[⬆](#Questions)**
 ---
 #### Q2
 ### ✍Explain event loop.
-![Event Loop](assets/event-loop1.png)
+![Event Loop](https://i.ibb.co/NFWj1Bc/event-loop1.png)
 
 JavaScript is a **single threaded language**, i.e., it can execute one line at a time.
 1. The JavaScript Engine has a **memory heap** and **call stack** . Even before executing a single line of code, JS stores variables and functions in the heap. *Variables are assigned **undefined** and functions are stored as it*.
@@ -129,7 +129,7 @@ JavaScript is a **single threaded language**, i.e., it can execute one line at a
 5. Once the call stack is empty, event loop pushes the callback functions, which are waiting in the callback queue, to the call stack, to be executed. 
 
 6. Suppose, there is a fetch request (**Promise**) and also a setTimeout. In this case, Promises gets pushed to the **microtask queue** or **priority queue**, after getting response. Microtask queue has more priority than callback queue (or task queue). So once the call stack is cleared, functions in the microtask queue gets pushed. After that callback functions in callback queue gets executed.
-![Event Loop 2](assets/event-loop2.png)
+![Event Loop 2](https://i.ibb.co/J5RfsFf/event-loop2.png)
 
 **[⬆](#Questions)**
 ---
@@ -140,7 +140,7 @@ JavaScript is a **single threaded language**, i.e., it can execute one line at a
 2. Once code is executed, variable names are assigned value. For a function, a separate Execution Context is created. Here, `arguments` and `this` is available to us. For each function call, seperation Execution Contexts are created.
 
 3. Execution Context has 2 phases: **Creation** and **Execution**.
-![Execution Context](assets/execution-context.png)
+![Execution Context](https://i.ibb.co/hXZKHSr/execution-context.png)
 
 **[⬆](#Questions)**
 ---
@@ -2671,7 +2671,7 @@ Once developers have configured CORS on the server to accepts requests from othe
 
 It is to verify whether resource sharing is allowed on the destination server. The preflight request uses the HTTP method OPTIONS.
 
-![CORS mechanism](assets/cors-infographic.png)
+![CORS mechanism](https://i.ibb.co/t2D7h7C/cors-infographic.jpg)
 
 **[⬆](#Questions)**
 ---
@@ -2691,7 +2691,7 @@ JWT authentication follows a 4 step process:
 - Thereafter for every request the client sends the JWT in the authorization header. Validation happens using token introspection with the auth server.
 - Once validated, resource server sends the necessary data to the client.
 
-![JWT](assets/jwt-infographic.png)
+![JWT](https://i.ibb.co/rFBV7JG/jwt-infographic.jpg)
 
 **[⬆](#Questions)**
 ---
@@ -2726,7 +2726,7 @@ JWT authentication follows a 4 step process:
 ```js
 <script defer src="https://examples.com/long.js"></script>
 ```
-![Async and Defer](assets/async-defer.png)
+![Async and Defer](https://i.ibb.co/X8x3Scy/async-defer.png)
 
 **[⬆](#Questions)**
 ---

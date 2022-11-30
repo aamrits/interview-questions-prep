@@ -64,15 +64,15 @@ The *Virtual DOM* works in three simple steps.
 
 1. Whenever any underlying data changes, the entire UI is re-rendered in Virtual DOM representation.
 
-![vdom](assets/react/vdom1.png)
+![vdom](https://i.ibb.co/PYF21vk/vdom1.jpg)
 
 2. Then the difference between the previous DOM representation and the new one is calculated.
 
-![vdom2](assets/react/vdom2.png)
+![vdom2](https://i.ibb.co/WWHM5zS/vdom2.png)
 
 3. Once the calculations are done, the real DOM will be updated with only the things that have actually changed.
 
-![vdom3](assets/react/vdom3.png)
+![vdom3](https://i.ibb.co/gjggh5D/vdom3.png)
 
 - Updating virtual DOM in ReactJS is faster because ReactJS uses
 ReactJS uses observable’s to find the modified components. Whenever setState() method is called on any component, ReactJS makes that component dirty and re-renders it. Creating the whole Virtual DOM from scratch is fast and doesn't affect performance. ReactJS maintains two virtual DOM, one with the updated state Virtual DOM and other with the previous state Virtual DOM.
@@ -91,7 +91,7 @@ ReactJS using the diff algorithm to find the minimum number of steps to update t
 ### ✍React steps to find differences in both Virtual DOM? (how diffing works in React)
 Below is the DOM structure
 
-![html-dom](assets/react/html-dom.png)
+![html-dom](https://i.ibb.co/j3LvgJF/react-html-dom.png)
 
 Since DOM is represented as a tree structure, changes to the DOM is pretty quick but the changed element, and it’s children’s has to go through **Reflow/Layout** stage and then the changes has to be **Re-painted** which are slow. Therefore more the items to reflow/repaint, more slow your app becomes.
 
@@ -608,7 +608,7 @@ function CountInputChanges() {
 }
 ```
 
-![with-dependency-arg](/assets/react/infinite-loop-with-dependency-arg.jpg)
+![with-dependency-arg](https://i.ibb.co/HPch5Sj/react-infinite-loop-with-dependency-arg.webp)
 
 **[⬆](#Questions)**
 ---
@@ -1057,7 +1057,7 @@ function ThemedButton() {
 
 The workflow between dispatcher, stores and views components with distinct inputs and outputs as follows:
 
-![flux](assets/react/flux.png)
+![flux](https://i.ibb.co/G3Dfx7G/react-flux.png)
 
 **[⬆](#Questions)**
 ---
@@ -1065,7 +1065,7 @@ The workflow between dispatcher, stores and views components with distinct input
 ### ✍What is Redux? What are the core principles of Redux? Explain the flow.
 *Redux* is a predictable state container for JavaScript apps based on the *Flux design pattern*. Redux can be used together with React, or with any other view library. It is tiny (about 2kB) and has no dependencies.
 
-![redux](assets/react/redux-flow.gif)
+![redux](https://i.ibb.co/3SnnwT3/redux-flow.gif)
 
 The core principles of Redux:
 - **Single source of truth**: The state of your whole application is stored in an object tree within a single store. The single state tree makes it easier to keep track of changes over time and debug or inspect the application.
@@ -1121,10 +1121,10 @@ It's worth mentioning that React internally has a concept of phases when applyin
 - **Commit** React works with the DOM and executes the final lifecycles respectively `componentDidMount()` for mounting, `componentDidUpdate()` for updating, and `componentWillUnmount()` for unmounting.
 
 React 16.3+ Phases
-![react-after-16-3](assets/react/react16-3-after.png)
+![react-after-16-3](https://i.ibb.co/YBDHfNc/react-react16-3-after.png)
 
 Before React 16.3+ 
-![react-before-16-3](assets/react/react16-3-before.png)
+![react-before-16-3](https://i.ibb.co/pfpknxm/react-react16-3-before.png)
 
 The lifecycle methods of React before 16.3
 Before React 16.3

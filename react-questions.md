@@ -18,6 +18,7 @@
 - [What is React Router? How React Router is different from history library?](#Q16) 
 - [Explain Atomic Design Pattern.](#Q17)
 - [What do you mean by ~ or ^ in react package.json?](#Q18)
+- [What are synthetic events in React?](#Q19)
 
 ## React Hook based Questions
 - [Explain usestate and useEffect.](#QA1)
@@ -38,17 +39,15 @@
 - [What is Flux?](#QA16)
 - [What is Redux? What are the core principles of Redux? Explain the flow.](#QA17)
 - [Explain Redux Saga with an example.](#QA18)
-- [What are synthetic events in React?](#QA19)
-- [How you implement Server-Side Rendering or SSR?](#QA20)
-- [Optimization hooks](#QA21)
+- [How you implement Server-Side Rendering or SSR?](#QA19)
+- [Optimization hooks](#QA20)
 
 ## React Class based Questions
 - [Lifecycle methods](#QB1)
 - [Difference between state and ref.](#QB2)
 - [What are pure components? Explain with example](#QB3)
 - [What are React Event Handlers?](#QB4)
-- [What are synthetic events in React?](#QB5)
-- [What is the difference between mapStateToProps() and mapDispatchToProps()? Explain the flow of Redux in Class based component.](#QB6)
+- [What is the difference between mapStateToProps() and mapDispatchToProps()? Explain the flow of Redux in Class based component.](#QB5)
 
 ---
 
@@ -343,6 +342,26 @@ The five distinct levels of atomic design — atoms > molecules > organisms > te
 #### Q18
 ### ✍What do you mean by ~ or ^ in react package.json?
 Example : the react version is specified as *^16.6.3*, which means that npm will install the most recent major version matching 16.x.x. In contrast if you see something like *~5.6.7* in package.json, it means that it will install the most recent minor version matching 5.6.x.
+
+**[⬆](#Questions)**
+---
+#### QA19
+### ✍What are synthetic events in React?
+React has its own event handling system which is very similar to handling events on DOM elements. The react event handling system is known as Synthetic Events. The synthetic event is a cross-browser wrapper of the browser's native event.
+
+Handling events with react have some syntactic differences from handling events on DOM. These are:
+- React events are named as camelCase instead of lowercase.
+- With JSX, a function is passed as the event handler instead of a string. For example:
+```jsx
+<button onclick="showMessage()">  
+  Hello React  
+</button> 
+
+// Event declaration in React:
+<button onClick={showMessage}>  
+  Hello React  
+</button> 
+```
 
 **[⬆](#Questions)**
 ---
@@ -1008,26 +1027,6 @@ The core principles of Redux:
 **[⬆](#Questions)**
 ---
 #### QA19
-### ✍What are synthetic events in React?
-React has its own event handling system which is very similar to handling events on DOM elements. The react event handling system is known as Synthetic Events. The synthetic event is a cross-browser wrapper of the browser's native event.
-
-Handling events with react have some syntactic differences from handling events on DOM. These are:
-- React events are named as camelCase instead of lowercase.
-- With JSX, a function is passed as the event handler instead of a string. For example:
-```jsx
-<button onclick="showMessage()">  
-  Hello React  
-</button> 
-
-// Event declaration in React:
-<button onClick={showMessage}>  
-  Hello React  
-</button> 
-```
-
-**[⬆](#Questions)**
----
-#### QA20
 ### ✍How you implement Server-Side Rendering or SSR?
 React is already equipped to handle rendering on Node servers. A special version of the DOM renderer is available, which follows the same pattern as on the client side.
 ```jsx
@@ -1040,7 +1039,7 @@ This method will output the regular HTML as a string, which can be then placed i
 
 **[⬆](#Questions)**
 ---
-#### QA21
+#### QA20
 ### ✍Optimization hooks
 Some hooks we can use are:
 - useMemo() Hook: Refer QA12 [What are Pure Components. Why they are used. Explain how they are implemented in both Hooks and Class based React component. ](#QA12)
@@ -1219,12 +1218,6 @@ render() {
 **[⬆](#Questions)**
 ---
 #### QB5
-### ✍What are synthetic events in React?
-`SyntheticEvent` is a cross-browser wrapper around the browser's native event. It's API is same as the browser's native event, including `stopPropagation()` and `preventDefault()`, except the events work identically across all browsers.
-
-**[⬆](#Questions)**
----
-#### QB6
 ### ✍What is the difference between mapStateToProps() and mapDispatchToProps()? Explain the flow of Redux in Class based component.
 `mapStateToProps()` is a utility which helps your component get updated state (which is updated by some other components):
 

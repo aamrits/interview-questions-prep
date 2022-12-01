@@ -345,7 +345,7 @@ Example : the react version is specified as *^16.6.3*, which means that npm will
 
 **[⬆](#Questions)**
 ---
-#### QA19
+#### Q19
 ### ✍What are synthetic events in React?
 React has its own event handling system which is very similar to handling events on DOM elements. The react event handling system is known as Synthetic Events. The synthetic event is a cross-browser wrapper of the browser's native event.
 

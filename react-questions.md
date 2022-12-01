@@ -31,18 +31,16 @@
 - [How to handle asynchronous calls?](#QA9)
 - [What is render props pattern? Explain some of the React Design Pattern.](#QA10)
 - [What is code-splitting or dynamic import? Explain `React.lazy()` and `Suspense()`.](#QA11)
-- [How to prevent re-renders on React functional components?](#QA12)
-- [What are pure components? Explain with example](#QA13)
-- [How do you memoize a component?](#QA14)
-- [Explain useCallback()](#QA15)
-- [useReducer, useContext hook](#QA16)
-- [What is context API? or How can we avoid prop drilling?](#QA17)
-- [What is Flux?](#QA18)
-- [What is Redux? What are the core principles of Redux? Explain the flow.](#QA19)
-- [Explain Redux Saga with an example.](#QA20)
-- [What are synthetic events in React?](#QA21)
-- [How you implement Server-Side Rendering or SSR?](#QA22)
-- [Optimization hooks](#QA23)
+- [What are Pure Components. Why they are used. Explain how they are implemented in both Hooks and Class based React component. ](#QA12)
+- [Explain difference between `useMemo` and `useCallback`.](#QA13)
+- [Explain `useReducer` hook.](#QA14)
+- [What is prop drilling? How can we avoid it by context API. Give example.](#QA15)
+- [What is Flux?](#QA16)
+- [What is Redux? What are the core principles of Redux? Explain the flow.](#QA17)
+- [Explain Redux Saga with an example.](#QA18)
+- [What are synthetic events in React?](#QA19)
+- [How you implement Server-Side Rendering or SSR?](#QA20)
+- [Optimization hooks](#QA21)
 
 ## React Class based Questions
 - [Lifecycle methods](#QB1)
@@ -363,6 +361,27 @@ const [state, setState] = useState(initialstate)
 useEffect(callback[, dependencies]);
 ```
 
+```jsx
+// componentDidMount
+useEffect(() => {
+  
+}, []);
+
+// componentDidUpdate
+useEffect(() => {
+  
+}, [value]);
+
+// componentWillUnmount
+useEffect(() => {
+
+  // using return inside useEffect is same as componentWillUnmount
+  return(() => {
+
+  });
+}, []);
+```
+
 **[⬆](#Questions)**
 ---
 #### QA2
@@ -616,14 +635,18 @@ function CountInputChanges() {
 ### ✍What is React router dom? Explain with an example.
 `react-router-dom` is a specialized package that you can use only in web-browser-based application development.
 
-- Implement the basic routing
-```jsx
-import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+The above example is for `react-router-dom` **v6.4.3**
 
-export default function BasicExample() {
+```jsx
+import React from 'react';
+import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
+import Home from "./Home";
+import About from "./About";
+import GetBio from "./GetBio";
+
+export default function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <div>
         <ul>
           <li>
@@ -632,112 +655,67 @@ export default function BasicExample() {
           <li>
             <Link to="/about">About</Link>
           </li>
+          <li>
+            <Link to="/bio/5656">GetBio</Link>
+          </li>
         </ul>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-        </Switch>
+
+        <Routes>
+          <Route exact path="/" element={ <Home /> } />
+          <Route exact path="/about" element={< About /> } />
+          {/* use params */}
+          <Route exact path="bio/:id" element={<GetBio />} />
+          {/* redirects if route not found */}
+          <Route exact path="*" element={<Navigate to="/" />} />
+        </Routes>
+
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 
-// You can think of these components as "pages" in your app.
+// Home.js
+import React from 'react';
 
-function Home() {
+const Home = () => {
   return (
-    <div>
-      <h2>Home</h2>
-    </div>
-  );
+    <div>Home</div>
+  )
 }
 
-function About() {
+export default Home;
+
+// About.js
+import React from 'react';
+
+const About = () => {
   return (
-    <div>
-      <h2>About</h2>
-    </div>
-  );
+    <div>About</div>
+  )
 }
-```
 
-- Implement routing with URL parameters
-```jsx
-<Switch>
-  <Route path="/:id" children={<Child />} />
-</Switch>
- 
-function Child() {
+export default About;
+
+// GetBio.js
+import React from 'react';
+import { useParams } from "react-router-dom"
+
+const GetBio = () => {
   let { id } = useParams();
-
   return (
-    <div>
-      <h3>ID: {id}</h3>
-    </div>
-  );
+    <div>User ID: {id} </div>
+  )
 }
-```
 
-- Implement routing with Redirect
-```jsx
-// - A <Switch> renders the first child <Route> that matches
-// - A <Redirect> may be used to redirect old URLs to new ones
-// - A <Route path="*> always matches
-
-<Switch>
-  <Route exact path="/">
-    <Home />
-  </Route>
-  <Route path="/old-match">
-    <Redirect to="/will-match" />
-  </Route>
-  <Route path="/will-match">
-    <WillMatch />
-  </Route>
-  <Route path="*">
-    <NoMatch />
-  </Route>
-</Switch>
+export default GetBio;
 ```
+Code Link: [Click Here](https://stackblitz.com/edit/react-nyq86f?file=src/App.js)
 
 **[⬆](#Questions)**
 ---
 #### QA8
 ### ✍How to re-render the view when the browser is resized?
-You can listen to the resize event in `componentDidMount()` and then update the dimensions (width and height). You should remove the listener in `componentWillUnmount()` method.
-
-```jsx
-class WindowDimensions extends React.Component {
-  constructor(props) {
-    super(props);
-    this.updateDimensions = this.updateDimensions.bind(this);
-  }
-   
-  componentWillMount() {
-    this.updateDimensions()
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize', this.updateDimensions)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDimensions)
-  }
-
-  updateDimensions() {
-    this.setState({width: window.innerWidth, height: window.innerHeight})
-  }
-
-  render() {
-    return <span>{this.state.width} x {this.state.height}</span>
-  }
-}
-```
+Refer to QA4 [Differences between controlled and uncontrolled components. Difference between state and ref. Give example.](#QA4)
 
 **[⬆](#Questions)**
 ---
@@ -814,153 +792,98 @@ export default function App() {
 **[⬆](#Questions)**
 ---
 #### QA12
-### ✍How to prevent re-renders on React functional components?
-To optimize, and prevent multiple React renders, `React.memo()` is used.
-In programming, memoization is an optimization technique. It’s primarily used to speed up computing by story the result of a function and returning the cached result, when the same inputs occur again.
+### ✍What are Pure Components. Why they are used. Explain how they are implemented in both Hooks and Class based React component. 
+Normally, when we update the state either by `this.setState` or `useState`, the component re-renders, even if the props values doesn't change. When we use Pure Components, it makes sure that the component re-renders only when the props value changes. 
 
-Since React v16.6.0, we have a `React.memo`. It provides a higher order component which memoizes component unless the props change. To use it, simply wrap the component using `React.memo` before you use it.
-
+The oldest way to optimize components performance was to use the lifecycle method `shouldComponentUpdate`:
 ```jsx
-const MemoComponent = React.memo(function MemoComponent(props) {
-  /* render using props */
-});
+class ContactList extends React.Component {
+  shouldComponentUpdate(nextProps) {
+    return nextProps.contacts !== this.props.contacts;
+    // the render function will be called only when the props `contacts` changes
+  }
+  render() {
+    const { contacts } = this.props;
+    return <List data={contacts} />;
+  }
+}
+```
+With React v15.3, `PureComponent` was added.
+```jsx
+class ContactList extends React.PureComponent {
+  //   ^^^^^^^^^^^^^ magic happens here
+  render() {
+    const { contacts } = this.props;
+    return <List data={contacts} />;
+  }
+}
+```
+With the coming of functional components, we can use like this:
+```jsx
+import React, { memo } from 'react';
 
-// another way
-export default React.memo(MyFunctionComponent);
+export default memo(
+  function ContactList({ contacts }) {
+    return <List data={contacts} />;
+  }
+);
+```
+It can also take a 2nd parameter, which is equivalent to `shouldComponentUpdate` in Class components.
+```jsx
+import React, { memo } from 'react';
+
+function areEqual(prevProps, nextProps) {
+  return prevProps.contacts === nextProps.contacts;
+  // the component will be updated only on `contact` props changes.
+}
+
+export default memo(
+  function ContactList({ title, contacts }) {
+    return <List title={title} data={contacts} />;
+  },
+  areEqual
+);
+```
+With React v16.8, we can use `useMemo` hook which is more convenient.
+```jsx
+import React, { useMemo } from 'react';
+
+function ContactList({ title, contacts }) {
+  const listComponent = useMemo(() => {
+    return <List title={title} data={contacts} />;
+  }, [contacts]);
+  //  ^^^^^^^^ `props.contacts` dependency
+  
+  return listComponent;
+}
 ```
 
 **[⬆](#Questions)**
 ---
 #### QA13
-### ✍What are pure components? Explain with example
-`React.PureComponent` is exactly the same as `React.Component` except that it handles the `shouldComponentUpdate()` method for you. When props or state changes, PureComponent will do a shallow comparison on both props and state. Component on the other hand won't compare current props and state to next out of the box. Thus, the component will re-render by default whenever shouldComponentUpdate is called.
-
-A React component is considered pure if it renders the same output for the same state and props.
-Pure components have some performance improvements and render optimizations since React implements the shouldComponentUpdate() method for them with a shallow comparison for props and state.
-
+### ✍Explain difference between `useMemo` and `useCallback`.
+The difference is that `useCallback` returns its function when the dependencies change while `useMemo` calls its function and returns the result. 
 ```jsx
-// FUNCTIONAL COMPONENT
-function PercentageStat({ label, score = 0, total = Math.max(1, score) }) {
-  return (
-    <div>
-      <h6>{ label }</h6>
-      <span>{ Math.round(score / total * 100) }%</span>
-    </div>
-  )
+function foo() {
+  return 'bar';
 }
 
-// CONVERTED TO PURE COMPONENT
-class PercentageStat extends React.PureComponent {
-  render() {
-    const { label, score = 0, total = Math.max(1, score) } = this.props;
+const memoizedCallback = useCallback(foo, []);
+const memoizedResult = useMemo(foo, []);
 
-    return (
-      <div>
-        <h6>{ label }</h6>
-        <span>{ Math.round(score / total * 100) }%</span>
-      </div>
-    )
-  }
-
-}
+memoizedCallback;
+// ƒ foo() {
+//   return 'bar';
+// }
+memoizedResult; // 'bar' (we're getting the result)
+memoizedCallback(); // 'bar' (We're calling it as a function to get result)
+memoizedResult(); // TypeError 
 ```
 
 **[⬆](#Questions)**
 ---
 #### QA14
-### ✍How do you memoize a component?
-To optimize, and prevent multiple React renders, `React.memo()` is used.
-In programming, memoization is an optimization technique. It’s primarily used to speed up computing by story the result of a function and returning the cached result, when the same inputs occur again.
-
-Since React v16.6.0, we have a `React.memo`. It provides a higher order component which memoizes component unless the props change. To use it, simply wrap the component using `React.memo` before you use it.
-```jsx
-const MemoComponent = React.memo(function MemoComponent(props) {
-  /* render using props */
-});
-
-// another way
-export default React.memo(MyFunctionComponent);
-```
-`useMemo()` is a React Hook that we can use to wrap functions within a component. We can use this to ensure that the values within that function are re-computed only when one of its dependencies change.
-```jsx
-const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
-```
-
-**[⬆](#Questions)**
----
-#### QA15
-### ✍Explain useCallback()
-```jsx
-const memoizedCallback = useCallback(
-  () => {
-    doSomething(a, b);
-  },
-  [a, b],
-);
-```
-
-`useCallback()` returns a *memoized* callback.
-
-###### Purpose
-An object (including a function object) equals only to itself.
-
-```jsx
-function MyComponent() {
-  // handleClick is re-created on each render
-  const handleClick = () => {
-    console.log('Clicked!');
-  };
-  // ...
-}
-```
-
-`handleClick` is a different function object on every rendering of `MyComponent`.
-
-Consider a component that renders a big list of items. The list could be big, maybe hundreds of items. To prevent useless list re-renderings, you wrap it into `React.memo()`. 
-
-```jsx
-// A good use case
-import { useCallback } from 'react';
-export function MyParent({ term }) {
-  const onItemClick = useCallback(event => {
-    console.log('You clicked ', event.currentTarget);
-  }, [term]);
-
-  return (
-    <MyBigList
-      term={term}
-      onItemClick={onItemClick}
-    />
-  );
-}
-```
-
-`onItemClick` callback is memoized by `useCallback()`. As long as term is the same, `useCallback()` returns the same function object. When `MyParent` component re-renders, `onItemClick` function object remains the same and doesn't break the memoization of `MyBigList`. This is a good example of `useCallback()`.
-
-```jsx
-// A BAD use case
-import { useCallback } from 'react';
-function MyComponent() {
-  // Contrived use of `useCallback()`
-  const handleClick = useCallback(() => {
-    // handle the click event
-  }, []);
-  return <MyChild onClick={handleClick} />;
-}
-
-function MyChild ({ onClick }) {
-  return <button onClick={onClick}>I am a child</button>;
-}
-```
-
-- `<MyChild>` component is light and its re-rendering doesn't create performance issues.
-- `useCallback()` hook is called every time `MyComponent` renders.
-- By using `useCallback()` you also increased code complexity
-
-**[⬆](#Questions)**
----
-#### QA16
-### ✍useReducer, useContext hook
+### ✍Explain `useReducer` hook.
 `useReducer` is an alternative to `useState`. Accepts a reducer of type `(state, action) => newState`, and returns the current state paired with a `dispatch` method.
 
 ```jsx
@@ -995,7 +918,15 @@ function Counter() {
 }
 ```
 
-`useContext` accepts a context object (the value returned from `React.createContext`) and returns the current context value for that context. The current context value is determined by the value prop of the nearest `<MyContext.Provider>` above the calling component in the tree.
+**[⬆](#Questions)**
+---
+#### QA15
+### ✍What is prop drilling? How can we avoid it by context API. Give example.
+When there is a lot of nested Parent-Child components, we have to pass data to all those nested components, the reason being React is uni-directional. This is called Prop drilling.
+
+We can avoid prop drilling by using a centralized store for state management such as Redux or Context API.
+
+`useContext` is a hook that accepts a context object (the value returned from `React.createContext`) and returns the current context value for that context. The current context value is determined by the value prop of the nearest `<MyContext.Provider>` above the calling component in the tree.
 
 ```jsx
 const value = useContext(MyContext);
@@ -1045,13 +976,7 @@ function ThemedButton() {
 
 **[⬆](#Questions)**
 ---
-#### QA17
-### ✍What is context API? or How can we avoid prop drilling?
-
-
-**[⬆](#Questions)**
----
-#### QA18
+#### QA16
 ### ✍What is Flux?
 *Flux is an application design paradigm* used as a replacement for the more traditional MVC pattern. It is a new kind of architecture that complements React and the concept of Unidirectional Data Flow.
 
@@ -1061,7 +986,7 @@ The workflow between dispatcher, stores and views components with distinct input
 
 **[⬆](#Questions)**
 ---
-#### QA19
+#### QA17
 ### ✍What is Redux? What are the core principles of Redux? Explain the flow.
 *Redux* is a predictable state container for JavaScript apps based on the *Flux design pattern*. Redux can be used together with React, or with any other view library. It is tiny (about 2kB) and has no dependencies.
 
@@ -1076,19 +1001,33 @@ The core principles of Redux:
 
 **[⬆](#Questions)**
 ---
-#### QA20
+#### QA18
 ### ✍Explain Redux Saga with an example.
 
 
 **[⬆](#Questions)**
 ---
-#### QA21
+#### QA19
 ### ✍What are synthetic events in React?
-`SyntheticEvent` is a cross-browser wrapper around the browser's native event. It's API is same as the browser's native event, including `stopPropagatiPrinciples why React is so popular?on()` and `preventDefault()`, except the events work identically across all browsers.
+React has its own event handling system which is very similar to handling events on DOM elements. The react event handling system is known as Synthetic Events. The synthetic event is a cross-browser wrapper of the browser's native event.
+
+Handling events with react have some syntactic differences from handling events on DOM. These are:
+- React events are named as camelCase instead of lowercase.
+- With JSX, a function is passed as the event handler instead of a string. For example:
+```jsx
+<button onclick="showMessage()">  
+  Hello React  
+</button> 
+
+// Event declaration in React:
+<button onClick={showMessage}>  
+  Hello React  
+</button> 
+```
 
 **[⬆](#Questions)**
 ---
-#### QA22
+#### QA20
 ### ✍How you implement Server-Side Rendering or SSR?
 React is already equipped to handle rendering on Node servers. A special version of the DOM renderer is available, which follows the same pattern as on the client side.
 ```jsx
@@ -1101,9 +1040,15 @@ This method will output the regular HTML as a string, which can be then placed i
 
 **[⬆](#Questions)**
 ---
-#### QA23
+#### QA21
 ### ✍Optimization hooks
+Some hooks we can use are:
+- useMemo() Hook: Refer QA12 [What are Pure Components. Why they are used. Explain how they are implemented in both Hooks and Class based React component. ](#QA12)
+- useCallback() Hook Refer QA13 [Explain difference between `useMemo` and `useCallback`.](#QA13)
 
+Some minor improvements are
+- `let` and `const`: With `const`, the code is explicitly telling the JavaScript Engine that the value cannot change
+- Use Fragments: This mostly has benefit on deep trees, but rendering one less DOM node is still one less step in the process.
 
 **[⬆](#Questions)**
 ---

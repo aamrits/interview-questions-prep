@@ -992,6 +992,7 @@ function ThemedButton() {
   );
 }
 ```
+Code Link: [Click Here](https://stackblitz.com/edit/react-ostxwl?file=src/App.js)
 
 **[⬆](#Questions)**
 ---
@@ -1098,6 +1099,8 @@ const Counter = () => {
 
 export default Counter;
 ```
+Code Link: [Click Here](https://stackblitz.com/edit/react-7bavk8?file=src/App.js)
+
 **Note**: Redux is synchronous. We add middleware like thunk and saga to handle asynchronous functions.
 
 **[⬆](#Questions)**

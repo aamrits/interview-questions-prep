@@ -947,13 +947,11 @@ We can avoid prop drilling by using a centralized store for state management suc
 
 `useContext` is a hook that accepts a context object (the value returned from `React.createContext`) and returns the current context value for that context. The current context value is determined by the value prop of the nearest `<MyContext.Provider>` above the calling component in the tree.
 
-```jsx
-const value = useContext(MyContext);
-```
-
 When the nearest `<MyContext.Provider>` above the component updates, this Hook will trigger a rerender with the latest context value passed to that MyContext provider. Even if an ancestor uses `React.memo` or `shouldComponentUpdate`, a rerender will still happen starting at the component itself using `useContext`.
 
 ```jsx
+import React, { useContext } from "react";
+
 const themes = {
   light: {
     foreground: "#000000",
@@ -967,11 +965,13 @@ const themes = {
 
 const ThemeContext = React.createContext(themes.light);
 
-function App() {
+export default function App() {
   return (
-    <ThemeContext.Provider value={themes.dark}>
-      <Toolbar />
-    </ThemeContext.Provider>
+    <div>
+      <ThemeContext.Provider value={themes.dark}>
+        <Toolbar />
+      </ThemeContext.Provider>
+    </div>
   );
 }
 
@@ -1009,13 +1009,95 @@ The workflow between dispatcher, stores and views components with distinct input
 ### ✍What is Redux? What are the core principles of Redux? Explain the flow.
 *Redux* is a predictable state container for JavaScript apps based on the *Flux design pattern*. Redux can be used together with React, or with any other view library. It is tiny (about 2kB) and has no dependencies.
 
-![redux](https://i.ibb.co/3SnnwT3/redux-flow.gif)
+![redux](https://i.ibb.co/Zf5X12S/reduxasyncdataflowdiagram.gif)
 
 The core principles of Redux:
 - **Single source of truth**: The state of your whole application is stored in an object tree within a single store. The single state tree makes it easier to keep track of changes over time and debug or inspect the application.
 - **State is read-only**: The only way to change the state is to emit an action, an object describing what happened. This ensures that neither the views nor the network callbacks will ever write directly to the state.
 - **Changes are made with pure functions**: To specify how the state tree is transformed by actions, you write reducers. Reducers are just pure functions that take the previous state and an action as parameters, and return the next state.
 
+##### Initial setup
+- Install `redux`, `react-redux` and `@reduxjs/toolkit`.
+- Wrap `<App>` with `<Provider />`
+```jsx
+import { Provider } from "react-redux";
+import store from "./redux/configureStore";
+
+<Provider store={store}>
+  <App />
+</Provider>
+```
+
+- Configure the store
+<!-- configureStore.js -->
+```jsx
+import { configureStore } from '@reduxjs/toolkit';
+import countReducer from './store/countReducer';
+
+export default configureStore({
+	reducer: {
+		counter: countReducer,
+	},
+});
+```
+
+- Create a reducer - add action, based on action change the state
+```jsx
+export const INCREMENT = 'increment';
+export const DECREMENT = 'decrement';
+
+export const increment = () => ({
+  type: INCREMENT
+});
+
+export const decrement = () => ({
+  type: DECREMENT
+});
+
+const initialState = {
+  count: 0
+};
+
+export default (state = initialState, action) => {
+  switch(action.type) {
+    case INCREMENT:
+      return { ...state, count: state.count + 1 }
+    case DECREMENT:
+      return { ...state, count: state.count - 1 }
+    default:
+      return { ...state }
+  }
+}
+```
+- use it in the component using `useDispatch` and `useSelector`
+```jsx
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { increment, decrement } from "./redux/store/countReducer";
+
+const Counter = () => {
+  const count = useSelector((state) => state.counter.count);
+  const dispatch = useDispatch();
+
+  const handleIncrement = () => {
+    dispatch(increment());
+  }
+
+  const handleDecrement = () => {
+    dispatch(decrement());
+  }
+
+  return (
+    <div>
+      <h3>Counter: {count}</h3>
+      <button onClick={handleIncrement}>Increment</button>
+      <button onClick={handleDecrement}>Decrement</button>
+    </div>
+  )
+}
+
+export default Counter;
+```
 **Note**: Redux is synchronous. We add middleware like thunk and saga to handle asynchronous functions.
 
 **[⬆](#Questions)**

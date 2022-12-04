@@ -1010,7 +1010,7 @@ The workflow between dispatcher, stores and views components with distinct input
 ### ✍What is Redux? What are the core principles of Redux? Explain the flow.
 *Redux* is a predictable state container for JavaScript apps based on the *Flux design pattern*. Redux can be used together with React, or with any other view library. It is tiny (about 2kB) and has no dependencies.
 
-![redux](https://i.ibb.co/Zf5X12S/reduxasyncdataflowdiagram.gif)
+![redux](https://i.ibb.co/m5vFBqn/reduxasyncdataflowdiagram.gif)
 
 The core principles of Redux:
 - **Single source of truth**: The state of your whole application is stored in an object tree within a single store. The single state tree makes it easier to keep track of changes over time and debug or inspect the application.

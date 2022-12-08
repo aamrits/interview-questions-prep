@@ -71,6 +71,23 @@ Output: 'masooooom'
 
 ## Objects
 - [Check if a given object is empty or not.](#QC1)
+- [Reverse key-values of an Object](#QC2)
+```
+Input: 
+{
+    'John': '29',
+    'Kay': '34',
+    'Pearson': '46',
+    'Menon': '64'
+}
+Output: 
+{
+    '29': 'John',
+    '34': 'Kay',
+    '46': 'Pearson',
+    '64': 'Menon'
+}
+```
 
 ## Recursion
 - [Write a function for factorial program.](#QD1)
@@ -88,8 +105,6 @@ console.log('three');0
 # Answers
 #### QA1 
 ### ✍Write a function to remove duplicates in an array, sort it in the descending order.
-<details><summary><b>Answer</b></summary>
-
 ```js
 const arr = [5, 2, 7, 5, 8, 4, 7, 2];
 let output = [];
@@ -100,7 +115,6 @@ for (i = 0; i < arr.length; i++) {
 }
 console.log(output.sort((a, b) => { return b-a }));
 ```
-</details>
 
 **[⬆](#Questions)**
 ---
@@ -121,8 +135,6 @@ console.log(output.sort((a, b) => { return b-a }));
 ---
 #### QA5
 ### ✍Find average of an array.
-<details><summary><b>Answer</b></summary>
-
 ```js
 const numbers = [1, 2, 3, 4, 5];
 
@@ -132,14 +144,11 @@ const getAverage = (array) => (array.reduce((total, current) => {
 
 console.log(getAverage(numbers)); // 3
 ```
-</details>
 
 **[⬆](#Questions)**
 ---
 #### QA6
 ### ✍Use javascript function to perform a quick sort.
-<details><summary><b>Answer</b></summary>
-
 ```js
 function quickSort(arr) {
     if (arr.length <= 1) return arr;
@@ -160,144 +169,76 @@ function quickSort(arr) {
 const numbers = [5, 3, 7, 6, 2, 9];
 console.log(quickSort(numbers)); // [2, 3, 5, 6, 7, 9]
 ```
-</details>
 
+**[⬆](#Questions)**
 ---
 #### QA7
 ### ✍Flatten the array using ES6 functions and find unique numbers.
-<details><summary><b>Answer</b></summary>
 
-```js
-
-```
-</details>
-
+**[⬆](#Questions)**
 ---
 #### QA8
 ### ✍Find longest common string from array of strings
-<details><summary><b>Answer</b></summary>
 
-```js
-
-```
-</details>
-
+**[⬆](#Questions)**
 ---
 #### QA9
 ### ✍Unique values only from 2 arrays
-<details><summary><b>Answer</b></summary>
 
-```js
-
-```
-</details>
-
+**[⬆](#Questions)**
 ---
 #### QA10
 ### ✍Find the first pair whose sum is 0
-<details><summary><b>Answer</b></summary>
 
-```js
-
-```
-</details>
-
+**[⬆](#Questions)**
 ---
 #### QA11
 ### ✍Find fibonacci series
-<details><summary><b>Answer</b></summary>
 
-```js
-
-```
-</details>
-
+**[⬆](#Questions)**
 ---
 #### QA12
 ### ✍Find missing number in an array
-<details><summary><b>Answer</b></summary>
 
-```js
-
-```
-</details>
-
+**[⬆](#Questions)**
 ---
 #### QA13
 ### ✍Find unique numbers from 2 arrays and keep it in one array
-<details><summary><b>Answer</b></summary>
 
-```js
-
-```
-</details>
-
+**[⬆](#Questions)**
 ---
 #### QA14
 ### ✍Write a program that prints the numbers from 1 to 100. But for multiples of three, print "Fizz" instead of the number, and for the multiples of five, print "Buzz". For numbers which are multiples of both three and five, print "FizzBuzz"
-<details><summary><b>Answer</b></summary>
 
-```js
-
-```
-</details>
-
+**[⬆](#Questions)**
 ---
 #### QA15
 ### ✍Uppercase of each first letter of a words
-<details><summary><b>Answer</b></summary>
 
-```js
-
-```
-</details>
-
+**[⬆](#Questions)**
 ---
 #### QA16
 ### ✍Find the largest elements fro the 2 diensional array
-<details><summary><b>Answer</b></summary>
 
-```js
-
-```
-</details>
-
+**[⬆](#Questions)**
 ---
 #### QA17
 ### ✍Converting one dimensional array into n dimensional array using splice
-<details><summary><b>Answer</b></summary>
 
-```js
-
-```
-</details>
-
+**[⬆](#Questions)**
 ---
 #### QA18
 ### ✍Find only truthy values.
-<details><summary><b>Answer</b></summary>
 
-```js
-
-```
-</details>
-
+**[⬆](#Questions)**
 ---
 #### QA19
 ### ✍Checking all letters of second words should present in first word, in the same order using include function.
-<details><summary><b>Answer</b></summary>
-
-```js
-
-```
-</details>
 
 **[⬆](#Questions)**
 ---
 #### QB1
 ### ✍Given a string, reverse each word in the sentence. Example ""emocleW ot aidnI". Return as "Welcome to India".
-<details><summary><b>Answer</b></summary>
-
 ```js
 let str = "emocleW ot aidnI";
 
@@ -309,14 +250,11 @@ let result = arr.map((item) => {
 
 console.log(result.join(' ')); // "Welcome to India"
 ```
-</details>
 
 **[⬆](#Questions)**
 ---
 #### QB2
 ### ✍Given two strings, return true if they are anagrams of one another. 
-<details><summary><b>Answer</b></summary>
-
 ```js
 let strA = "monk";
 let strB = "kmon";
@@ -331,14 +269,11 @@ function isAnagram(strA, strB) {
 
 console.log(isAnagram(strA, strB)); // true
 ```
-</details>
 
 **[⬆](#Questions)**
 ---
 #### QB3
 ### ✍Find a maximum consecutive repeating char in a given string.
-<details><summary><b>Answer</b></summary>
-
 ```js
 /* Find occurance of each letter */
 let str = "emocleW ot aidnI";
@@ -377,77 +312,40 @@ console.log(result);
 //   W: 1
 // }
 ```
-</details>
-
+**[⬆](#Questions)**
 ---
 #### QB4
 ### ✍Remove duplicate characters from a string
-<details><summary><b>Answer</b></summary>
 
-```js
-
-```
-</details>
-
+**[⬆](#Questions)**
 ---
 #### QB5
 ### ✍String reverse without reversing of individual words (using inbuilt function, not using inbuilt function)
-<details><summary><b>Answer</b></summary>
 
-```js
-
-```
-</details>
-
+**[⬆](#Questions)**
 ---
 #### QB6
 ### ✍Check anagram
-<details><summary><b>Answer</b></summary>
 
-```js
-
-```
-</details>
-
+**[⬆](#Questions)**
 ---
 #### QB7
 ### ✍Check palindrome (using inbuilt function, not using inbuilt function).
-<details><summary><b>Answer</b></summary>
 
-```js
-
-```
-</details>
-
+**[⬆](#Questions)**
 ---
 #### QB8
 ### ✍Find the longest word from the string using for-of loop
-<details><summary><b>Answer</b></summary>
 
-```js
-
-```
-</details>
-
+**[⬆](#Questions)**
 ---
 #### QB9
 ### ✍Find vowels and its count in a given string
-<details><summary><b>Answer</b></summary>
 
-```js
-
-```
-</details>
-
+**[⬆](#Questions)**
 ---
 #### QB10
 ### ✍Check ending of the string with given character/s (using inbuilt function, not using inbuilt function).
-<details><summary><b>Answer</b></summary>
-
-```js
-
-```
-</details>
 
 **[⬆](#Questions)**
 ---
@@ -456,10 +354,50 @@ console.log(result);
 
 **[⬆](#Questions)**
 ---
+#### QC2
+### ✍Reverse key-values of an Object
+```
+Input: 
+{
+    'John': '29',
+    'Kay': '34',
+    'Pearson': '46',
+    'Menon': '64'
+}
+Output: 
+{
+    '29': 'John',
+    '34': 'Kay',
+    '46': 'Pearson',
+    '64': 'Menon'
+}
+```
+```js
+const inputObject = {
+  John: '29',
+  Kay: '34',
+  Pearson: '46',
+  Menon: '64',
+};
+
+function reverseObjectValues() {
+  let result = {};
+
+  Object.keys(inputObject).map((item) => {
+    result[inputObject[item]] = item;
+  });
+
+  return result;
+}
+
+console.log(reverseObjectValues());
+// {29: "John", 34: "Kay", 46: "Pearson", 64: "Menon"}
+```
+
+**[⬆](#Questions)**
+---
 #### QD1
 ### ✍Write a function for factorial program.
-<details><summary><b>Answer</b></summary>
-
 ```js
 let factorial = function(n) {
     if(n <= 0) {
@@ -471,14 +409,11 @@ let factorial = function(n) {
 var result = factorial(6);
 console.log(result);
 ```
-</details>
 
 **[⬆](#Questions)**
 ---
 #### QE1
 ### ✍Output of the following.
-<details><summary><b>Answer</b></summary>
-
 ```js
 console.log('one');
 setTimeout(() => console.log('two'));
@@ -489,5 +424,6 @@ console.log('three');0
 // three
 // two
 ```
-</details>
+**[⬆](#Questions)**
+---
 

@@ -912,6 +912,8 @@ const [state, dispatch] = useReducer(reducer, initialArg, init);
 `useReducer` is usually preferable to useState when you have complex state logic that involves multiple sub-values or when the next state depends on the previous one. `useReducer` also lets you optimize performance for components that trigger deep updates because you can pass dispatch down instead of callbacks.
 
 ```jsx
+import React, { useReducer } from "react";
+
 const initialState = {count: 0};
 
 function reducer(state, action) {
@@ -925,17 +927,19 @@ function reducer(state, action) {
   }
 }
 
-function Counter() {
+export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <>
-      Count: {state.count}
+      <p>Count: {state.count}</p>
       <button onClick={() => dispatch({type: 'decrement'})}>-</button>
       <button onClick={() => dispatch({type: 'increment'})}>+</button>
     </>
   );
 }
+
 ```
+Code Link: [Click Here](https://stackblitz.com/edit/react-e9c19h?file=src/App.js)
 
 **[⬆](#Questions)**
 ---

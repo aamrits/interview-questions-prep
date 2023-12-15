@@ -1803,3 +1803,151 @@ Ways to prevent:
 
 **[⬆](#Questions)**
 ---
+
+9.1 create one object which contains the property and method. Method should print the details of the property
+Solution:
+```js
+var person = {
+	name: 'Giri',
+	age: 25,
+	getIntroduction: function(){
+		return `This is ${this.name} and person's age is ${this.age}`
+	}
+}
+```
+9.2 Bind another method which should print only the name in the object
+Solution:
+```js
+var getName = function(){
+	return this.name
+}
+
+var getNameHolder = getname.bind(person)
+console.log(getNameHolder());
+```
+10 what is the compressor plugin you are using in the webpack to compress the code.
+11 What is the difference between the onkeypress and onchange and which one will call first if it is register to same element.
+12 difference between event.stopPropagation and event.preventDefault.
+
+Lowe's
+
+Interview 2
+What is the advantage of react
+why do you recommend react
+Explain about Ajax calls - how it works
+Explain how javascript is single threaded
+How to handle asynchronous tasks
+Fix the bug in React component (coding task)
+About redux flow
+About middleware used in project
+Redux principles
+
+
+
+Interview 3
+Challenges you faced in your previous project
+Object class in js
+literal class in js
+micro front-end framework
+Deploying react application
+react router
+singleton object
+Redux
+What are the new APIs you've used in ES6
+Explain 5 array helper methods
+advantages of saga
+http request on typing (each character typing makes http request, how to avoid & invoke request on word type)
+react life cycle method componentDidUpdate alternate in functional component
+How do you manage multiple http requests
+example of uni directional data flow
+what is immutability, give an example
+
+
+Have you worked on configuring react project from scratch
+How does React code is executed
+Two forms, after form is succesfull -> navigate to another form (Router concept)
+How do you approach this in React router
+What is let & const used for
+can you make array immutable
+Redux architecure
+Difference between hooks, lifecycle methods
+When to use hooks
+Is it mandatory to use Redux, why we need to use redux
+What is mutable & immutable
+
+
+
+Project Introduction
+Rate yourself in React
+Functional or class based components
+virtual DOM
+State Vs props
+Program to pass props and change the parent component value in child component
+Rate yourself in Javascript
+What are the Array methods used?
+Find out if object is empty or not?
+Write a program to take an array as input and loop through the array elements and break from the loop when it finds a repeated number?
+If we get an array of 100 objects from api, how to extract 50th object key value?
+What is flex ?
+Explain positions?
+HTML5 what tags have u used explain? Why these tags have to be used instead of div tags?
+
+Interview2:
+
+Example program of closure? Several versions of modifying the program by creating the variable with the same name in the outer scope and asked for output?
+Write a function that takes an array as an input arr=[1,2,3,0,8,7,0,0,6,0] to move the digits to left side of the array and zeros to right side of the array without using any sort and using only 1 array. The order of digits in the array should not be changed.
+event loop and difference between callback queue and micro task queue? Which takes priority and why?
+Write the output for the following?
+console.log(1 < 2 < 3) 
+console.log(3 > 2 >1) 
+console.log(1+ +"2"+"3"); 
+setTimeout(()=>{
+console.log("hello")
+},[0]
+) 
+const promiseA = new Promise( (resolutionFunc,rejectionFunc) => {
+    resolutionFunc(777);
+});
+promiseA.then( (val) => console.log("asynchronous logging has val:",val) );
+
+Why context api is used ? Why not redux? Use cases of redux exclusively ?
+Pure Component
+React.Memo vs usememo vs usecallback?
+If we wrap the fucntion using usememo hook, if the state changes, the updated value will not be reflected. How to get the updated value?
+What is Box model? If margin is added, will it change the height and weight of an element?
+
+
+
+
+1 - Tell me about last project roles and responsibilities
+2 - Have you worked on deployment, CI/CD
+3 - What is your experience in fixing performance issues
+4 - What is the limitations of React JS
+5 - What is the difference between useContext and useMemo
+6 - Explain REDUX and the react - redux flow
+7 - Have you worked on Thunk or Saga
+
+
+
+
+
+1.	Tell me about yourself?
+2.	What is the difference between Redux and Context API? And which you will choose and why?
+3.	What is virtual DOM and Explain how it is different from another JS library?
+4.	Why JS is Single threaded?
+5.	What is Event Loop?
+6.	How are we doing Unit testing in react and Integration testing?
+7.	How are we creating API using Node JS?
+8.	Give a workflow for GET API?
+9.	How we configure CI/CD Pipeline?
+10.	How we store token in the application?
+11.	What is useMemo, useEffect and how to avoid re-rendering to component?
+12.	 What are the best practices to design React application?
+13.	How can we create npm package so that we can use in multiple project?
+14.	Why we use Functional Component over Class Component?
+15.	If API (backend) is not ready and it will take a month to complete then what will be your approach in frontend side to progress with your task, whether you will wait for a month or what things you will start from UI side?
+16.	How we can show or hide any component in react, tell me your approach?
+17.	 How we design folder structure in React?
+18.	How we call the API and bind in React and what is best approach?
+19.	How we do code refactoring in React?
+

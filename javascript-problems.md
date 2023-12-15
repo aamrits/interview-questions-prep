@@ -106,30 +106,79 @@ console.log('three');0
 #### QA1 
 ### ✍Write a function to remove duplicates in an array, sort it in the descending order.
 ```js
-const arr = [5, 2, 7, 5, 8, 4, 7, 2];
-let output = [];
-for (i = 0; i < arr.length; i++) {
-   if(output.indexOf(arr[i]) == -1) {
-       output.push(arr[i]);
-   }
+function removeDuplicates(arr) {
+  let output = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (output.indexOf(arr[i]) == -1) {
+        output.push(arr[i]);
+    }
+  }
+  return output;
 }
-console.log(output.sort((a, b) => { return b-a }));
+
+const arr = [5, 2, 7, 5, 8, 4, 7, 2];
+
+console.log(removeDuplicates(arr).sort((a, b) => b - a)); // [5, 2, 7, 8, 4]
 ```
 
 **[⬆](#Questions)**
 ---
 #### QA2
 ### ✍How to empty an array.
+```js
+const arr = [5, 2, 7, 5, 8, 4, 7, 3];
+
+// arr = [];
+// arr.length = 0;
+arr.splice(0, arr.length);
+
+console.log(arr) // []
+```
 
 **[⬆](#Questions)**
 ---
 #### QA3
 ### ✍Remove duplicate values from an array (using filter, using Set Object).
+```js
+function removeDuplicatesWithFilter(arr) {
+  let output = arr.filter((item, index) => {
+    return arr.indexOf(item) === index;
+  });
+
+  return output;
+}
+
+function removeDuplicates(arr) {
+  return [...new Set(arr)]
+}
+
+const arr = [5, 2, 7, 5, 8, 4, 7, 2];
+
+console.log(removeDuplicatesWithFilter(arr)); // [5, 2, 7, 8, 4]
+console.log(removeDuplicates(arr)); // [5, 2, 7, 8, 4]
+```
 
 **[⬆](#Questions)**
 ---
 #### QA4
 ### ✍Shuffle elements in an array.
+```js
+function shuffleArray(arr) {
+  // Durstenfeld shuffle algorithm
+  for (let i = arr.length - 1; i > 0 ; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+const arr = [5, 2, 8, 4, 7];
+
+console.log(shuffleArray(arr)); // [5, 8, 4, 2, 7]
+console.log(shuffleArray(arr)); // [7, 5, 8, 4, 2]
+console.log(shuffleArray(arr)); // [8, 4, 2, 7, 5]
+console.log(shuffleArray(arr)); // [8, 2, 5, 7, 4]
+```
 
 **[⬆](#Questions)**
 ---
